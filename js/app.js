@@ -826,51 +826,30 @@
     if (!card) return;
 
     var firstName = name.split(/\s+/)[0];
-    var revLink = REVOLUT_URL !== 'https://revolut.me/YOUR_USERNAME' ? REVOLUT_URL : null;
+    var waMsg = 'Hi Brian, I\'ve just entered the World Cup Buster — ' + name;
 
     card.innerHTML = '';
     card.className = 'buster-card buster-success-card';
 
     var icon = el('div', 'success-icon'); icon.textContent = '🎉';
-    var heading = el('h2', 'success-heading'); heading.textContent = 'You\'re in, ' + firstName + '!';
+    var heading = el('h2', 'success-heading'); heading.textContent = 'Entry submitted, ' + firstName + '!';
     var msg = el('p', 'success-msg');
-    msg.textContent = 'Your spot is reserved. Your team will be randomly drawn and emailed to you.';
+    msg.textContent = 'Now WhatsApp Brian to confirm your spot. He\'ll reply with the ' + ENTRY_FEE + ' payment link — spots are first come, first served.';
+
+    var waBtn = el('a', 'whatsapp-btn success-wa-primary');
+    waBtn.href = 'https://wa.me/353852789446?text=' + encodeURIComponent(waMsg);
+    waBtn.target = '_blank';
+    waBtn.rel = 'noopener';
+    waBtn.textContent = '💬 WhatsApp Brian to confirm';
+
+    var note = el('p', 'success-pay-warning');
+    note.textContent = '⚠️ Your entry is not confirmed until Brian receives your payment.';
 
     card.appendChild(icon);
     card.appendChild(heading);
     card.appendChild(msg);
-
-    var divider = el('div', 'success-divider');
-    card.appendChild(divider);
-
-    if (revLink) {
-      var payHeading = el('p', 'success-pay-label'); payHeading.textContent = 'Now pay your entry fee:';
-      var payBtn = el('a', 'revolut-btn');
-      payBtn.href = revLink;
-      payBtn.target = '_blank';
-      payBtn.rel = 'noopener';
-      payBtn.textContent = '💸 Pay ' + ENTRY_FEE + ' via Revolut';
-      var payNote = el('p', 'success-pay-note');
-      payNote.textContent = 'Add your name as the payment reference: ' + name;
-      var payWarning = el('p', 'success-pay-warning');
-      payWarning.textContent = '⚠️ Your entry will not be counted until payment is received.';
-      card.appendChild(payHeading);
-      card.appendChild(payBtn);
-      card.appendChild(payNote);
-      card.appendChild(payWarning);
-    }
-
-    var divider2 = el('div', 'success-divider');
-    card.appendChild(divider2);
-
-    var waHeading = el('p', 'success-pay-label'); waHeading.textContent = 'Questions or to confirm your entry:';
-    var waBtn = el('a', 'whatsapp-btn');
-    waBtn.href = 'https://wa.me/353852789446?text=' + encodeURIComponent('Hi Brian, I\'ve entered the World Cup Buster (' + name + ')');
-    waBtn.target = '_blank';
-    waBtn.rel = 'noopener';
-    waBtn.textContent = '💬 WhatsApp Brian';
-    card.appendChild(waHeading);
     card.appendChild(waBtn);
+    card.appendChild(note);
   }
 
   function showSweepMessage(text, type) {

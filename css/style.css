@@ -1152,6 +1152,16 @@ body {
 }
 .whatsapp-btn:hover { background: #1ebe5d; }
 
+.success-wa-primary {
+  display: block;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1.05rem;
+  padding: 16px 24px;
+  margin: 18px 0 12px;
+}
+
 .sweep-field { margin-bottom: 14px; }
 .sweep-field label {
   display: block;
