@@ -6,7 +6,7 @@
   var ENTRY_FEE    = '€20';
   // SHA-256 of the buster password. Change password by updating this hash.
   // Generate a new hash: https://emn178.github.io/online-tools/sha256.html
-  var BUSTER_PASS_HASH = 'fab8a24f4b0cba9165479a704bce83f3e0a42734dc072e89997785db4eaf53e4';
+  var BUSTER_PASS_HASH = '14dc8f49fa90a3bc7aeaa341e9c70a89528728b0c0e0a172d19ddf35f770a26b';
   var BUSTER_KEY = 'wcBusterUnlocked';
 
   var state = {
