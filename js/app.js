@@ -41,12 +41,25 @@
   // ── COUNTRY SELECTOR ──────────────────────────────────────────────────────
   function populateCountrySelector() {
     var sel = document.getElementById('countrySelect');
+    var regionOrder = ['Europe', 'North America', 'South America', 'Africa', 'Middle East', 'Asia', 'Oceania'];
+    var grouped = {};
+    regionOrder.forEach(function (r) { grouped[r] = []; });
     WC.TIMEZONES.forEach(function (tz) {
-      var opt = document.createElement('option');
-      opt.value = tz.tz;
-      opt.textContent = tz.flag + ' ' + tz.name;
-      if (tz.default) { opt.selected = true; state.tz = tz.tz; }
-      sel.appendChild(opt);
+      if (grouped[tz.region]) grouped[tz.region].push(tz);
+    });
+    regionOrder.forEach(function (region) {
+      var entries = grouped[region];
+      if (!entries.length) return;
+      var grp = document.createElement('optgroup');
+      grp.label = region;
+      entries.forEach(function (tz) {
+        var opt = document.createElement('option');
+        opt.value = tz.tz;
+        opt.textContent = tz.flag + ' ' + tz.name;
+        if (tz.default) { opt.selected = true; state.tz = tz.tz; }
+        grp.appendChild(opt);
+      });
+      sel.appendChild(grp);
     });
     sel.addEventListener('change', function () {
       state.tz = sel.value;
