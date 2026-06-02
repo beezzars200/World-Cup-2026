@@ -638,94 +638,46 @@
     return item;
   }
 
-  // ── SWEEPSTAKE TAB ────────────────────────────────────────────────────────
+  // ── BUSTER TAB ────────────────────────────────────────────────────────────
   function renderSweepstake() {
-    var grid = document.getElementById('sweepTeamsGrid');
-    if (!grid || grid.dataset.rendered) return;
-    grid.dataset.rendered = '1';
-
-    var allTeams = [];
-    Object.keys(WC.GROUPS).forEach(function (g) {
-      WC.GROUPS[g].teams.forEach(function (t) { allTeams.push(Object.assign({ group: g }, t)); });
-    });
-    allTeams.sort(function (a, b) { return a.name.localeCompare(b.name); });
-
-    allTeams.forEach(function (team) {
-      var btn = el('button', 'sweep-team-btn');
-      btn.dataset.code = team.code;
-      var flagEl = el('span', 'sweep-team-flag'); flagEl.textContent = team.flag;
-      var nameEl = el('span', 'sweep-team-name'); nameEl.textContent = team.name;
-      var grpEl  = el('span', 'sweep-team-group'); grpEl.textContent = 'Group ' + team.group;
-      btn.appendChild(flagEl); btn.appendChild(nameEl); btn.appendChild(grpEl);
-      btn.addEventListener('click', function () { selectSweepTeam(team); });
-      grid.appendChild(btn);
-    });
-
     var form = document.getElementById('sweepForm');
-    if (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        if (!state.sweepTeam) return;
+    if (!form || form.dataset.bound) return;
+    form.dataset.bound = '1';
 
-        var name  = document.getElementById('sweepName').value.trim();
-        var email = document.getElementById('sweepEmail').value.trim();
-        if (!name || !email) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name  = document.getElementById('sweepName').value.trim();
+      var email = document.getElementById('sweepEmail').value.trim();
+      if (!name || !email) return;
 
-        if (FORMSPREE_ID === 'YOUR_FORM_ID') {
-          showSweepMessage('Sweepstake not configured yet — ask the organiser to set up submissions.', 'warning');
-          return;
+      if (FORMSPREE_ID === 'YOUR_FORM_ID') {
+        showSweepMessage('Buster not yet configured — the organiser needs to add a Formspree ID.', 'warning');
+        return;
+      }
+
+      var data = new FormData();
+      data.append('name',  name);
+      data.append('email', email);
+
+      var btn = document.getElementById('sweepSubmit');
+      btn.disabled = true; btn.textContent = 'Submitting…';
+
+      fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+        method: 'POST', body: data, headers: { 'Accept': 'application/json' }
+      }).then(function (r) {
+        if (r.ok) {
+          showSweepMessage('You\'re in! Your team will be drawn and emailed to you shortly.', 'success');
+          form.reset();
+          btn.textContent = 'Enter the Buster';
+        } else {
+          showSweepMessage('Submission failed — please try again.', 'error');
+          btn.disabled = false; btn.textContent = 'Enter the Buster';
         }
-
-        var data = new FormData();
-        data.append('team',  state.sweepTeam.flag + ' ' + state.sweepTeam.name);
-        data.append('name',  name);
-        data.append('email', email);
-
-        var btn = document.getElementById('sweepSubmit');
-        btn.disabled = true; btn.textContent = 'Submitting…';
-
-        fetch('https://formspree.io/f/' + FORMSPREE_ID, {
-          method: 'POST', body: data, headers: { 'Accept': 'application/json' }
-        }).then(function (r) {
-          if (r.ok) {
-            showSweepMessage('You\'re in! ' + state.sweepTeam.flag + ' ' + state.sweepTeam.name + ' entered successfully.', 'success');
-            form.reset();
-            state.sweepTeam = null;
-            document.querySelectorAll('.sweep-team-btn').forEach(function (b) { b.classList.remove('selected'); });
-            var display = document.getElementById('sweepSelectedDisplay');
-            display.innerHTML = '';
-            var span = el('span', 'sweep-no-team'); span.textContent = 'No team selected — pick one from the left';
-            display.appendChild(span);
-            btn.textContent = 'Enter Sweepstake';
-          } else {
-            showSweepMessage('Submission failed — please try again.', 'error');
-            btn.disabled = false; btn.textContent = 'Enter Sweepstake';
-          }
-        }).catch(function () {
-          showSweepMessage('Network error — please try again.', 'error');
-          btn.disabled = false; btn.textContent = 'Enter Sweepstake';
-        });
+      }).catch(function () {
+        showSweepMessage('Network error — please try again.', 'error');
+        btn.disabled = false; btn.textContent = 'Enter the Buster';
       });
-    }
-  }
-
-  function selectSweepTeam(team) {
-    state.sweepTeam = team;
-    document.querySelectorAll('.sweep-team-btn').forEach(function (b) {
-      b.classList.toggle('selected', b.dataset.code === team.code);
     });
-    var display = document.getElementById('sweepSelectedDisplay');
-    if (display) {
-      display.innerHTML = '';
-      var flag = el('span', 'sweep-sel-flag'); flag.textContent = team.flag;
-      var name = el('span', 'sweep-sel-name'); name.textContent = team.name;
-      var grp  = el('span', 'sweep-sel-group'); grp.textContent = 'Group ' + team.group;
-      display.appendChild(flag); display.appendChild(name); display.appendChild(grp);
-    }
-    var input = document.getElementById('sweepTeamInput');
-    if (input) input.value = team.flag + ' ' + team.name;
-    var submit = document.getElementById('sweepSubmit');
-    if (submit) submit.disabled = false;
   }
 
   function showSweepMessage(text, type) {

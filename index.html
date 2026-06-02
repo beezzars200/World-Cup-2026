@@ -79,21 +79,14 @@
   </section>
 
   <section class="tab-panel" id="tab-sweepstake">
-    <div class="sweepstake-intro">
-      <h2 class="sweep-title">🏆 World Cup 2026 Sweepstake</h2>
-      <p class="sweep-desc">Pick your team, enter your details, and join the buster. One entry per person. All 48 teams available.</p>
-    </div>
-    <div class="sweep-layout">
-      <div class="sweep-teams-panel">
-        <div class="sweep-teams-label">Choose your team:</div>
-        <div class="sweep-teams-grid" id="sweepTeamsGrid"></div>
-      </div>
-      <div class="sweep-form-panel">
-        <form class="sweep-form" id="sweepForm">
-          <div class="sweep-selected-display" id="sweepSelectedDisplay">
-            <span class="sweep-no-team">No team selected — pick one from the left</span>
-          </div>
-          <input type="hidden" name="team" id="sweepTeamInput" value="" />
+    <div class="buster-wrap">
+      <div class="buster-card">
+        <div class="buster-header">
+          <span class="buster-trophy">🏆</span>
+          <h2 class="buster-title">World Cup Buster</h2>
+          <p class="buster-desc">Enter your details below to join. Your team will be randomly drawn and sent to you.</p>
+        </div>
+        <form class="buster-form" id="sweepForm">
           <div class="sweep-field">
             <label for="sweepName">Your name</label>
             <input type="text" id="sweepName" name="name" placeholder="Full name" required />
@@ -102,8 +95,8 @@
             <label for="sweepEmail">Email address</label>
             <input type="email" id="sweepEmail" name="email" placeholder="you@example.com" required />
           </div>
-          <button type="submit" class="sweep-submit" id="sweepSubmit" disabled>Enter Sweepstake</button>
-          <p class="sweep-note" id="sweepNote">
+          <button type="submit" class="sweep-submit" id="sweepSubmit">Enter the Buster</button>
+          <p class="sweep-note">
             Set your Formspree form ID in <code>js/app.js</code> (replace <code>YOUR_FORM_ID</code>) to collect entries.
           </p>
         </form>

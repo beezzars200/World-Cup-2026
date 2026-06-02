@@ -1020,88 +1020,44 @@ body {
 }
 .mrow-time.est { color: var(--muted); }
 
-/* ── SWEEPSTAKE ── */
-.sweepstake-intro { text-align: center; padding: 24px 0 28px; }
+/* ── BUSTER ── */
+.buster-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 40px 16px;
+}
 
-.sweep-title {
-  font-size: 1.5rem;
+.buster-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px 40px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.buster-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.buster-trophy { font-size: 2.4rem; display: block; margin-bottom: 10px; }
+
+.buster-title {
+  font-size: 1.6rem;
   font-weight: 800;
   color: var(--gold);
   margin-bottom: 8px;
 }
 
-.sweep-desc { color: var(--muted); font-size: 0.9rem; }
-
-.sweep-layout {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 20px;
-  align-items: start;
-}
-
-.sweep-teams-panel, .sweep-form-panel {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 16px;
-}
-
-.sweep-form-panel { position: sticky; top: 130px; }
-
-.sweep-teams-label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+.buster-desc {
   color: var(--muted);
-  margin-bottom: 12px;
+  font-size: 0.88rem;
+  line-height: 1.5;
 }
 
-.sweep-teams-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  gap: 8px;
-}
-
-.sweep-team-btn {
-  background: var(--surface2);
-  border: 1.5px solid var(--border);
-  border-radius: 8px;
-  padding: 8px 10px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
-  transition: all 0.15s;
-  text-align: left;
-}
-.sweep-team-btn:hover { border-color: var(--gold); background: rgba(245,158,11,0.06); }
-.sweep-team-btn.selected {
-  border-color: var(--gold);
-  background: rgba(245,158,11,0.14);
-  box-shadow: 0 0 0 2px rgba(245,158,11,0.2);
-}
-
-.sweep-team-flag  { font-size: 1.4rem; line-height: 1; }
-.sweep-team-name  { font-size: 0.76rem; font-weight: 600; color: var(--text); margin-top: 2px; }
-.sweep-team-group { font-size: 0.63rem; color: var(--muted); }
-
-.sweep-selected-display {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px 14px;
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 58px;
-}
-.sweep-no-team   { color: var(--muted); font-size: 0.8rem; }
-.sweep-sel-flag  { font-size: 2rem; flex-shrink: 0; }
-.sweep-sel-name  { font-size: 0.95rem; font-weight: 700; color: var(--text); flex: 1; }
-.sweep-sel-group { font-size: 0.72rem; color: var(--muted); }
+.buster-form { display: flex; flex-direction: column; }
 
 .sweep-field { margin-bottom: 14px; }
 .sweep-field label {
@@ -1169,8 +1125,5 @@ body {
 @media (max-width: 768px) {
   .live-now-section { padding: 0 10px; }
   .live-tile { max-width: 100%; }
-
-  .sweep-layout { grid-template-columns: 1fr; }
-  .sweep-form-panel { position: static; order: -1; }
-  .sweep-teams-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+  .buster-card { padding: 24px 20px; }
 }
