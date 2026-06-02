@@ -80,24 +80,29 @@
 
   <section class="tab-panel" id="tab-sweepstake">
     <div class="buster-wrap">
-      <div class="buster-card">
+      <div class="buster-card" id="busterCard">
         <div class="buster-header">
           <span class="buster-trophy">🏆</span>
           <h2 class="buster-title">World Cup Buster</h2>
           <p class="buster-desc">Enter your details below to join. Your team will be randomly drawn and sent to you.</p>
+          <div class="buster-spots" id="busterSpots"></div>
         </div>
         <form class="buster-form" id="sweepForm">
+          <!-- honeypot — bots fill this, humans don't see it -->
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
           <div class="sweep-field">
-            <label for="sweepName">Your name</label>
-            <input type="text" id="sweepName" name="name" placeholder="Full name" required />
+            <label for="sweepName">Your full name</label>
+            <input type="text" id="sweepName" name="name" placeholder="First and last name" autocomplete="name" required />
+            <span class="field-error" id="nameError"></span>
           </div>
           <div class="sweep-field">
             <label for="sweepEmail">Email address</label>
-            <input type="email" id="sweepEmail" name="email" placeholder="you@example.com" required />
+            <input type="email" id="sweepEmail" name="email" placeholder="you@example.com" autocomplete="email" required />
+            <span class="field-error" id="emailError"></span>
           </div>
           <button type="submit" class="sweep-submit" id="sweepSubmit">Enter the Buster</button>
           <p class="sweep-note">
-            Set your Formspree form ID in <code>js/app.js</code> (replace <code>YOUR_FORM_ID</code>) to collect entries.
+            Set your Formspree form ID and Revolut link in <code>js/app.js</code> to activate.
           </p>
         </form>
       </div>

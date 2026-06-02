@@ -1,7 +1,8 @@
 (function () {
   'use strict';
 
-  var FORMSPREE_ID = 'YOUR_FORM_ID'; // Replace with your Formspree form ID
+  var FORMSPREE_ID = 'YOUR_FORM_ID';   // Replace with your Formspree form ID
+  var REVOLUT_URL  = 'https://revolut.me/YOUR_USERNAME'; // Replace with your Revolut.me link
 
   var state = {
     tz: 'Europe/Dublin',
@@ -644,11 +645,25 @@
     if (!form || form.dataset.bound) return;
     form.dataset.bound = '1';
 
+    // Load entry count and update spots display
+    fetch('data/entries.json?_=' + Date.now())
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) { updateSpotsDisplay(data); })
+      .catch(function () {});
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var name  = document.getElementById('sweepName').value.trim();
-      var email = document.getElementById('sweepEmail').value.trim();
-      if (!name || !email) return;
+
+      // Honeypot check
+      var honeypot = form.querySelector('input[name="_gotcha"]');
+      if (honeypot && honeypot.value) return;
+
+      var nameInput  = document.getElementById('sweepName');
+      var emailInput = document.getElementById('sweepEmail');
+      var name  = nameInput.value.trim();
+      var email = emailInput.value.trim();
+
+      if (!validateBusterForm(name, email)) return;
 
       if (FORMSPREE_ID === 'YOUR_FORM_ID') {
         showSweepMessage('Buster not yet configured — the organiser needs to add a Formspree ID.', 'warning');
@@ -666,9 +681,7 @@
         method: 'POST', body: data, headers: { 'Accept': 'application/json' }
       }).then(function (r) {
         if (r.ok) {
-          showSweepMessage('You\'re in! Your team will be drawn and emailed to you shortly.', 'success');
-          form.reset();
-          btn.textContent = 'Enter the Buster';
+          showBusterSuccess(name);
         } else {
           showSweepMessage('Submission failed — please try again.', 'error');
           btn.disabled = false; btn.textContent = 'Enter the Buster';
@@ -678,6 +691,91 @@
         btn.disabled = false; btn.textContent = 'Enter the Buster';
       });
     });
+  }
+
+  function updateSpotsDisplay(data) {
+    var spotsEl = document.getElementById('busterSpots');
+    var submitBtn = document.getElementById('sweepSubmit');
+    if (!spotsEl) return;
+    if (!data) { spotsEl.textContent = ''; return; }
+
+    var remaining = data.max - data.count;
+
+    if (!data.open || remaining <= 0) {
+      spotsEl.className = 'buster-spots spots-full';
+      spotsEl.textContent = 'The buster is full — all 48 spots are taken.';
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Buster Full'; }
+    } else {
+      spotsEl.className = 'buster-spots spots-open' + (remaining <= 10 ? ' spots-low' : '');
+      spotsEl.textContent = remaining + ' of ' + data.max + ' spots remaining';
+    }
+  }
+
+  function validateBusterForm(name, email) {
+    var nameErr  = document.getElementById('nameError');
+    var emailErr = document.getElementById('emailError');
+    if (nameErr)  nameErr.textContent  = '';
+    if (emailErr) emailErr.textContent = '';
+    var valid = true;
+
+    // Name: at least two words, letters only (allows hyphens, apostrophes, accents)
+    var nameParts = name.split(/\s+/).filter(Boolean);
+    if (nameParts.length < 2) {
+      if (nameErr) nameErr.textContent = 'Please enter your first and last name.';
+      valid = false;
+    } else if (!/^[\p{L}\s'\-\.]+$/u.test(name)) {
+      if (nameErr) nameErr.textContent = 'Name should only contain letters.';
+      valid = false;
+    }
+
+    // Email: proper format with a real-looking domain
+    var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailRe.test(email)) {
+      if (emailErr) emailErr.textContent = 'Please enter a valid email address.';
+      valid = false;
+    }
+
+    return valid;
+  }
+
+  function showBusterSuccess(name) {
+    var card = document.getElementById('busterCard');
+    if (!card) return;
+
+    var firstName = name.split(/\s+/)[0];
+    var revLink = REVOLUT_URL !== 'https://revolut.me/YOUR_USERNAME' ? REVOLUT_URL : null;
+
+    card.innerHTML = '';
+    card.className = 'buster-card buster-success-card';
+
+    var icon = el('div', 'success-icon'); icon.textContent = '🎉';
+    var heading = el('h2', 'success-heading'); heading.textContent = 'You\'re in, ' + firstName + '!';
+    var msg = el('p', 'success-msg');
+    msg.textContent = 'Your spot is reserved. Your team will be randomly drawn and emailed to you.';
+
+    card.appendChild(icon);
+    card.appendChild(heading);
+    card.appendChild(msg);
+
+    if (revLink) {
+      var divider = el('div', 'success-divider');
+      var payHeading = el('p', 'success-pay-label'); payHeading.textContent = 'Now pay your entry fee:';
+      var payBtn = el('a', 'revolut-btn');
+      payBtn.href = revLink;
+      payBtn.target = '_blank';
+      payBtn.rel = 'noopener';
+      payBtn.textContent = '💸 Pay via Revolut';
+      var payNote = el('p', 'success-pay-note');
+      payNote.textContent = 'Add your name in the payment reference: ' + name;
+      card.appendChild(divider);
+      card.appendChild(payHeading);
+      card.appendChild(payBtn);
+      card.appendChild(payNote);
+    } else {
+      var noteEl = el('p', 'success-pay-note');
+      noteEl.textContent = 'Contact the organiser to arrange your entry fee.';
+      card.appendChild(noteEl);
+    }
   }
 
   function showSweepMessage(text, type) {
