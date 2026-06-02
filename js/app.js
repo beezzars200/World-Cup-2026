@@ -1,7 +1,8 @@
 (function () {
   'use strict';
 
-  // ── STATE ──────────────────────────────────────────────────────────────────
+  var FORMSPREE_ID = 'YOUR_FORM_ID'; // Replace with your Formspree form ID
+
   var state = {
     tz: 'Europe/Dublin',
     tab: 'groups',
@@ -9,17 +10,24 @@
     groupFilter: 'all',
     standings: {},
     lastUpdated: null,
+    sweepTeam: null,
   };
 
-  // ── INIT ───────────────────────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', function () {
     populateCountrySelector();
     bindTabButtons();
     bindScheduleFilters();
     fetchResults().then(function () {
       computeAllStandings();
+      renderLiveNow();
       renderCurrentTab();
-      setInterval(function () { fetchResults().then(function () { computeAllStandings(); renderCurrentTab(); }); }, 60000);
+      setInterval(function () {
+        fetchResults().then(function () {
+          computeAllStandings();
+          renderLiveNow();
+          renderCurrentTab();
+        });
+      }, 60000);
     });
   });
 
@@ -48,28 +56,26 @@
       .then(function (data) {
         if (!data || !data.matches) return;
         state.lastUpdated = data.lastUpdated || null;
-        var el = document.getElementById('lastUpdated');
-        if (el && state.lastUpdated) {
-          var d = new Date(state.lastUpdated);
-          el.textContent = 'Data last updated: ' + formatDateTimeDisplay(d);
+        var updEl = document.getElementById('lastUpdated');
+        if (updEl && state.lastUpdated) {
+          updEl.textContent = 'Data last updated: ' + formatDateTimeDisplay(new Date(state.lastUpdated));
         }
         var matches = data.matches;
         WC.GROUP_MATCHES.forEach(function (m) {
           if (matches[m.id]) {
             var r = matches[m.id];
-            m.score1  = r.score1  !== undefined ? r.score1  : m.score1;
-            m.score2  = r.score2  !== undefined ? r.score2  : m.score2;
-            m.status  = r.status  || m.status;
+            m.score1 = r.score1 !== undefined ? r.score1 : m.score1;
+            m.score2 = r.score2 !== undefined ? r.score2 : m.score2;
+            m.status = r.status || m.status;
           }
         });
-        var allKo = getKnockoutArray();
-        allKo.forEach(function (m) {
+        getKnockoutArray().forEach(function (m) {
           if (matches[m.id]) {
             var r = matches[m.id];
-            m.score1  = r.score1  !== undefined ? r.score1  : m.score1;
-            m.score2  = r.score2  !== undefined ? r.score2  : m.score2;
-            m.status  = r.status  || m.status;
-            m.winner  = r.winner  || m.winner;
+            m.score1 = r.score1 !== undefined ? r.score1 : m.score1;
+            m.score2 = r.score2 !== undefined ? r.score2 : m.score2;
+            m.status = r.status || m.status;
+            m.winner = r.winner || m.winner;
           }
         });
       })
@@ -119,21 +125,20 @@
       if (b.gf  !== a.gf)  return b.gf  - a.gf;
       return a.team.name.localeCompare(b.team.name);
     });
-    var complete = playedCount === 6;
-    return { rows: rows, complete: complete, playedCount: playedCount };
+    return { rows: rows, complete: playedCount === 6, playedCount: playedCount };
   }
 
   // ── TIME FORMATTING ───────────────────────────────────────────────────────
   function formatMatchTime(dateStr, utcTime, tz, isEst) {
     try {
-      var iso = dateStr + 'T' + utcTime + ':00Z';
-      var d = new Date(iso);
-      var opts = { timeZone: tz, weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: false };
-      var fmt = new Intl.DateTimeFormat('en-IE', opts).format(d);
-      if (isEst) return '~' + fmt;
-      return fmt;
+      var d = new Date(dateStr + 'T' + utcTime + ':00Z');
+      var fmt = new Intl.DateTimeFormat('en-IE', {
+        timeZone: tz, weekday: 'short', day: 'numeric', month: 'short',
+        hour: '2-digit', minute: '2-digit', hour12: false
+      }).format(d);
+      return isEst ? '~' + fmt : fmt;
     } catch (e) {
-      return dateStr + ' ' + utcTime + ' UTC' + (isEst ? ' (est)' : '');
+      return dateStr + ' ' + utcTime + ' UTC';
     }
   }
 
@@ -145,23 +150,93 @@
 
   function getMatchDateInTz(dateStr, utcTime, tz) {
     try {
-      var iso = dateStr + 'T' + utcTime + ':00Z';
-      var d = new Date(iso);
-      var parts = new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(d);
+      var parts = new Intl.DateTimeFormat('en-CA', {
+        timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit'
+      }).formatToParts(new Date(dateStr + 'T' + utcTime + ':00Z'));
       var y = '', mo = '', dy = '';
-      parts.forEach(function (p) { if (p.type === 'year') y = p.value; if (p.type === 'month') mo = p.value; if (p.type === 'day') dy = p.value; });
+      parts.forEach(function (p) {
+        if (p.type === 'year') y = p.value;
+        if (p.type === 'month') mo = p.value;
+        if (p.type === 'day') dy = p.value;
+      });
       return y + '-' + mo + '-' + dy;
     } catch (e) { return dateStr; }
   }
 
   function todayInTz(tz) {
     try {
-      var d = new Date();
-      var parts = new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(d);
+      var parts = new Intl.DateTimeFormat('en-CA', {
+        timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit'
+      }).formatToParts(new Date());
       var y = '', mo = '', dy = '';
-      parts.forEach(function (p) { if (p.type === 'year') y = p.value; if (p.type === 'month') mo = p.value; if (p.type === 'day') dy = p.value; });
+      parts.forEach(function (p) {
+        if (p.type === 'year') y = p.value;
+        if (p.type === 'month') mo = p.value;
+        if (p.type === 'day') dy = p.value;
+      });
       return y + '-' + mo + '-' + dy;
     } catch (e) { return new Date().toISOString().slice(0, 10); }
+  }
+
+  // ── LIVE NOW SECTION ──────────────────────────────────────────────────────
+  function renderLiveNow() {
+    var section = document.getElementById('liveNow');
+    if (!section) return;
+
+    var liveMatches = WC.GROUP_MATCHES.concat(getKnockoutArray()).filter(function (m) {
+      return m.status === 'live';
+    });
+
+    section.innerHTML = '';
+    if (!liveMatches.length) return;
+
+    var hdr = el('div', 'live-now-header');
+    var dot = el('span', 'live-now-dot');
+    hdr.appendChild(dot);
+    hdr.appendChild(document.createTextNode(
+      ' LIVE NOW · ' + liveMatches.length + ' match' + (liveMatches.length !== 1 ? 'es' : '') + ' in progress'
+    ));
+    section.appendChild(hdr);
+
+    var grid = el('div', 'live-now-grid');
+    liveMatches.forEach(function (m) { grid.appendChild(buildLiveTile(m)); });
+    section.appendChild(grid);
+  }
+
+  function buildLiveTile(m) {
+    var tile = el('div', 'live-tile');
+
+    var roundEl = el('div', 'live-tile-round');
+    if (m.group) {
+      roundEl.textContent = 'Group ' + m.group + ' · Matchday ' + (m.md || '');
+    } else {
+      var labels = { r32: 'Round of 32', r16: 'Round of 16', qf: 'Quarter-final', sf: 'Semi-final', final: 'Final', '3rd': '3rd Place' };
+      roundEl.textContent = labels[m.round] || 'Knockout';
+    }
+    tile.appendChild(roundEl);
+
+    var t1 = (m.team1 && m.team1.code) ? m.team1 : resolveKoTeam(m.team1, m.team1Label);
+    var t2 = (m.team2 && m.team2.code) ? m.team2 : resolveKoTeam(m.team2, m.team2Label);
+    var s1 = m.score1 !== null ? m.score1 : 0;
+    var s2 = m.score2 !== null ? m.score2 : 0;
+
+    [
+      { team: t1, label: m.team1Label, score: s1, other: s2 },
+      { team: t2, label: m.team2Label, score: s2, other: s1 }
+    ].forEach(function (item) {
+      var trow = el('div', 'live-tile-team' + (item.score > item.other ? ' leading' : ''));
+      var flag = el('span', 'live-tile-flag'); flag.textContent = item.team ? item.team.flag : '';
+      var name = el('span', 'live-tile-name'); name.textContent = item.team ? item.team.name : formatLabel(item.label);
+      var score = el('span', 'live-tile-score'); score.textContent = item.score;
+      trow.appendChild(flag); trow.appendChild(name); trow.appendChild(score);
+      tile.appendChild(trow);
+    });
+
+    var footer = el('div', 'live-tile-footer');
+    footer.textContent = (m.city && m.city !== 'TBD') ? m.city : '';
+    tile.appendChild(footer);
+
+    return tile;
   }
 
   // ── TAB ROUTING ───────────────────────────────────────────────────────────
@@ -182,9 +257,10 @@
   }
 
   function renderCurrentTab() {
-    if (state.tab === 'groups')   renderGroups();
-    if (state.tab === 'bracket')  renderBracket();
-    if (state.tab === 'schedule') renderSchedule();
+    if (state.tab === 'groups')     renderGroups();
+    if (state.tab === 'bracket')    renderBracket();
+    if (state.tab === 'schedule')   renderSchedule();
+    if (state.tab === 'sweepstake') renderSweepstake();
   }
 
   // ── GROUPS TAB ────────────────────────────────────────────────────────────
@@ -200,18 +276,15 @@
     var standing = state.standings[g] || { rows: [], complete: false, playedCount: 0 };
     var card = el('div', 'group-card');
 
-    // Header
     var hdr = el('div', 'group-card-header');
-    var lbl = el('div', 'group-letter');
-    lbl.textContent = 'Group ' + g;
+    var lbl = el('div', 'group-letter'); lbl.textContent = 'Group ' + g;
     var badge = el('div', 'group-status-badge');
-    if (standing.complete) { badge.textContent = 'Complete'; badge.classList.add('complete'); }
+    if (standing.complete)          { badge.textContent = 'Complete'; badge.classList.add('complete'); }
     else if (standing.playedCount > 0) { badge.textContent = 'Ongoing'; badge.classList.add('ongoing'); }
-    else { badge.textContent = 'Upcoming'; badge.classList.add('upcoming'); }
+    else                            { badge.textContent = 'Upcoming'; badge.classList.add('upcoming'); }
     hdr.appendChild(lbl); hdr.appendChild(badge);
     card.appendChild(hdr);
 
-    // Standings table
     var tbl = el('table', 'standings-table');
     var thead = el('thead');
     var hr = el('tr');
@@ -228,18 +301,14 @@
       var tr = el('tr', 'standings-row');
       if (i < 2) tr.classList.add('qualifying');
       if (i < 2 && standing.complete) tr.classList.add('qualified');
-
       var tdTeam = el('td');
       var teamCell = el('div', 'team-cell');
       var flagEl = el('span', 'flag'); flagEl.textContent = row.team.flag;
       var nameEl = el('span', 'tname'); nameEl.textContent = row.team.name;
       teamCell.appendChild(flagEl); teamCell.appendChild(nameEl);
-      tdTeam.appendChild(teamCell);
-      tr.appendChild(tdTeam);
-
+      tdTeam.appendChild(teamCell); tr.appendChild(tdTeam);
       [row.p, row.w, row.d, row.l, row.gf, row.ga, gd(row), row.pts].forEach(function (v, vi) {
-        var td = el('td');
-        td.textContent = v;
+        var td = el('td'); td.textContent = v;
         if (vi === 7) td.className = 'pts-cell';
         tr.appendChild(td);
       });
@@ -248,15 +317,14 @@
     tbl.appendChild(tbody);
     card.appendChild(tbl);
 
-    // Matches
     var matchSec = el('div', 'group-matches');
     var groupMatches = WC.GROUP_MATCHES.filter(function (m) { return m.group === g; });
     [1, 2, 3].forEach(function (md) {
       var mdMatches = groupMatches.filter(function (m) { return m.md === md; });
       if (!mdMatches.length) return;
       var sec = el('div', 'matchday-section');
-      var lbl = el('div', 'matchday-label'); lbl.textContent = 'Matchday ' + md;
-      sec.appendChild(lbl);
+      var mdLbl = el('div', 'matchday-label'); mdLbl.textContent = 'Matchday ' + md;
+      sec.appendChild(mdLbl);
       mdMatches.forEach(function (m) { sec.appendChild(buildMatchRow(m)); });
       matchSec.appendChild(sec);
     });
@@ -265,71 +333,70 @@
   }
 
   function buildMatchRow(m) {
-    var row = el('div', 'match-row');
+    var status = m.status || (m.score1 !== null && m.score2 !== null ? 'finished' : 'upcoming');
+    var row = el('div', 'match-row mrow-' + status);
+    var hasScore = m.score1 !== null && m.score2 !== null;
 
-    var teamsWrap = el('div', 'match-row-teams');
-    var t1 = el('div', 'match-team');
-    var f1 = el('span', 'flag'); f1.textContent = m.team1.flag;
-    var n1 = el('span', 'tname'); n1.textContent = m.team1.name;
-    t1.appendChild(f1); t1.appendChild(n1);
+    // Two team rows stacked — names no longer get clipped
+    var body = el('div', 'mrow-body');
+    [0, 1].forEach(function (idx) {
+      var team  = idx === 0 ? m.team1  : m.team2;
+      var score = idx === 0 ? m.score1 : m.score2;
+      var other = idx === 0 ? m.score2 : m.score1;
+      var win   = hasScore && score > other;
 
-    var scoreWrap = el('div', 'match-score');
-    if (m.score1 !== null && m.score2 !== null) {
-      var s1 = el('span', 'score-num'); s1.textContent = m.score1;
-      var sep = el('span', 'score-sep'); sep.textContent = '-';
-      var s2 = el('span', 'score-num'); s2.textContent = m.score2;
-      scoreWrap.appendChild(s1); scoreWrap.appendChild(sep); scoreWrap.appendChild(s2);
-      if (m.score1 > m.score2) t1.style.fontWeight = '700';
+      var trow = el('div', 'mrow-team' + (win ? ' mrow-winner' : ''));
+      var flag = el('span', 'flag'); flag.textContent = team.flag;
+      var name = el('span', 'tname'); name.textContent = team.name;
+      var sc   = el('span', 'mrow-score');
+      if (hasScore) sc.textContent = score;
+      trow.appendChild(flag); trow.appendChild(name); trow.appendChild(sc);
+      body.appendChild(trow);
+    });
+
+    // Right column: status badge + kick-off time
+    var side = el('div', 'mrow-side');
+
+    if (status === 'live') {
+      var liveBadge = el('div', 'mrow-status-badge mrow-live');
+      var dot = el('span', 'live-dot');
+      liveBadge.appendChild(dot);
+      liveBadge.appendChild(document.createTextNode('LIVE'));
+      side.appendChild(liveBadge);
+    } else if (status === 'finished') {
+      var ftBadge = el('div', 'mrow-status-badge mrow-ft');
+      ftBadge.textContent = 'FT';
+      side.appendChild(ftBadge);
     } else {
-      var dash = el('span', 'score-dash'); dash.textContent = 'vs';
-      scoreWrap.appendChild(dash);
+      var upBadge = el('div', 'mrow-status-badge mrow-upcoming-badge');
+      var upDot = el('span', 'upcoming-dot');
+      upBadge.appendChild(upDot);
+      upBadge.appendChild(document.createTextNode('Soon'));
+      side.appendChild(upBadge);
     }
 
-    var t2 = el('div', 'match-team right');
-    var f2 = el('span', 'flag'); f2.textContent = m.team2.flag;
-    var n2 = el('span', 'tname'); n2.textContent = m.team2.name;
-    t2.appendChild(n2); t2.appendChild(f2);
-    if (m.score1 !== null && m.score2 !== null && m.score2 > m.score1) t2.style.fontWeight = '700';
-
-    teamsWrap.appendChild(t1); teamsWrap.appendChild(scoreWrap); teamsWrap.appendChild(t2);
-
-    var meta = el('div', 'match-meta');
-    var timeEl = el('div', 'match-time' + (m.est ? ' est' : ''));
+    var timeEl = el('div', 'mrow-time' + (m.est ? ' est' : ''));
     timeEl.textContent = formatMatchTime(m.date, m.utc, state.tz, m.est);
-    var venueEl = el('div', 'match-venue-sm');
-    venueEl.textContent = m.venue !== 'TBD' ? m.venue : m.city !== 'TBD' ? m.city : '';
-    meta.appendChild(timeEl); meta.appendChild(venueEl);
+    side.appendChild(timeEl);
 
-    row.appendChild(teamsWrap); row.appendChild(meta);
+    row.appendChild(body);
+    row.appendChild(side);
     return row;
   }
 
-  function gd(row) {
-    if (row.gd > 0) return '+' + row.gd;
-    return row.gd;
-  }
+  function gd(row) { return row.gd > 0 ? '+' + row.gd : row.gd; }
 
   // ── BRACKET TAB ───────────────────────────────────────────────────────────
   function renderBracket() {
     var root = document.getElementById('bracketRoot');
     root.innerHTML = '';
-
     var koMap = {};
     getKnockoutArray().forEach(function (m) { koMap[m.id] = m; });
-
-    // Left half: R32→R16→QF→SF
-    // Column order: R32, R16, QF, SF
-    // Match order top-to-bottom:
-    // R32 left: M74,M77 | M73,M75 | M83,M84 | M81,M82
-    // R16 left: M89,M90 | M93,M94
-    // QF left:  M97, M98
-    // SF left:  M101
 
     var leftR32  = [['M74','M77'],['M73','M75'],['M83','M84'],['M81','M82']];
     var leftR16  = [['M89','M90'],['M93','M94']];
     var leftQF   = [['M97','M98']];
     var leftSF   = [['M101']];
-
     var rightSF  = [['M102']];
     var rightQF  = [['M99','M100']];
     var rightR16 = [['M91','M92'],['M95','M96']];
@@ -339,53 +406,39 @@
     var rightHalf = el('div', 'bracket-half right');
     var center    = el('div', 'bracket-center');
 
-    leftHalf.appendChild(buildBracketRound('Round of 32', leftR32,  koMap, 'left',  4));
-    leftHalf.appendChild(buildBracketRound('Round of 16', leftR16,  koMap, 'left',  2));
-    leftHalf.appendChild(buildBracketRound('Quarter-finals', leftQF, koMap, 'left', 1));
-    leftHalf.appendChild(buildBracketRound('Semi-finals',  leftSF,  koMap, 'left',  1));
+    leftHalf.appendChild(buildBracketRound('Round of 32',    leftR32, koMap, 'left',  4));
+    leftHalf.appendChild(buildBracketRound('Round of 16',    leftR16, koMap, 'left',  2));
+    leftHalf.appendChild(buildBracketRound('Quarter-finals', leftQF,  koMap, 'left',  1));
+    leftHalf.appendChild(buildBracketRound('Semi-finals',    leftSF,  koMap, 'left',  1));
 
-    // Center: Final + Third Place
     var centerTop = el('div', 'center-label'); centerTop.textContent = 'Final';
-    var finalCard = buildMatchCard(koMap['M104'], 'final');
-    finalCard.classList.add('final-card');
-    var divider = el('div', 'center-divider');
-    var thirdLbl = el('div', 'center-label'); thirdLbl.textContent = '3rd Place';
-    var thirdCard = buildMatchCard(koMap['M103'], '3rd');
-    thirdCard.classList.add('third-card');
-
-    center.appendChild(centerTop);
-    center.appendChild(finalCard);
-    center.appendChild(divider);
-    center.appendChild(thirdLbl);
-    center.appendChild(thirdCard);
+    var finalCard = buildMatchCard(koMap['M104'], 'final'); finalCard.classList.add('final-card');
+    var divider   = el('div', 'center-divider');
+    var thirdLbl  = el('div', 'center-label'); thirdLbl.textContent = '3rd Place';
+    var thirdCard = buildMatchCard(koMap['M103'], '3rd'); thirdCard.classList.add('third-card');
+    center.appendChild(centerTop); center.appendChild(finalCard);
+    center.appendChild(divider); center.appendChild(thirdLbl); center.appendChild(thirdCard);
 
     rightHalf.appendChild(buildBracketRound('Round of 32',    rightR32, koMap, 'right', 4));
-    rightHalf.appendChild(buildBracketRound('Round of 16',   rightR16, koMap, 'right', 2));
+    rightHalf.appendChild(buildBracketRound('Round of 16',    rightR16, koMap, 'right', 2));
     rightHalf.appendChild(buildBracketRound('Quarter-finals', rightQF,  koMap, 'right', 1));
-    rightHalf.appendChild(buildBracketRound('Semi-finals',   rightSF,  koMap, 'right', 1));
+    rightHalf.appendChild(buildBracketRound('Semi-finals',    rightSF,  koMap, 'right', 1));
 
-    root.appendChild(leftHalf);
-    root.appendChild(center);
-    root.appendChild(rightHalf);
+    root.appendChild(leftHalf); root.appendChild(center); root.appendChild(rightHalf);
   }
 
-  function buildBracketRound(label, matchupGroups, koMap, side, numMatchups) {
+  function buildBracketRound(label, matchupGroups, koMap) {
     var roundEl = el('div', 'bracket-round');
     if (label === 'Semi-finals') roundEl.classList.add('no-connector');
     var hdr = el('div', 'round-header'); hdr.textContent = label;
     roundEl.appendChild(hdr);
-
     var matchesWrap = el('div', 'round-matches');
     matchupGroups.forEach(function (pair) {
       var matchup = el('div', 'matchup');
       if (pair.length === 1) matchup.classList.add('single');
       pair.forEach(function (id) {
         var m = koMap[id];
-        if (m) {
-          var wrap = el('div', 'card-wrap');
-          wrap.appendChild(buildMatchCard(m, 'ko'));
-          matchup.appendChild(wrap);
-        }
+        if (m) { var wrap = el('div', 'card-wrap'); wrap.appendChild(buildMatchCard(m, 'ko')); matchup.appendChild(wrap); }
       });
       matchesWrap.appendChild(matchup);
     });
@@ -400,13 +453,9 @@
 
     var t1info = resolveKoTeam(m.team1, m.team1Label);
     var t2info = resolveKoTeam(m.team2, m.team2Label);
-
     var t1win = m.score1 !== null && m.score2 !== null && m.score1 > m.score2;
     var t2win = m.score1 !== null && m.score2 !== null && m.score2 > m.score1;
-    if (m.winner) {
-      t1win = (m.winner === (t1info && t1info.code));
-      t2win = (m.winner === (t2info && t2info.code));
-    }
+    if (m.winner) { t1win = (m.winner === (t1info && t1info.code)); t2win = (m.winner === (t2info && t2info.code)); }
 
     card.appendChild(buildCardTeamRow(t1info, m.team1Label, m.score1, t1win));
     card.appendChild(buildCardTeamRow(t2info, m.team2Label, m.score2, t2win));
@@ -427,29 +476,19 @@
   function buildCardTeamRow(teamInfo, label, score, isWinner) {
     var row = el('div', 'match-card-team');
     if (isWinner) row.classList.add('winner');
-
-    var flagEl = el('span', 'flag');
-    flagEl.textContent = teamInfo ? teamInfo.flag : '';
-
+    var flagEl = el('span', 'flag'); flagEl.textContent = teamInfo ? teamInfo.flag : '';
     var nameEl = el('span', 'cname');
     if (teamInfo) { nameEl.textContent = teamInfo.name; nameEl.classList.add('known'); }
     else { nameEl.textContent = formatLabel(label); }
-
-    var scoreEl = el('span', 'cscore');
-    scoreEl.textContent = score !== null ? score : '';
-
-    row.appendChild(flagEl);
-    row.appendChild(nameEl);
-    row.appendChild(scoreEl);
+    var scoreEl = el('span', 'cscore'); scoreEl.textContent = score !== null ? score : '';
+    row.appendChild(flagEl); row.appendChild(nameEl); row.appendChild(scoreEl);
     return row;
   }
 
   function formatLabel(label) {
     if (!label) return '?';
-    // "1A" → "1st Group A", "2B" → "2nd Group B"
     var posMatch = label.match(/^([12])([A-L])$/);
     if (posMatch) return (posMatch[1] === '1' ? '1st' : '2nd') + ' Group ' + posMatch[2];
-    // "W-74" → "Win M74", "L-101" → "Los M101"
     var winMatch = label.match(/^W-(\d+)$/);
     if (winMatch) return 'Win M' + winMatch[1];
     var lossMatch = label.match(/^L-(\d+)$/);
@@ -471,7 +510,7 @@
     return null;
   }
 
-  // ── SCHEDULE TAB ──────────────────────────────────────────────────────────
+  // ── SCHEDULE TAB ─────────────────────────────────────────────────────────
   function bindScheduleFilters() {
     document.querySelectorAll('.filter-btn[data-status]').forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -483,115 +522,84 @@
       });
     });
     var gSel = document.getElementById('groupFilterSelect');
-    if (gSel) {
-      gSel.addEventListener('change', function () {
-        state.groupFilter = gSel.value;
-        renderSchedule();
-      });
-    }
+    if (gSel) { gSel.addEventListener('change', function () { state.groupFilter = gSel.value; renderSchedule(); }); }
   }
 
   function renderSchedule() {
     var body = document.getElementById('scheduleBody');
     body.innerHTML = '';
-
     var allMatches = buildAllMatchesForSchedule();
     var today = todayInTz(state.tz);
 
-    // Apply filters
     allMatches = allMatches.filter(function (m) {
       if (state.groupFilter !== 'all') {
         if (state.groupFilter === 'ko') { if (m.group) return false; }
         else { if (m.group !== state.groupFilter) return false; }
       }
       if (state.statusFilter === 'upcoming') {
-        var mDate = getMatchDateInTz(m.date, m.utc, state.tz);
-        return mDate >= today && (m.score1 === null || m.score2 === null);
+        return getMatchDateInTz(m.date, m.utc, state.tz) >= today && (m.score1 === null || m.score2 === null);
       }
       if (state.statusFilter === 'today') {
-        var mDate2 = getMatchDateInTz(m.date, m.utc, state.tz);
-        return mDate2 === today;
+        return getMatchDateInTz(m.date, m.utc, state.tz) === today;
       }
       return true;
     });
 
     if (!allMatches.length) {
-      var none = el('div', 'no-matches');
-      none.textContent = 'No matches match the selected filters.';
-      body.appendChild(none);
-      return;
+      var none = el('div', 'no-matches'); none.textContent = 'No matches match the selected filters.';
+      body.appendChild(none); return;
     }
 
-    // Group by local date
-    var byDate = {};
-    var dateOrder = [];
+    var byDate = {}, dateOrder = [];
     allMatches.forEach(function (m) {
       var d = getMatchDateInTz(m.date, m.utc, state.tz);
       if (!byDate[d]) { byDate[d] = []; dateOrder.push(d); }
       byDate[d].push(m);
     });
-
     dateOrder.forEach(function (d) {
       var group = el('div', 'date-group');
-      var hdr = el('div', 'date-header');
-      hdr.textContent = formatDateHeader(d, state.tz);
+      var hdr = el('div', 'date-header'); hdr.textContent = formatDateHeader(d, state.tz);
       group.appendChild(hdr);
-      byDate[d].forEach(function (m) {
-        group.appendChild(buildScheduleItem(m));
-      });
+      byDate[d].forEach(function (m) { group.appendChild(buildScheduleItem(m)); });
       body.appendChild(group);
     });
   }
 
   function formatDateHeader(dateStr, tz) {
     try {
-      var d = new Date(dateStr + 'T12:00:00');
-      return new Intl.DateTimeFormat('en-IE', { timeZone: tz, weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(d);
+      return new Intl.DateTimeFormat('en-IE', {
+        timeZone: tz, weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+      }).format(new Date(dateStr + 'T12:00:00'));
     } catch (e) { return dateStr; }
   }
 
   function buildAllMatchesForSchedule() {
-    var gm = WC.GROUP_MATCHES.map(function (m) {
-      return Object.assign({}, m, { roundType: 'group' });
-    });
-    var km = getKnockoutArray().map(function (m) {
-      return Object.assign({}, m, { group: null, roundType: 'ko' });
-    });
-    var all = gm.concat(km);
-    all.sort(function (a, b) {
-      var da = a.date + 'T' + a.utc + ':00Z';
-      var db = b.date + 'T' + b.utc + ':00Z';
+    var gm = WC.GROUP_MATCHES.map(function (m) { return Object.assign({}, m, { roundType: 'group' }); });
+    var km = getKnockoutArray().map(function (m) { return Object.assign({}, m, { group: null, roundType: 'ko' }); });
+    return gm.concat(km).sort(function (a, b) {
+      var da = a.date + 'T' + a.utc + ':00Z', db = b.date + 'T' + b.utc + ':00Z';
       return da < db ? -1 : da > db ? 1 : 0;
     });
-    return all;
   }
 
   function buildScheduleItem(m) {
     var item = el('div', 'match-item');
 
-    // Badge column
     var badgeCol = el('div', 'match-item-badge');
     var badge = el('div', 'round-badge');
-    if (m.roundType === 'group') {
-      badge.textContent = 'Group ' + m.group;
-      badge.classList.add('group');
-    } else {
+    if (m.roundType === 'group') { badge.textContent = 'Group ' + m.group; badge.classList.add('group'); }
+    else {
       var rLabel = { r32: 'R32', r16: 'R16', qf: 'QF', sf: 'SF', '3rd': '3rd Place', final: 'Final' }[m.round] || 'KO';
-      badge.textContent = rLabel;
-      badge.classList.add(m.round === 'final' ? 'final' : 'ko');
+      badge.textContent = rLabel; badge.classList.add(m.round === 'final' ? 'final' : 'ko');
     }
-    var numEl = el('div', 'match-num');
-    numEl.textContent = m.id || ('M' + m.no);
-    badgeCol.appendChild(badge);
-    badgeCol.appendChild(numEl);
+    var numEl = el('div', 'match-num'); numEl.textContent = m.id || ('M' + m.no);
+    badgeCol.appendChild(badge); badgeCol.appendChild(numEl);
     item.appendChild(badgeCol);
 
-    // Teams column
     var teamsCol = el('div', 'match-item-teams');
     var t1, t2, s1, s2;
-    if (m.roundType === 'group') {
-      t1 = m.team1; t2 = m.team2; s1 = m.score1; s2 = m.score2;
-    } else {
+    if (m.roundType === 'group') { t1 = m.team1; t2 = m.team2; s1 = m.score1; s2 = m.score2; }
+    else {
       t1 = resolveKoTeam(m.team1, m.team1Label) || { flag: '', name: formatLabel(m.team1Label), code: null };
       t2 = resolveKoTeam(m.team2, m.team2Label) || { flag: '', name: formatLabel(m.team2Label), code: null };
       s1 = m.score1; s2 = m.score2;
@@ -616,7 +624,6 @@
     teamsCol.appendChild(t1row); teamsCol.appendChild(sep); teamsCol.appendChild(t2row);
     item.appendChild(teamsCol);
 
-    // Meta column
     var metaCol = el('div', 'match-item-meta');
     var timeEl = el('div', 'match-item-time' + (m.est ? ' est' : ''));
     timeEl.textContent = formatMatchTime(m.date, m.utc, state.tz, m.est);
@@ -626,11 +633,109 @@
     cityEl.textContent = m.city && m.city !== 'TBD' ? m.city : '';
     metaCol.appendChild(timeEl);
     if (m.est) { var estBadge = el('span', 'est-badge'); estBadge.textContent = 'est.'; metaCol.appendChild(estBadge); }
-    metaCol.appendChild(venueEl);
-    metaCol.appendChild(cityEl);
+    metaCol.appendChild(venueEl); metaCol.appendChild(cityEl);
     item.appendChild(metaCol);
-
     return item;
+  }
+
+  // ── SWEEPSTAKE TAB ────────────────────────────────────────────────────────
+  function renderSweepstake() {
+    var grid = document.getElementById('sweepTeamsGrid');
+    if (!grid || grid.dataset.rendered) return;
+    grid.dataset.rendered = '1';
+
+    var allTeams = [];
+    Object.keys(WC.GROUPS).forEach(function (g) {
+      WC.GROUPS[g].teams.forEach(function (t) { allTeams.push(Object.assign({ group: g }, t)); });
+    });
+    allTeams.sort(function (a, b) { return a.name.localeCompare(b.name); });
+
+    allTeams.forEach(function (team) {
+      var btn = el('button', 'sweep-team-btn');
+      btn.dataset.code = team.code;
+      var flagEl = el('span', 'sweep-team-flag'); flagEl.textContent = team.flag;
+      var nameEl = el('span', 'sweep-team-name'); nameEl.textContent = team.name;
+      var grpEl  = el('span', 'sweep-team-group'); grpEl.textContent = 'Group ' + team.group;
+      btn.appendChild(flagEl); btn.appendChild(nameEl); btn.appendChild(grpEl);
+      btn.addEventListener('click', function () { selectSweepTeam(team); });
+      grid.appendChild(btn);
+    });
+
+    var form = document.getElementById('sweepForm');
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!state.sweepTeam) return;
+
+        var name  = document.getElementById('sweepName').value.trim();
+        var email = document.getElementById('sweepEmail').value.trim();
+        if (!name || !email) return;
+
+        if (FORMSPREE_ID === 'YOUR_FORM_ID') {
+          showSweepMessage('Sweepstake not configured yet — ask the organiser to set up submissions.', 'warning');
+          return;
+        }
+
+        var data = new FormData();
+        data.append('team',  state.sweepTeam.flag + ' ' + state.sweepTeam.name);
+        data.append('name',  name);
+        data.append('email', email);
+
+        var btn = document.getElementById('sweepSubmit');
+        btn.disabled = true; btn.textContent = 'Submitting…';
+
+        fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+          method: 'POST', body: data, headers: { 'Accept': 'application/json' }
+        }).then(function (r) {
+          if (r.ok) {
+            showSweepMessage('You\'re in! ' + state.sweepTeam.flag + ' ' + state.sweepTeam.name + ' entered successfully.', 'success');
+            form.reset();
+            state.sweepTeam = null;
+            document.querySelectorAll('.sweep-team-btn').forEach(function (b) { b.classList.remove('selected'); });
+            var display = document.getElementById('sweepSelectedDisplay');
+            display.innerHTML = '';
+            var span = el('span', 'sweep-no-team'); span.textContent = 'No team selected — pick one from the left';
+            display.appendChild(span);
+            btn.textContent = 'Enter Sweepstake';
+          } else {
+            showSweepMessage('Submission failed — please try again.', 'error');
+            btn.disabled = false; btn.textContent = 'Enter Sweepstake';
+          }
+        }).catch(function () {
+          showSweepMessage('Network error — please try again.', 'error');
+          btn.disabled = false; btn.textContent = 'Enter Sweepstake';
+        });
+      });
+    }
+  }
+
+  function selectSweepTeam(team) {
+    state.sweepTeam = team;
+    document.querySelectorAll('.sweep-team-btn').forEach(function (b) {
+      b.classList.toggle('selected', b.dataset.code === team.code);
+    });
+    var display = document.getElementById('sweepSelectedDisplay');
+    if (display) {
+      display.innerHTML = '';
+      var flag = el('span', 'sweep-sel-flag'); flag.textContent = team.flag;
+      var name = el('span', 'sweep-sel-name'); name.textContent = team.name;
+      var grp  = el('span', 'sweep-sel-group'); grp.textContent = 'Group ' + team.group;
+      display.appendChild(flag); display.appendChild(name); display.appendChild(grp);
+    }
+    var input = document.getElementById('sweepTeamInput');
+    if (input) input.value = team.flag + ' ' + team.name;
+    var submit = document.getElementById('sweepSubmit');
+    if (submit) submit.disabled = false;
+  }
+
+  function showSweepMessage(text, type) {
+    var existing = document.getElementById('sweepMessage');
+    if (existing) existing.remove();
+    var msg = el('div', 'sweep-message sweep-msg-' + type);
+    msg.id = 'sweepMessage';
+    msg.textContent = text;
+    var form = document.getElementById('sweepForm');
+    if (form) form.insertBefore(msg, form.firstChild);
   }
 
   // ── HELPERS ───────────────────────────────────────────────────────────────
