@@ -758,8 +758,10 @@
     card.appendChild(heading);
     card.appendChild(msg);
 
+    var divider = el('div', 'success-divider');
+    card.appendChild(divider);
+
     if (revLink) {
-      var divider = el('div', 'success-divider');
       var payHeading = el('p', 'success-pay-label'); payHeading.textContent = 'Now pay your entry fee:';
       var payBtn = el('a', 'revolut-btn');
       payBtn.href = revLink;
@@ -768,15 +770,25 @@
       payBtn.textContent = '💸 Pay ' + ENTRY_FEE + ' via Revolut';
       var payNote = el('p', 'success-pay-note');
       payNote.textContent = 'Add your name as the payment reference: ' + name;
-      card.appendChild(divider);
+      var payWarning = el('p', 'success-pay-warning');
+      payWarning.textContent = '⚠️ Your entry will not be counted until payment is received.';
       card.appendChild(payHeading);
       card.appendChild(payBtn);
       card.appendChild(payNote);
-    } else {
-      var noteEl = el('p', 'success-pay-note');
-      noteEl.textContent = 'Contact the organiser to arrange your entry fee.';
-      card.appendChild(noteEl);
+      card.appendChild(payWarning);
     }
+
+    var divider2 = el('div', 'success-divider');
+    card.appendChild(divider2);
+
+    var waHeading = el('p', 'success-pay-label'); waHeading.textContent = 'Questions or to confirm your entry:';
+    var waBtn = el('a', 'whatsapp-btn');
+    waBtn.href = 'https://wa.me/353852789446?text=' + encodeURIComponent('Hi Brian, I\'ve entered the World Cup Buster (' + name + ')');
+    waBtn.target = '_blank';
+    waBtn.rel = 'noopener';
+    waBtn.textContent = '💬 WhatsApp Brian';
+    card.appendChild(waHeading);
+    card.appendChild(waBtn);
   }
 
   function showSweepMessage(text, type) {
