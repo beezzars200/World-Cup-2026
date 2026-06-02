@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var FORMSPREE_ID = 'xqeozegb';
+  var WEB3FORMS_KEY = 'YOUR_ACCESS_KEY'; // get free key at web3forms.com
   var REVOLUT_URL  = 'https://revolut.me/brianos';
   var ENTRY_FEE    = '€20';
   // SHA-256 of the buster password. Change password by updating this hash.
@@ -683,22 +683,26 @@
 
       if (!validateBusterForm(name, email)) return;
 
-      if (FORMSPREE_ID === 'YOUR_FORM_ID') {
-        showSweepMessage('Buster not yet configured — the organiser needs to add a Formspree ID.', 'warning');
+      if (WEB3FORMS_KEY === 'YOUR_ACCESS_KEY') {
+        showSweepMessage('Buster not yet configured — the organiser needs to add a Web3Forms key.', 'warning');
         return;
       }
 
       var data = new FormData();
+      data.append('access_key', WEB3FORMS_KEY);
       data.append('name',  name);
       data.append('email', email);
+      data.append('subject', 'World Cup Buster — New Entry');
 
       var btn = document.getElementById('sweepSubmit');
       btn.disabled = true; btn.textContent = 'Submitting…';
 
-      fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+      fetch('https://api.web3forms.com/submit', {
         method: 'POST', body: data, headers: { 'Accept': 'application/json' }
       }).then(function (r) {
-        if (r.ok) {
+        return r.json();
+      }).then(function (json) {
+        if (json.success) {
           showBusterSuccess(name);
         } else {
           showSweepMessage('Submission failed — please try again.', 'error');
