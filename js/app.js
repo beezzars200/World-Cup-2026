@@ -729,18 +729,11 @@
   function updateSpotsDisplay(data) {
     var spotsEl = document.getElementById('busterSpots');
     var submitBtn = document.getElementById('sweepSubmit');
-    if (!spotsEl) return;
-    if (!data) { spotsEl.textContent = ''; return; }
-
+    if (!data) return;
     var remaining = data.max - data.count;
-
     if (!data.open || remaining <= 0) {
-      spotsEl.className = 'buster-spots spots-full';
-      spotsEl.textContent = 'The buster is full — all 48 spots are taken.';
-      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Buster Full'; }
-    } else {
-      spotsEl.className = 'buster-spots spots-open' + (remaining <= 10 ? ' spots-low' : '');
-      spotsEl.textContent = remaining + ' of ' + data.max + ' spots remaining';
+      if (spotsEl) { spotsEl.className = 'buster-spots spots-full'; spotsEl.textContent = 'The buster is now full — entries are closed.'; }
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Entries Closed'; }
     }
   }
 

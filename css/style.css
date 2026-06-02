@@ -1056,17 +1056,13 @@ body {
   line-height: 1.5;
 }
 
-.buster-spots {
-  margin-top: 12px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  padding: 6px 14px;
-  border-radius: 20px;
-  display: inline-block;
+.buster-cap-note {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin: 6px 0 0;
 }
-.spots-open { background: rgba(34,197,94,0.12); color: var(--green); }
-.spots-low  { background: rgba(245,158,11,0.12); color: var(--gold); }
-.spots-full { background: rgba(239,68,68,0.12);  color: var(--red);  }
+.buster-spots { margin-top: 10px; font-size: 0.82rem; font-weight: 700; padding: 6px 14px; border-radius: 20px; display: inline-block; }
+.spots-full { background: rgba(239,68,68,0.12); color: var(--red); }
 
 .buster-form { display: flex; flex-direction: column; }
 
