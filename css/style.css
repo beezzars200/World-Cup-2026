@@ -1221,32 +1221,28 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  margin-top: 32px;
-  padding: 18px 22px;
-  background: linear-gradient(135deg, #1a2744 0%, #1e2d4a 100%);
-  border: 1px solid rgba(245,158,11,0.3);
-  border-radius: 12px;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  background: rgba(245,158,11,0.07);
+  border: 1px solid rgba(245,158,11,0.25);
+  border-radius: 8px;
   cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: background 0.15s, border-color 0.15s;
 }
-.buster-cta:hover {
-  border-color: var(--gold);
-  box-shadow: 0 0 16px rgba(245,158,11,0.12);
-}
+.buster-cta:hover { background: rgba(245,158,11,0.12); border-color: var(--gold); }
 
-.buster-cta-text { display: flex; flex-direction: column; gap: 4px; }
-.buster-cta-text strong { font-size: 0.95rem; font-weight: 700; color: var(--gold); }
-.buster-cta-text span  { font-size: 0.8rem; color: var(--muted); }
+.buster-cta-text { font-size: 0.8rem; color: var(--muted); }
+.buster-cta-text strong { color: var(--gold); }
 
 .buster-cta-btn {
   background: var(--gold);
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   color: #000;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 800;
-  padding: 10px 18px;
+  padding: 6px 12px;
   cursor: pointer;
   white-space: nowrap;
   flex-shrink: 0;
