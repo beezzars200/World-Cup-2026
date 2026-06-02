@@ -50,8 +50,6 @@
     });
     sel.addEventListener('change', function () {
       state.tz = sel.value;
-      var chosen = WC.TIMEZONES.find(function (t) { return t.tz === sel.value; });
-      document.getElementById('tzFlag').textContent = chosen ? chosen.flag : '';
       renderCurrentTab();
     });
   }
