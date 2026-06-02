@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FIFA World Cup 2026 — Interactive Bracket</title>
   <meta name="description" content="Interactive bracket and schedule for the 2026 FIFA World Cup. All times in your local European timezone." />
-  <link rel="stylesheet" href="css/style.css?v=4" />
+  <link rel="stylesheet" href="css/style.css?v=5" />
 </head>
 <body>
 
@@ -27,7 +27,7 @@
     <button class="tab-btn active" data-tab="groups"     role="tab" aria-selected="true">Groups</button>
     <button class="tab-btn"        data-tab="bracket"    role="tab" aria-selected="false">Knockout</button>
     <button class="tab-btn"        data-tab="schedule"   role="tab" aria-selected="false">Schedule</button>
-    <button class="tab-btn"        data-tab="sweepstake" role="tab" aria-selected="false">Sweepstake</button>
+    <button class="tab-btn buster-tab-btn" data-tab="sweepstake" role="tab" aria-selected="false">🏆 Buster</button>
   </div>
 </nav>
 
@@ -37,6 +37,13 @@
 
   <section class="tab-panel active" id="tab-groups">
     <div class="groups-grid" id="groupsGrid"></div>
+    <div class="buster-cta" data-goto-tab="sweepstake">
+      <div class="buster-cta-text">
+        <strong>🏆 World Cup Buster</strong>
+        <span>Get a randomly drawn team and follow them to glory. €20 entry.</span>
+      </div>
+      <button class="buster-cta-btn">Enter the Buster →</button>
+    </div>
   </section>
 
   <section class="tab-panel" id="tab-bracket">
@@ -44,6 +51,13 @@
       <div class="bracket-scroll" id="bracketScroll">
         <div class="bracket" id="bracketRoot"></div>
       </div>
+    </div>
+    <div class="buster-cta" data-goto-tab="sweepstake">
+      <div class="buster-cta-text">
+        <strong>🏆 World Cup Buster</strong>
+        <span>Get a randomly drawn team and follow them to glory. €20 entry.</span>
+      </div>
+      <button class="buster-cta-btn">Enter the Buster →</button>
     </div>
   </section>
 
@@ -76,34 +90,82 @@
       </div>
     </div>
     <div class="schedule-body" id="scheduleBody"></div>
+    <div class="buster-cta" data-goto-tab="sweepstake">
+      <div class="buster-cta-text">
+        <strong>🏆 World Cup Buster</strong>
+        <span>Get a randomly drawn team and follow them to glory. €20 entry.</span>
+      </div>
+      <button class="buster-cta-btn">Enter the Buster →</button>
+    </div>
   </section>
 
   <section class="tab-panel" id="tab-sweepstake">
-    <div class="buster-wrap">
-      <div class="buster-card" id="busterCard">
-        <div class="buster-header">
-          <span class="buster-trophy">🏆</span>
-          <h2 class="buster-title">World Cup Buster</h2>
-          <p class="buster-desc">Enter your details below to join. Your team will be randomly drawn and sent to you.</p>
-          <div class="buster-spots" id="busterSpots"></div>
+
+    <!-- Password gate — shown until correct password entered -->
+    <div class="buster-gate" id="busterGate">
+      <div class="gate-card">
+        <div class="gate-lock">🔒</div>
+        <h2 class="gate-title">World Cup Buster</h2>
+        <p class="gate-desc">This is an invite-only competition. Enter the password to access the entry form, or message Brian to get the password.</p>
+        <div class="gate-form">
+          <input type="password" id="gatePassword" class="gate-input" placeholder="Enter password" autocomplete="off" />
+          <button class="gate-btn" id="gateSubmit">Unlock</button>
+          <p class="gate-error" id="gateError"></p>
         </div>
-        <form class="buster-form" id="sweepForm">
-          <!-- honeypot — bots fill this, humans don't see it -->
-          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
-          <div class="sweep-field">
-            <label for="sweepName">Your full name</label>
-            <input type="text" id="sweepName" name="name" placeholder="First and last name" autocomplete="name" required />
-            <span class="field-error" id="nameError"></span>
-          </div>
-          <div class="sweep-field">
-            <label for="sweepEmail">Email address</label>
-            <input type="email" id="sweepEmail" name="email" placeholder="you@example.com" autocomplete="email" required />
-            <span class="field-error" id="emailError"></span>
-          </div>
-          <button type="submit" class="sweep-submit" id="sweepSubmit">Enter the Buster</button>
-        </form>
+        <a href="https://wa.me/353852789446?text=Hi%20Brian%2C%20can%20I%20get%20the%20World%20Cup%20Buster%20password%3F" class="whatsapp-btn gate-wa-btn" target="_blank" rel="noopener">💬 Message Brian for the password</a>
       </div>
     </div>
+
+    <!-- Buster content — revealed after password -->
+    <div class="buster-content" id="busterContent">
+
+      <!-- How it works -->
+      <div class="buster-info-wrap">
+        <div class="buster-info-card">
+          <h3 class="buster-info-title">How it works</h3>
+          <ol class="buster-how-list">
+            <li><span class="how-icon">📝</span><span>Enter your name and email in the form below</span></li>
+            <li><span class="how-icon">💸</span><span>Pay the <strong>€20 entry fee</strong> via Revolut to Brian — your entry isn't confirmed until payment is received</span></li>
+            <li><span class="how-icon">🎲</span><span>Every entrant is randomly drawn a team from all 48 World Cup nations</span></li>
+            <li><span class="how-icon">⚽</span><span>Follow your team through the group stage and knockouts</span></li>
+            <li><span class="how-icon">🏆</span><span>The further your team goes, the more you win</span></li>
+          </ol>
+          <div class="buster-prizes">
+            <div class="prizes-label">Prizes</div>
+            <div class="prizes-value">TBC — based on number of entries</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entry form -->
+      <div class="buster-wrap">
+        <div class="buster-card" id="busterCard">
+          <div class="buster-header">
+            <span class="buster-trophy">🏆</span>
+            <h2 class="buster-title">Enter the Buster</h2>
+            <p class="buster-desc">Fill in your details and pay your entry fee to secure your spot.</p>
+            <div class="buster-spots" id="busterSpots"></div>
+          </div>
+          <form class="buster-form" id="sweepForm">
+            <!-- honeypot — bots fill this, humans don't see it -->
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
+            <div class="sweep-field">
+              <label for="sweepName">Your full name</label>
+              <input type="text" id="sweepName" name="name" placeholder="First and last name" autocomplete="name" required />
+              <span class="field-error" id="nameError"></span>
+            </div>
+            <div class="sweep-field">
+              <label for="sweepEmail">Email address</label>
+              <input type="email" id="sweepEmail" name="email" placeholder="you@example.com" autocomplete="email" required />
+              <span class="field-error" id="emailError"></span>
+            </div>
+            <button type="submit" class="sweep-submit" id="sweepSubmit">Enter the Buster</button>
+          </form>
+        </div>
+      </div>
+
+    </div><!-- /buster-content -->
+
   </section>
 
 </main>
@@ -114,6 +176,6 @@
 </footer>
 
 <script src="js/tournament.js?v=2"></script>
-<script src="js/app.js?v=4"></script>
+<script src="js/app.js?v=5"></script>
 </body>
 </html>

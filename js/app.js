@@ -4,6 +4,10 @@
   var FORMSPREE_ID = 'xqeozegb';
   var REVOLUT_URL  = 'https://revolut.me/brianos';
   var ENTRY_FEE    = '€20';
+  // SHA-256 of the buster password. Change password by updating this hash.
+  // Generate a new hash: https://emn178.github.io/online-tools/sha256.html
+  var BUSTER_PASS_HASH = 'fab8a24f4b0cba9165479a704bce83f3e0a42734dc072e89997785db4eaf53e4';
+  var BUSTER_KEY = 'wcBusterUnlocked';
 
   var state = {
     tz: 'Europe/Dublin',
@@ -19,6 +23,7 @@
     populateCountrySelector();
     bindTabButtons();
     bindScheduleFilters();
+    bindBusterCtas();
     fetchResults().then(function () {
       computeAllStandings();
       renderLiveNow();
@@ -640,8 +645,20 @@
     return item;
   }
 
+  // ── BUSTER CTA BANNERS ───────────────────────────────────────────────────
+  function bindBusterCtas() {
+    document.querySelectorAll('[data-goto-tab]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        var target = el.dataset.gotoTab;
+        var btn = document.querySelector('.tab-btn[data-tab="' + target + '"]');
+        if (btn) btn.click();
+      });
+    });
+  }
+
   // ── BUSTER TAB ────────────────────────────────────────────────────────────
   function renderSweepstake() {
+    initBusterGate();
     var form = document.getElementById('sweepForm');
     if (!form || form.dataset.bound) return;
     form.dataset.bound = '1';
@@ -737,6 +754,56 @@
     }
 
     return valid;
+  }
+
+  function initBusterGate() {
+    var gate    = document.getElementById('busterGate');
+    var content = document.getElementById('busterContent');
+    if (!gate || !content) return;
+
+    // Already unlocked this session
+    if (localStorage.getItem(BUSTER_KEY) === '1') {
+      gate.style.display = 'none';
+      content.style.display = 'block';
+      return;
+    }
+
+    gate.style.display = 'flex';
+    content.style.display = 'none';
+
+    var input  = document.getElementById('gatePassword');
+    var submit = document.getElementById('gateSubmit');
+    var errEl  = document.getElementById('gateError');
+    if (!input || !submit || submit.dataset.gateBound) return;
+    submit.dataset.gateBound = '1';
+
+    function attempt() {
+      hashPassword(input.value).then(function (hash) {
+        if (hash === BUSTER_PASS_HASH) {
+          localStorage.setItem(BUSTER_KEY, '1');
+          gate.style.display = 'none';
+          content.style.display = 'block';
+        } else {
+          errEl.textContent = 'Incorrect password — message Brian if you need it.';
+          input.value = '';
+          input.focus();
+          gate.classList.add('gate-shake');
+          setTimeout(function () { gate.classList.remove('gate-shake'); }, 500);
+        }
+      });
+    }
+
+    submit.addEventListener('click', attempt);
+    input.addEventListener('keydown', function (e) { if (e.key === 'Enter') attempt(); });
+  }
+
+  function hashPassword(password) {
+    var encoded = new TextEncoder().encode(password);
+    return crypto.subtle.digest('SHA-256', encoded).then(function (buf) {
+      return Array.from(new Uint8Array(buf))
+        .map(function (b) { return b.toString(16).padStart(2, '0'); })
+        .join('');
+    });
   }
 
   function showBusterSuccess(name) {
