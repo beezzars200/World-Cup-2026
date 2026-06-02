@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var WEB3FORMS_KEY = 'YOUR_ACCESS_KEY'; // get free key at web3forms.com
+  var WEB3FORMS_KEY = '90ae0c98-630b-4354-829a-4d338db840b5';
   var REVOLUT_URL  = 'https://revolut.me/brianos';
   var ENTRY_FEE    = '€20';
   // SHA-256 of the buster password. Change password by updating this hash.

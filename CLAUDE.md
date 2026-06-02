@@ -24,7 +24,7 @@ Static HTML/CSS/JS site for the FIFA World Cup 2026, hosted on GitHub Pages.
 ## Key config (top of js/app.js)
 
 ```js
-var WEB3FORMS_KEY = 'YOUR_ACCESS_KEY';        // get free key at web3forms.com
+var WEB3FORMS_KEY = '90ae0c98-630b-4354-829a-4d338db840b5'; // web3forms.com
 var REVOLUT_URL  = 'https://revolut.me/brianos'; // Payment link
 var ENTRY_FEE    = '€20';                    // Entry fee shown on success screen
 ```
