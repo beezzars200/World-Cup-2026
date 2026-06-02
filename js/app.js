@@ -1,8 +1,9 @@
 (function () {
   'use strict';
 
-  var FORMSPREE_ID = 'YOUR_FORM_ID';   // Replace with your Formspree form ID
-  var REVOLUT_URL  = 'https://revolut.me/YOUR_USERNAME'; // Replace with your Revolut.me link
+  var FORMSPREE_ID = 'xqeozegb';
+  var REVOLUT_URL  = 'https://revolut.me/brianos';
+  var ENTRY_FEE    = '€20';
 
   var state = {
     tz: 'Europe/Dublin',
@@ -764,9 +765,9 @@
       payBtn.href = revLink;
       payBtn.target = '_blank';
       payBtn.rel = 'noopener';
-      payBtn.textContent = '💸 Pay via Revolut';
+      payBtn.textContent = '💸 Pay ' + ENTRY_FEE + ' via Revolut';
       var payNote = el('p', 'success-pay-note');
-      payNote.textContent = 'Add your name in the payment reference: ' + name;
+      payNote.textContent = 'Add your name as the payment reference: ' + name;
       card.appendChild(divider);
       card.appendChild(payHeading);
       card.appendChild(payBtn);
