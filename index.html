@@ -26,6 +26,7 @@
     <button class="tab-btn"        data-tab="bracket"    role="tab" aria-selected="false">Knockout</button>
     <button class="tab-btn"        data-tab="schedule"   role="tab" aria-selected="false">Schedule</button>
     <button class="tab-btn buster-tab-btn" data-tab="sweepstake" role="tab" aria-selected="false">🏆 Buster</button>
+    <button class="tab-btn" data-tab="scorers" role="tab" aria-selected="false">⚽ Top Scorer</button>
   </div>
 </nav>
 
@@ -90,73 +91,70 @@
 
   <section class="tab-panel" id="tab-sweepstake">
 
-    <!-- Password gate — shown until correct password entered -->
-    <div class="buster-gate" id="busterGate">
-      <div class="gate-card">
-        <div class="gate-lock">🔒</div>
-        <h2 class="gate-title">World Cup Buster</h2>
-        <p class="gate-desc">This is an invite-only competition. Enter the password to access the entry form, or message Brian to get the password.</p>
-        <div class="gate-form">
-          <input type="password" id="gatePassword" class="gate-input" placeholder="Enter password" autocomplete="off" />
-          <button class="gate-btn" id="gateSubmit">Unlock</button>
-          <p class="gate-error" id="gateError"></p>
+    <!-- Poster -->
+    <div class="buster-poster-wrap">
+      <img src="images/buster-poster.jpg" alt="World Cup Buster — Grattan United AFC" class="buster-poster" />
+    </div>
+
+    <!-- How it works -->
+    <div class="buster-info-wrap">
+      <div class="buster-info-card">
+        <h3 class="buster-info-title">How it works</h3>
+        <ol class="buster-how-list">
+          <li><span class="how-icon">💬</span><span>WhatsApp Brian to enter — use the button below</span></li>
+          <li><span class="how-icon">💸</span><span>Brian will reply with the <strong>€20 Revolut payment link</strong> — spots are first come, first served and capped at 48</span></li>
+          <li><span class="how-icon">🎲</span><span>Once paid, you'll be randomly drawn a team from all 48 World Cup nations</span></li>
+          <li><span class="how-icon">⚽</span><span>Follow your team through the group stage and knockouts</span></li>
+          <li><span class="how-icon">🏆</span><span>The further your team goes, the more you win</span></li>
+        </ol>
+        <div class="buster-prizes">
+          <div class="prizes-fund">
+            <div class="prizes-label">Team Prize Fund</div>
+            <div class="prizes-row"><span>🥇 1st Prize</span><span>€350</span></div>
+            <div class="prizes-row"><span>🥈 Runners Up</span><span>€150</span></div>
+            <div class="prizes-row"><span>🥉 Semi Finalists</span><span>€50 each</span></div>
+          </div>
+          <div class="prizes-fund">
+            <div class="prizes-label">Top Goalscorer Fund</div>
+            <div class="prizes-row"><span>🥇 1st Prize</span><span>€200</span></div>
+            <div class="prizes-row"><span>🥈 Runners Up</span><span>€100</span></div>
+            <div class="prizes-row"><span>🥉 3rd Place</span><span>€60</span></div>
+          </div>
         </div>
-        <a href="https://wa.me/353852789446?text=Hi%20Brian%2C%20can%20I%20get%20the%20World%20Cup%20Buster%20password%3F" class="whatsapp-btn gate-wa-btn" target="_blank" rel="noopener">💬 Message Brian for the password</a>
       </div>
     </div>
 
-    <!-- Buster content — revealed after password -->
-    <div class="buster-content" id="busterContent">
+    <!-- Enter CTA -->
+    <div class="buster-wrap">
+      <div class="buster-card">
+        <div class="buster-header">
+          <span class="buster-trophy">🏆</span>
+          <h2 class="buster-title">Enter the Buster</h2>
+          <p class="buster-desc">WhatsApp Brian to enter or for more information. Entry is capped at the first 48 — first come, first served.</p>
+        </div>
+        <a href="https://wa.me/353852789446?text=Hi%20Brian%2C%20I%27d%20like%20to%20enter%20the%20World%20Cup%20Buster" class="whatsapp-btn buster-wa-btn" target="_blank" rel="noopener">💬 WhatsApp Brian to Enter</a>
+      </div>
+    </div>
 
-      <!-- How it works -->
-      <div class="buster-info-wrap">
-        <div class="buster-info-card">
-          <h3 class="buster-info-title">How it works</h3>
-          <ol class="buster-how-list">
-            <li><span class="how-icon">📝</span><span>Enter your name and email in the form below</span></li>
-            <li><span class="how-icon">💬</span><span>WhatsApp Brian to confirm — a pre-filled message with your name is ready to send after you submit</span></li>
-            <li><span class="how-icon">💸</span><span>Brian will reply with the <strong>€20 Revolut payment link</strong> — spots are first come, first served and capped at 48</span></li>
-            <li><span class="how-icon">🎲</span><span>Once paid, you'll be randomly drawn a team from all 48 World Cup nations</span></li>
-            <li><span class="how-icon">⚽</span><span>Follow your team through the group stage and knockouts</span></li>
-            <li><span class="how-icon">🏆</span><span>The further your team goes, the more you win</span></li>
-          </ol>
-          <div class="buster-prizes">
-            <div class="prizes-label">Prizes</div>
-            <div class="prizes-value">TBC — based on number of entries</div>
+  </section>
+
+  <section class="tab-panel" id="tab-scorers">
+    <div class="buster-info-wrap">
+      <div class="buster-info-card">
+        <h3 class="buster-info-title">⚽ Top Goalscorer</h3>
+        <p style="color:var(--muted);font-size:0.9rem;margin-top:8px;">Top goalscorer standings will be updated here during the tournament.</p>
+        <div class="buster-prizes" style="margin-top:20px;">
+          <div class="prizes-fund">
+            <div class="prizes-label">Top Goalscorer Fund</div>
+            <div class="prizes-row"><span>🥇 1st Prize</span><span>€200</span></div>
+            <div class="prizes-row"><span>🥈 Runners Up</span><span>€100</span></div>
+            <div class="prizes-row"><span>🥉 3rd Place</span><span>€60</span></div>
           </div>
         </div>
+        <p class="buster-cap-note" style="margin-top:16px;">More details to follow — WhatsApp Brian for info.</p>
+        <a href="https://wa.me/353852789446?text=Hi%20Brian%2C%20I%27d%20like%20to%20know%20more%20about%20the%20Top%20Goalscorer%20competition" class="whatsapp-btn" style="display:inline-block;margin-top:14px;" target="_blank" rel="noopener">💬 WhatsApp Brian</a>
       </div>
-
-      <!-- Entry form -->
-      <div class="buster-wrap">
-        <div class="buster-card" id="busterCard">
-          <div class="buster-header">
-            <span class="buster-trophy">🏆</span>
-            <h2 class="buster-title">Enter the Buster</h2>
-            <p class="buster-desc">Fill in your details and pay your entry fee to secure your spot.</p>
-            <p class="buster-cap-note">Entry is capped at the first 48. First come, first served.</p>
-            <div id="busterSpots"></div>
-          </div>
-          <form class="buster-form" id="sweepForm">
-            <!-- honeypot — bots fill this, humans don't see it -->
-            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
-            <div class="sweep-field">
-              <label for="sweepName">Your full name</label>
-              <input type="text" id="sweepName" name="name" placeholder="First and last name" autocomplete="name" required />
-              <span class="field-error" id="nameError"></span>
-            </div>
-            <div class="sweep-field">
-              <label for="sweepEmail">Email address</label>
-              <input type="email" id="sweepEmail" name="email" placeholder="you@example.com" autocomplete="email" required />
-              <span class="field-error" id="emailError"></span>
-            </div>
-            <button type="submit" class="sweep-submit" id="sweepSubmit">Enter the Buster</button>
-          </form>
-        </div>
-      </div>
-
-    </div><!-- /buster-content -->
-
+    </div>
   </section>
 
 </main>

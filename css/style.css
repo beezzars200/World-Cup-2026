@@ -1340,7 +1340,24 @@ body {
 .gate-shake { animation: shake 0.45s ease; }
 
 /* ── BUSTER CONTENT ── */
-.buster-content { display: none; }
+.buster-poster-wrap {
+  max-width: 480px;
+  margin: 0 auto 20px;
+}
+.buster-poster {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+}
+.buster-wa-btn {
+  display: block;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1.05rem;
+  padding: 16px 24px;
+  margin-top: 16px;
+}
 
 .buster-info-wrap {
   display: flex;
@@ -1387,27 +1404,39 @@ body {
 
 .buster-prizes {
   display: flex;
-  align-items: center;
   gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.prizes-fund {
+  flex: 1;
+  min-width: 160px;
   background: rgba(245,158,11,0.07);
   border: 1px solid rgba(245,158,11,0.2);
   border-radius: 8px;
-  padding: 12px 16px;
+  padding: 12px 14px;
 }
 
 .prizes-label {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--gold);
-  flex-shrink: 0;
+  margin-bottom: 8px;
 }
 
-.prizes-value {
-  font-size: 0.85rem;
-  color: var(--muted);
+.prizes-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--text);
+  padding: 3px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
+.prizes-row:last-child { border-bottom: none; }
+.prizes-row span:last-child { font-weight: 700; color: var(--gold); }
 
 @media (max-width: 768px) {
   .live-now-section { padding: 0 10px; }
