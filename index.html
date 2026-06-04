@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FIFA World Cup 2026 — Interactive Bracket</title>
   <meta name="description" content="Interactive bracket and schedule for the 2026 FIFA World Cup. All times in your local European timezone." />
-  <link rel="stylesheet" href="css/style.css?v=7" />
+  <link rel="stylesheet" href="css/style.css?v=8" />
 </head>
 <body>
 
@@ -25,7 +25,7 @@
     <button class="tab-btn active" data-tab="groups"     role="tab" aria-selected="true">Groups</button>
     <button class="tab-btn"        data-tab="bracket"    role="tab" aria-selected="false">Knockout</button>
     <button class="tab-btn"        data-tab="scorers"    role="tab" aria-selected="false">Top Scorer</button>
-    <button class="tab-btn"        data-tab="schedule"   role="tab" aria-selected="false">Schedule</button>
+    <button class="tab-btn"        data-tab="schedule"   role="tab" aria-selected="false">Fixtures</button>
     <button class="tab-btn"        data-tab="sweepstake" role="tab" aria-selected="false">Buster Info</button>
   </div>
 </nav>
@@ -35,18 +35,12 @@
 <main class="main-content">
 
   <section class="tab-panel active" id="tab-groups">
-    <div class="buster-cta" data-goto-tab="sweepstake">
-      <span class="buster-cta-text">🏆 <strong>World Cup Buster</strong> — get a random team, €20 entry</span>
-      <button class="buster-cta-btn">Enter →</button>
-    </div>
+    <div class="info-banner">📡 Live scores for all games will be available once the tournament starts.</div>
     <div class="groups-grid" id="groupsGrid"></div>
   </section>
 
   <section class="tab-panel" id="tab-bracket">
-    <div class="buster-cta" data-goto-tab="sweepstake">
-      <span class="buster-cta-text">🏆 <strong>World Cup Buster</strong> — get a random team, €20 entry</span>
-      <button class="buster-cta-btn">Enter →</button>
-    </div>
+    <div class="info-banner">📡 Live data for all games will be available once the tournament starts.</div>
     <div class="bracket-container">
       <div class="bracket-scroll" id="bracketScroll">
         <div class="bracket" id="bracketRoot"></div>
@@ -55,10 +49,7 @@
   </section>
 
   <section class="tab-panel" id="tab-schedule">
-    <div class="buster-cta" data-goto-tab="sweepstake">
-      <span class="buster-cta-text">🏆 <strong>World Cup Buster</strong> — get a random team, €20 entry</span>
-      <button class="buster-cta-btn">Enter →</button>
-    </div>
+    <div class="info-banner">📡 Live data for all games will be available once the tournament starts.</div>
     <div class="schedule-filters">
       <div class="filter-group">
         <span class="filter-label">Show:</span>
@@ -114,8 +105,8 @@
     <div class="buster-info-wrap">
       <div class="buster-info-card">
         <h3 class="buster-info-title">⚽ Top Goalscorer</h3>
-        <p style="color:var(--muted);font-size:0.9rem;margin-top:8px;">Top goalscorer standings will be updated here during the tournament.</p>
-        <div class="buster-prizes" style="margin-top:20px;">
+        <div class="info-banner" style="margin-top:12px;">📡 Top scorer rankings will be live once the tournament starts.</div>
+        <div class="buster-prizes" style="margin-top:8px;">
           <div class="prizes-fund">
             <div class="prizes-label">Top Goalscorer Fund</div>
             <div class="prizes-row"><span>🥇 1st Prize</span><span>€200</span></div>
@@ -123,8 +114,6 @@
             <div class="prizes-row"><span>🥉 3rd Place</span><span>€60</span></div>
           </div>
         </div>
-        <p class="buster-cap-note" style="margin-top:16px;">More details to follow — WhatsApp Brian for info.</p>
-        <a href="https://wa.me/353852789446?text=Hi%20Brian%2C%20I%27d%20like%20to%20know%20more%20about%20the%20Top%20Goalscorer%20competition" class="whatsapp-btn" style="display:inline-block;margin-top:14px;" target="_blank" rel="noopener">💬 WhatsApp Brian</a>
       </div>
     </div>
   </section>
