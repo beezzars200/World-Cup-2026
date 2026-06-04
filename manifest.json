@@ -1,0 +1,19 @@
+{
+  "name": "FIFA World Cup 2026",
+  "short_name": "WC 2026",
+  "description": "Interactive bracket, live scores, and World Cup Buster for the 2026 FIFA World Cup.",
+  "start_url": "/World-Cup-2026/",
+  "scope": "/World-Cup-2026/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f172a",
+  "theme_color": "#f59e0b",
+  "icons": [
+    {
+      "src": "images/IMG_2536.jpeg",
+      "sizes": "any",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}

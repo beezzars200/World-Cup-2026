@@ -3,7 +3,7 @@ name: Deploy World Cup 2026 to Pages
 on:
   push:
     branches: ['main']
-    paths: ['index.html', 'css/**', 'js/**', 'data/**', 'images/**']
+    paths: ['index.html', 'manifest.json', 'css/**', 'js/**', 'data/**', 'images/**']
   workflow_dispatch:
 
 permissions:
