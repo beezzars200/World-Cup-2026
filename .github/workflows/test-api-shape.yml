@@ -1,0 +1,71 @@
+name: Test API Response Shape
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check what football-data.org returns on free tier
+        env:
+          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+        run: |
+          python3 - <<'PYEOF'
+          import json, os, urllib.request
+
+          API_KEY = os.environ.get('FOOTBALL_DATA_API_KEY', '')
+          if not API_KEY:
+              print('ERROR: No API key set in secrets.')
+              exit(1)
+
+          # Query WC 2022 (completed — will have full data if free tier supports it)
+          url = 'https://api.football-data.org/v4/competitions/WC/matches?season=2022'
+          req = urllib.request.Request(url, headers={'X-Auth-Token': API_KEY})
+
+          with urllib.request.urlopen(req, timeout=15) as resp:
+              data = json.loads(resp.read())
+
+          matches = data.get('matches', [])
+          print(f'Total matches returned: {len(matches)}')
+
+          # Find a finished match to inspect
+          finished = [m for m in matches if m.get('status') == 'FINISHED']
+          if not finished:
+              print('No finished matches found.')
+              exit(0)
+
+          m = finished[0]
+          print(f'\n--- First finished match ---')
+          print(f'  {m.get("homeTeam",{}).get("name")} vs {m.get("awayTeam",{}).get("name")}')
+          print(f'  Status: {m.get("status")}')
+          print(f'  Top-level keys: {list(m.keys())}')
+
+          goals = m.get('goals', [])
+          print(f'\n  goals ({len(goals)} total):')
+          if goals:
+              print(f'    Example: {json.dumps(goals[0], indent=6)}')
+          else:
+              print('    [] — goals NOT available on this tier')
+
+          bookings = m.get('bookings', [])
+          print(f'\n  bookings ({len(bookings)} total):')
+          if bookings:
+              print(f'    Example: {json.dumps(bookings[0], indent=6)}')
+          else:
+              print('    [] — bookings NOT available on this tier')
+
+          # Also test the top scorers endpoint
+          print('\n--- Testing top scorers endpoint ---')
+          url2 = 'https://api.football-data.org/v4/competitions/WC/scorers?season=2022'
+          req2 = urllib.request.Request(url2, headers={'X-Auth-Token': API_KEY})
+          try:
+              with urllib.request.urlopen(req2, timeout=15) as resp2:
+                  scorers_data = json.loads(resp2.read())
+              scorers = scorers_data.get('scorers', [])
+              print(f'  Top scorers returned: {len(scorers)}')
+              if scorers:
+                  print(f'  Example: {json.dumps(scorers[0], indent=4)}')
+          except Exception as e:
+              print(f'  Scorers endpoint failed: {e}')
+          PYEOF
