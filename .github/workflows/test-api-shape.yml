@@ -19,8 +19,8 @@ jobs:
               print('ERROR: No API key set in secrets.')
               exit(1)
 
-          # Query WC 2022 (completed — will have full data if free tier supports it)
-          url = 'https://api.football-data.org/v4/competitions/WC/matches?season=2022'
+          # Query Premier League finished matches (free tier, current season)
+          url = 'https://api.football-data.org/v4/competitions/PL/matches?status=FINISHED'
           req = urllib.request.Request(url, headers={'X-Auth-Token': API_KEY})
 
           with urllib.request.urlopen(req, timeout=15) as resp:
@@ -57,7 +57,7 @@ jobs:
 
           # Also test the top scorers endpoint
           print('\n--- Testing top scorers endpoint ---')
-          url2 = 'https://api.football-data.org/v4/competitions/WC/scorers?season=2022'
+          url2 = 'https://api.football-data.org/v4/competitions/PL/scorers'
           req2 = urllib.request.Request(url2, headers={'X-Auth-Token': API_KEY})
           try:
               with urllib.request.urlopen(req2, timeout=15) as resp2:
