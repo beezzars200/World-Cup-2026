@@ -247,14 +247,79 @@ jobs:
               print('No changes to results.')
           PYEOF
 
+      - name: Fetch top scorers from football-data.org
+        env:
+          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+        run: |
+          python3 - <<'PYEOF'
+          import json, os, sys, urllib.request, urllib.error
+          from datetime import datetime, timezone
+
+          API_KEY = os.environ.get('FOOTBALL_DATA_API_KEY', '')
+          SCORERS_PATH = 'data/scorers.json'
+
+          if not API_KEY:
+              print('No FOOTBALL_DATA_API_KEY secret set — skipping scorers.')
+              sys.exit(0)
+
+          try:
+              with open(SCORERS_PATH) as f:
+                  existing = json.load(f)
+          except FileNotFoundError:
+              existing = {'lastUpdated': '', 'scorers': []}
+
+          TLA_NORM = {
+              'CDI': 'CIV', 'SAU': 'KSA', 'DRC': 'COD',
+              'BOS': 'BIH', 'CUR': 'CUW', 'SKO': 'KOR',
+          }
+
+          url = 'https://api.football-data.org/v4/competitions/WC/scorers'
+          req = urllib.request.Request(url, headers={'X-Auth-Token': API_KEY})
+
+          try:
+              with urllib.request.urlopen(req, timeout=15) as resp:
+                  api_data = json.loads(resp.read())
+          except urllib.error.URLError as e:
+              print(f'Scorers API fetch failed: {e}')
+              sys.exit(0)
+
+          scorers = []
+          for s in api_data.get('scorers', []):
+              player = s.get('player', {})
+              team   = s.get('team', {})
+              tla_raw = (team.get('tla') or '').upper()
+              tla = TLA_NORM.get(tla_raw, tla_raw)
+              scorers.append({
+                  'player':        player.get('name', ''),
+                  'nationality':   player.get('nationality', ''),
+                  'team':          team.get('name', ''),
+                  'teamTla':       tla,
+                  'playedMatches': s.get('playedMatches') or 0,
+                  'goals':         s.get('goals') or 0,
+                  'assists':       s.get('assists') or 0,
+                  'penalties':     s.get('penalties') or 0,
+              })
+
+          if existing.get('scorers') != scorers:
+              new_data = {
+                  'lastUpdated': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
+                  'scorers': scorers,
+              }
+              with open(SCORERS_PATH, 'w') as f:
+                  json.dump(new_data, f, indent=2)
+              print(f'Scorers updated: {len(scorers)} players')
+          else:
+              print('No changes to scorers.')
+          PYEOF
+
       - name: Commit and push if changed
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/results.json
+          git add data/results.json data/scorers.json
           if git diff --cached --quiet; then
             echo "Nothing to commit."
           else
-            git commit -m "chore: update World Cup 2026 results [skip ci]"
+            git commit -m "chore: update World Cup 2026 results"
             git push origin main
           fi

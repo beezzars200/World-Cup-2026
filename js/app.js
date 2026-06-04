@@ -18,6 +18,8 @@
     standings: {},
     lastUpdated: null,
     sweepTeam: null,
+    scorers: [],
+    scorersUpdated: null,
   };
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -26,12 +28,12 @@
     bindSubTabButtons();
     bindScheduleFilters();
     bindBusterCtas();
-    fetchResults().then(function () {
+    Promise.all([fetchResults(), fetchScorers()]).then(function () {
       computeAllStandings();
       renderLiveNow();
       renderCurrentTab();
       setInterval(function () {
-        fetchResults().then(function () {
+        Promise.all([fetchResults(), fetchScorers()]).then(function () {
           computeAllStandings();
           renderLiveNow();
           renderCurrentTab();
@@ -98,6 +100,17 @@
             m.winner = r.winner || m.winner;
           }
         });
+      })
+      .catch(function () {});
+  }
+
+  function fetchScorers() {
+    return fetch('data/scorers.json?_=' + Date.now())
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (!data || !Array.isArray(data.scorers)) return;
+        state.scorers = data.scorers;
+        state.scorersUpdated = data.lastUpdated || null;
       })
       .catch(function () {});
   }
@@ -298,6 +311,7 @@
     }
     if (state.tab === 'schedule')   renderSchedule();
     if (state.tab === 'sweepstake') renderSweepstake();
+    if (state.tab === 'scorers')    renderScorers();
   }
 
   // ── GROUPS TAB ────────────────────────────────────────────────────────────
@@ -673,6 +687,76 @@
     metaCol.appendChild(venueEl); metaCol.appendChild(cityEl);
     item.appendChild(metaCol);
     return item;
+  }
+
+  // ── SCORERS TAB ───────────────────────────────────────────────────────────
+  function renderScorers() {
+    var container = document.getElementById('scorersContainer');
+    if (!container) return;
+    container.innerHTML = '';
+
+    if (!state.scorers || !state.scorers.length) {
+      var banner = el('div', 'info-banner');
+      banner.textContent = '📡 Top scorer rankings will be live once the tournament starts.';
+      container.appendChild(banner);
+      return;
+    }
+
+    var teamByCode = {};
+    Object.keys(WC.GROUPS).forEach(function (g) {
+      WC.GROUPS[g].teams.forEach(function (t) { teamByCode[t.code] = t; });
+    });
+
+    var wrap = el('div', 'scorers-table-wrap');
+
+    var hdr = el('div', 'scorers-header');
+    var title = el('span', 'scorers-title'); title.textContent = '⚽ Top Goalscorers';
+    hdr.appendChild(title);
+    if (state.scorersUpdated) {
+      var upd = el('span', 'scorers-updated');
+      upd.textContent = 'Updated ' + formatDateTimeDisplay(new Date(state.scorersUpdated));
+      hdr.appendChild(upd);
+    }
+    wrap.appendChild(hdr);
+
+    var tbl = el('table', 'scorers-table');
+    var thead = el('thead');
+    var hr = el('tr');
+    ['#', 'Player', 'G', 'A', 'Pen'].forEach(function (h) {
+      var th = el('th'); th.textContent = h; hr.appendChild(th);
+    });
+    thead.appendChild(hr);
+    tbl.appendChild(thead);
+
+    var medals = ['🥇', '🥈', '🥉'];
+    var tbody = el('tbody');
+    state.scorers.forEach(function (s, i) {
+      var rank = i + 1;
+      var teamInfo = teamByCode[s.teamTla] || null;
+
+      var tr = el('tr', rank === 1 ? 'scorer-top' : '');
+
+      var tdRank = el('td');
+      tdRank.textContent = rank <= 3 ? medals[rank - 1] : String(rank);
+      tr.appendChild(tdRank);
+
+      var tdPlayer = el('td');
+      var nameEl = el('div', 'scorer-player'); nameEl.textContent = s.player;
+      var teamEl = el('div', 'scorer-team');
+      teamEl.textContent = teamInfo ? (teamInfo.flag + ' ' + teamInfo.name) : s.team;
+      tdPlayer.appendChild(nameEl);
+      tdPlayer.appendChild(teamEl);
+      tr.appendChild(tdPlayer);
+
+      var tdGoals = el('td', 'scorer-goals'); tdGoals.textContent = s.goals; tr.appendChild(tdGoals);
+      var tdAst   = el('td'); tdAst.textContent = s.assists || 0; tr.appendChild(tdAst);
+      var tdPen   = el('td'); tdPen.textContent = s.penalties || 0; tr.appendChild(tdPen);
+
+      tbody.appendChild(tr);
+    });
+    tbl.appendChild(tbody);
+    wrap.appendChild(tbl);
+    container.appendChild(wrap);
   }
 
   // ── BUSTER CTA BANNERS ───────────────────────────────────────────────────
