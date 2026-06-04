@@ -11,7 +11,8 @@
 
   var state = {
     tz: 'Europe/Dublin',
-    tab: 'groups',
+    tab: 'sweepstake',
+    liveSubTab: 'groups',
     statusFilter: 'all',
     groupFilter: 'all',
     standings: {},
@@ -22,6 +23,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     populateCountrySelector();
     bindTabButtons();
+    bindSubTabButtons();
     bindScheduleFilters();
     bindBusterCtas();
     fetchResults().then(function () {
@@ -274,9 +276,26 @@
     });
   }
 
+  function bindSubTabButtons() {
+    document.querySelectorAll('.sub-tab-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        state.liveSubTab = btn.dataset.subtab;
+        document.querySelectorAll('.sub-tab-btn').forEach(function (b) {
+          b.classList.toggle('active', b === btn);
+        });
+        document.querySelectorAll('.sub-tab-panel').forEach(function (p) {
+          p.classList.toggle('active', p.id === 'subtab-' + state.liveSubTab);
+        });
+        renderCurrentTab();
+      });
+    });
+  }
+
   function renderCurrentTab() {
-    if (state.tab === 'groups')     renderGroups();
-    if (state.tab === 'bracket')    renderBracket();
+    if (state.tab === 'live') {
+      if (state.liveSubTab === 'groups')  renderGroups();
+      if (state.liveSubTab === 'bracket') renderBracket();
+    }
     if (state.tab === 'schedule')   renderSchedule();
     if (state.tab === 'sweepstake') renderSweepstake();
   }

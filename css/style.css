@@ -1215,6 +1215,31 @@ body {
 .sweep-msg-warning { background: rgba(245,158,11,0.15); color: var(--gold); border: 1px solid rgba(245,158,11,0.3); }
 .sweep-msg-error   { background: rgba(239,68,68,0.15);  color: var(--red);  border: 1px solid rgba(239,68,68,0.3); }
 
+/* ── SUB-TABS ── */
+.sub-tabs-bar {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+.sub-tab-btn {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 10px 22px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+  transition: color 0.2s, border-color 0.2s;
+  margin-bottom: -1px;
+}
+.sub-tab-btn:hover { color: var(--text); }
+.sub-tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+.sub-tab-panel { display: none; }
+.sub-tab-panel.active { display: block; }
+
 /* ── INFO BANNER ── */
 .info-banner {
   font-size: 0.8rem;
