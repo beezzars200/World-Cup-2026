@@ -1250,9 +1250,6 @@ body {
 }
 .buster-cta-btn:hover { background: var(--gold-light); }
 
-/* ── BUSTER TAB BUTTON ── */
-.buster-tab-btn { color: var(--gold) !important; }
-.buster-tab-btn.active { color: var(--gold) !important; border-bottom-color: var(--gold) !important; }
 
 /* ── BUSTER GATE ── */
 .buster-gate {
