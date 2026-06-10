@@ -20,6 +20,8 @@
     sweepTeam: null,
     scorers: [],
     scorersUpdated: null,
+    drawFilter: '',
+    drawExpanded: {},
   };
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -28,6 +30,7 @@
     bindSubTabButtons();
     bindScheduleFilters();
     bindBusterCtas();
+    bindDrawSearch();
     Promise.all([fetchResults(), fetchScorers()]).then(function () {
       computeAllStandings();
       renderLiveNow();
@@ -312,6 +315,7 @@
     if (state.tab === 'schedule')   renderSchedule();
     if (state.tab === 'sweepstake') renderSweepstake();
     if (state.tab === 'scorers')    renderScorers();
+    if (state.tab === 'draw')       renderDraw();
   }
 
   // ── GROUPS TAB ────────────────────────────────────────────────────────────
@@ -687,6 +691,211 @@
     metaCol.appendChild(venueEl); metaCol.appendChild(cityEl);
     item.appendChild(metaCol);
     return item;
+  }
+
+  // ── DRAW RESULTS TAB ──────────────────────────────────────────────────────
+  function bindDrawSearch() {
+    var input = document.getElementById('drawSearch');
+    if (!input) return;
+    input.addEventListener('input', function () {
+      state.drawFilter = input.value.trim().toLowerCase();
+      renderDraw();
+    });
+  }
+
+  function getTeamByCode(code) {
+    var found = null;
+    Object.keys(WC.GROUPS).forEach(function (g) {
+      WC.GROUPS[g].teams.forEach(function (t) { if (t.code === code) found = t; });
+    });
+    return found;
+  }
+
+  function getAllMatchesForTeam(code) {
+    var out = [];
+    WC.GROUP_MATCHES.forEach(function (m) {
+      if ((m.team1 && m.team1.code === code) || (m.team2 && m.team2.code === code)) out.push(m);
+    });
+    getKnockoutArray().forEach(function (m) {
+      var t1 = resolveKoTeam(m.team1, m.team1Label);
+      var t2 = resolveKoTeam(m.team2, m.team2Label);
+      if ((t1 && t1.code === code) || (t2 && t2.code === code)) out.push(m);
+    });
+    return out.sort(function (a, b) {
+      var da = a.date + 'T' + a.utc, db = b.date + 'T' + b.utc;
+      return da < db ? -1 : da > db ? 1 : 0;
+    });
+  }
+
+  function getLiveMatchForTeam(code) {
+    var matches = getAllMatchesForTeam(code);
+    for (var i = 0; i < matches.length; i++) {
+      if (matches[i].status === 'live') return matches[i];
+    }
+    return null;
+  }
+
+  function getNextMatchForTeam(code) {
+    var matches = getAllMatchesForTeam(code);
+    for (var i = 0; i < matches.length; i++) {
+      var m = matches[i];
+      if (m.status !== 'finished' && m.status !== 'live' && (m.score1 === null || m.score2 === null)) return m;
+    }
+    return null;
+  }
+
+  function normName(s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  function findScorerStats(pickName, pickCountry) {
+    if (!state.scorers || !state.scorers.length) return null;
+    var tokens = normName(pickName).split(/\s+/);
+    var surname = tokens[tokens.length - 1];
+    var first = tokens[0];
+    var candidates = state.scorers.filter(function (s) {
+      return normName(s.player).indexOf(surname) !== -1;
+    });
+    if (candidates.length > 1) {
+      var byCountry = candidates.filter(function (s) {
+        return normName(s.nationality) === normName(pickCountry);
+      });
+      if (byCountry.length) candidates = byCountry;
+    }
+    if (candidates.length > 1) {
+      var byFirst = candidates.filter(function (s) {
+        return normName(s.player).indexOf(first) !== -1;
+      });
+      if (byFirst.length) candidates = byFirst;
+    }
+    return candidates.length ? candidates[0] : null;
+  }
+
+  function renderDraw() {
+    var grid = document.getElementById('drawGrid');
+    if (!grid || !WC.DRAW) return;
+    grid.innerHTML = '';
+
+    var entries = WC.DRAW;
+    if (state.drawFilter) {
+      entries = entries.filter(function (e) {
+        var team = getTeamByCode(e.team);
+        var hay = normName(e.name) + ' ' + normName(team ? team.name : '') + ' ' + normName(e.scorer);
+        return hay.indexOf(normName(state.drawFilter)) !== -1;
+      });
+    }
+
+    if (!entries.length) {
+      var none = el('div', 'no-matches');
+      none.textContent = 'No entries match your search.';
+      grid.appendChild(none);
+      return;
+    }
+
+    entries.forEach(function (e) { grid.appendChild(buildDrawCard(e)); });
+  }
+
+  function buildDrawCard(e) {
+    var team = getTeamByCode(e.team);
+    var liveMatch = getLiveMatchForTeam(e.team);
+    var expanded = !!state.drawExpanded[e.no];
+
+    var card = el('div', 'draw-card' + (liveMatch ? ' draw-live' : '') + (expanded ? ' expanded' : ''));
+
+    var top = el('div', 'draw-card-top');
+
+    var numEl = el('span', 'draw-num'); numEl.textContent = '#' + e.no;
+    var nameEl = el('div', 'draw-name'); nameEl.textContent = e.name;
+    var nameWrap = el('div', 'draw-name-wrap');
+    nameWrap.appendChild(numEl); nameWrap.appendChild(nameEl);
+    top.appendChild(nameWrap);
+
+    if (liveMatch) {
+      var liveBadge = el('div', 'draw-live-badge');
+      var dot = el('span', 'live-dot');
+      liveBadge.appendChild(dot);
+      liveBadge.appendChild(document.createTextNode('LIVE — tap for info'));
+      top.appendChild(liveBadge);
+    }
+    card.appendChild(top);
+
+    var teamRow = el('div', 'draw-team-row');
+    var flag = el('span', 'draw-team-flag'); flag.textContent = team ? team.flag : '';
+    var tname = el('span', 'draw-team-name'); tname.textContent = team ? team.name : e.team;
+    teamRow.appendChild(flag); teamRow.appendChild(tname);
+
+    if (liveMatch) {
+      var liveScore = el('span', 'draw-team-livescore');
+      liveScore.textContent = (liveMatch.score1 !== null ? liveMatch.score1 : 0) + ' – ' + (liveMatch.score2 !== null ? liveMatch.score2 : 0);
+      teamRow.appendChild(liveScore);
+    }
+    card.appendChild(teamRow);
+
+    var scorerRow = el('div', 'draw-scorer-row');
+    scorerRow.textContent = '⚽ ' + e.scorer + ' (' + e.scorerCountry + ')';
+    var stats = findScorerStats(e.scorer, e.scorerCountry);
+    if (stats && stats.goals > 0) {
+      var goalsPill = el('span', 'draw-goals-pill');
+      goalsPill.textContent = stats.goals + ' goal' + (stats.goals !== 1 ? 's' : '');
+      scorerRow.appendChild(goalsPill);
+    }
+    card.appendChild(scorerRow);
+
+    if (expanded) card.appendChild(buildDrawDetail(e, team, liveMatch, stats));
+
+    card.addEventListener('click', function () {
+      state.drawExpanded[e.no] = !state.drawExpanded[e.no];
+      renderDraw();
+    });
+
+    return card;
+  }
+
+  function buildDrawDetail(e, team, liveMatch, stats) {
+    var detail = el('div', 'draw-detail');
+
+    var m = liveMatch || getNextMatchForTeam(e.team);
+    if (m) {
+      var lbl = el('div', 'draw-detail-label');
+      lbl.textContent = liveMatch ? '🔴 Live now' : '📅 Next match';
+      detail.appendChild(lbl);
+
+      var t1 = (m.team1 && m.team1.code) ? m.team1 : resolveKoTeam(m.team1, m.team1Label);
+      var t2 = (m.team2 && m.team2.code) ? m.team2 : resolveKoTeam(m.team2, m.team2Label);
+      var matchLine = el('div', 'draw-detail-match');
+      var n1 = t1 ? (t1.flag + ' ' + t1.name) : formatLabel(m.team1Label);
+      var n2 = t2 ? (t2.flag + ' ' + t2.name) : formatLabel(m.team2Label);
+      if (liveMatch) {
+        matchLine.textContent = n1 + '  ' + (m.score1 !== null ? m.score1 : 0) + ' – ' + (m.score2 !== null ? m.score2 : 0) + '  ' + n2;
+      } else {
+        matchLine.textContent = n1 + '  vs  ' + n2;
+      }
+      detail.appendChild(matchLine);
+
+      var meta = el('div', 'draw-detail-meta');
+      var when = formatMatchTime(m.date, m.utc, state.tz, m.est);
+      meta.textContent = when + ((m.city && m.city !== 'TBD') ? ' · ' + m.city : '');
+      detail.appendChild(meta);
+    } else {
+      var noneLbl = el('div', 'draw-detail-meta');
+      noneLbl.textContent = 'No upcoming fixtures for ' + (team ? team.name : e.team) + '.';
+      detail.appendChild(noneLbl);
+    }
+
+    var scorerLbl = el('div', 'draw-detail-label');
+    scorerLbl.textContent = '⚽ Top scorer pick';
+    detail.appendChild(scorerLbl);
+
+    var scorerLine = el('div', 'draw-detail-scorer');
+    if (stats) {
+      scorerLine.textContent = e.scorer + ' — ' + stats.goals + ' World Cup goal' + (stats.goals !== 1 ? 's' : '') +
+        (stats.assists ? ' · ' + stats.assists + ' assist' + (stats.assists !== 1 ? 's' : '') : '');
+    } else {
+      scorerLine.textContent = e.scorer + ' — no World Cup goals yet.';
+    }
+    detail.appendChild(scorerLine);
+
+    return detail;
   }
 
   // ── SCORERS TAB ───────────────────────────────────────────────────────────
