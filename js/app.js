@@ -22,6 +22,7 @@
     scorersUpdated: null,
     drawFilter: '',
     drawExpanded: {},
+    drawSubTab: 'list',
   };
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -293,14 +294,26 @@
   }
 
   function bindSubTabButtons() {
-    document.querySelectorAll('.sub-tab-btn').forEach(function (btn) {
+    document.querySelectorAll('#tab-live .sub-tab-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         state.liveSubTab = btn.dataset.subtab;
-        document.querySelectorAll('.sub-tab-btn').forEach(function (b) {
+        document.querySelectorAll('#tab-live .sub-tab-btn').forEach(function (b) {
           b.classList.toggle('active', b === btn);
         });
-        document.querySelectorAll('.sub-tab-panel').forEach(function (p) {
+        document.querySelectorAll('#tab-live .sub-tab-panel').forEach(function (p) {
           p.classList.toggle('active', p.id === 'subtab-' + state.liveSubTab);
+        });
+        renderCurrentTab();
+      });
+    });
+    document.querySelectorAll('#tab-draw .sub-tab-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        state.drawSubTab = btn.dataset.drawsub;
+        document.querySelectorAll('#tab-draw .sub-tab-btn').forEach(function (b) {
+          b.classList.toggle('active', b === btn);
+        });
+        document.querySelectorAll('#tab-draw .sub-tab-panel').forEach(function (p) {
+          p.classList.toggle('active', p.id === 'drawsub-' + state.drawSubTab);
         });
         renderCurrentTab();
       });
@@ -315,7 +328,10 @@
     if (state.tab === 'schedule')   renderSchedule();
     if (state.tab === 'sweepstake') renderSweepstake();
     if (state.tab === 'scorers')    renderScorers();
-    if (state.tab === 'draw')       renderDraw();
+    if (state.tab === 'draw') {
+      if (state.drawSubTab === 'list')    renderDraw();
+      if (state.drawSubTab === 'reserve') renderReserve();
+    }
   }
 
   // ── GROUPS TAB ────────────────────────────────────────────────────────────
@@ -896,6 +912,41 @@
     detail.appendChild(scorerLine);
 
     return detail;
+  }
+
+  function getTeamByName(name) {
+    var found = null;
+    Object.keys(WC.GROUPS).forEach(function (g) {
+      WC.GROUPS[g].teams.forEach(function (t) { if (t.name === name) found = t; });
+    });
+    return found;
+  }
+
+  function renderReserve() {
+    var container = document.getElementById('reserveList');
+    if (!container || !WC.RESERVE_SCORERS) return;
+    container.innerHTML = '';
+
+    var wrap = el('div', 'reserve-list');
+    WC.RESERVE_SCORERS.forEach(function (r, i) {
+      var row = el('div', 'reserve-row');
+
+      var num = el('span', 'reserve-num'); num.textContent = i + 1;
+      row.appendChild(num);
+
+      var team = getTeamByName(r.country);
+      var flag = el('span', 'reserve-flag'); flag.textContent = team ? team.flag : '';
+      row.appendChild(flag);
+
+      var info = el('div', 'reserve-info');
+      var name = el('div', 'reserve-name'); name.textContent = r.name;
+      var country = el('div', 'reserve-country'); country.textContent = r.country;
+      info.appendChild(name); info.appendChild(country);
+      row.appendChild(info);
+
+      wrap.appendChild(row);
+    });
+    container.appendChild(wrap);
   }
 
   // ── SCORERS TAB ───────────────────────────────────────────────────────────

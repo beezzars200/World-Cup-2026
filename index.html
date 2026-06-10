@@ -29,7 +29,7 @@
   <meta name="twitter:description" content="Enter the World Cup Buster — €20 entry, randomly drawn team from all 48 nations." />
   <meta name="twitter:image"       content="https://beezzars200.github.io/World-Cup-2026/images/IMG_2536.jpeg" />
 
-  <link rel="stylesheet" href="css/style.css?v=13" />
+  <link rel="stylesheet" href="css/style.css?v=14" />
 </head>
 <body>
 
@@ -58,12 +58,25 @@
 
   <!-- DRAW RESULTS -->
   <section class="tab-panel active" id="tab-draw">
-    <div class="draw-header">
-      <h2 class="draw-title">🎲 The Draw — Who Got Who</h2>
-      <p class="draw-sub">All 48 entrants with their drawn team and top goalscorer pick. When your team is playing the card lights up — tap any card for match info and your player's World Cup goals.</p>
-      <input type="search" class="draw-search" id="drawSearch" placeholder="🔍 Search your name or team…" autocomplete="off" />
+    <nav class="sub-tabs-bar">
+      <button class="sub-tab-btn active" data-drawsub="list">Draw</button>
+      <button class="sub-tab-btn"        data-drawsub="reserve">Reserve Top Scorers</button>
+    </nav>
+    <div class="sub-tab-panel active" id="drawsub-list">
+      <div class="draw-header">
+        <h2 class="draw-title">🎲 The Draw — Who Got Who</h2>
+        <p class="draw-sub">All 48 entrants with their drawn team and top goalscorer pick. When your team is playing the card lights up — tap any card for match info and your player's World Cup goals.</p>
+        <input type="search" class="draw-search" id="drawSearch" placeholder="🔍 Search your name or team…" autocomplete="off" />
+      </div>
+      <div class="draw-grid" id="drawGrid"></div>
     </div>
-    <div class="draw-grid" id="drawGrid"></div>
+    <div class="sub-tab-panel" id="drawsub-reserve">
+      <div class="draw-header">
+        <h2 class="draw-title">🩹 Reserve Top Scorers</h2>
+        <p class="draw-sub">Stand-by list in case any assigned player gets injured before the first game.</p>
+      </div>
+      <div id="reserveList"></div>
+    </div>
   </section>
 
   <!-- LIVE SCORES -->
@@ -157,7 +170,7 @@
 </footer>
 
 <script src="js/tournament.js?v=3"></script>
-<script src="js/draw.js?v=2"></script>
-<script src="js/app.js?v=10"></script>
+<script src="js/draw.js?v=3"></script>
+<script src="js/app.js?v=11"></script>
 </body>
 </html>

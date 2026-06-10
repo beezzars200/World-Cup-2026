@@ -55,4 +55,18 @@
     { no: 47, name: 'Dean Murray',                 team: 'URU', scorer: 'Jamal Musiala',        scorerCountry: 'Germany' },
     { no: 48, name: 'David Byrne',                 team: 'IRQ', scorer: 'Cody Gakpo',           scorerCountry: 'Netherlands' }
   ];
+
+  // Stand-by top scorer picks, in case of injury before the first game
+  WC.RESERVE_SCORERS = [
+    { name: 'Endrick',           country: 'Brazil' },
+    { name: 'Antoine Semenyo',   country: 'Ghana' },
+    { name: 'Christian Pulisic', country: 'USA' },
+    { name: 'Bradley Barcola',   country: 'France' },
+    { name: 'Nico Williams',     country: 'Spain' },
+    { name: 'Viktor Gyökeres',   country: 'Sweden' },
+    { name: 'Gonçalo Ramos',     country: 'Portugal' },
+    { name: 'John Yeboah',       country: 'Ecuador' },
+    { name: 'Raúl Jiménez',      country: 'Mexico' },
+    { name: 'Daizen Maeda',      country: 'Japan' }
+  ];
 })();

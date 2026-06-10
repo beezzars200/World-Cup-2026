@@ -1748,6 +1748,48 @@ body {
   .draw-grid { grid-template-columns: 1fr; }
 }
 
+/* ── RESERVE TOP SCORERS ── */
+.reserve-list {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 520px;
+}
+
+.reserve-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px;
+}
+.reserve-row:not(:last-child) { border-bottom: 1px solid rgba(51,65,85,0.4); }
+.reserve-row:nth-child(even) { background: rgba(255,255,255,0.02); }
+
+.reserve-num {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--muted);
+  min-width: 20px;
+  text-align: center;
+}
+
+.reserve-flag { font-size: 1.5rem; flex-shrink: 0; }
+
+.reserve-info { min-width: 0; }
+
+.reserve-name {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.reserve-country {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
 /* ── SCORERS ── */
 .scorers-container { margin-bottom: 16px; }
 
