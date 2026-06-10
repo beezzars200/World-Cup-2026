@@ -29,7 +29,7 @@
   <meta name="twitter:description" content="Enter the World Cup Buster — €20 entry, randomly drawn team from all 48 nations." />
   <meta name="twitter:image"       content="https://beezzars200.github.io/World-Cup-2026/images/IMG_2536.jpeg" />
 
-  <link rel="stylesheet" href="css/style.css?v=12" />
+  <link rel="stylesheet" href="css/style.css?v=13" />
 </head>
 <body>
 
@@ -46,34 +46,18 @@
 
 <nav class="tabs-bar" role="tablist">
   <div class="tabs-inner">
-    <button class="tab-btn active"  data-tab="sweepstake" role="tab" aria-selected="true">Buster Info</button>
-    <button class="tab-btn"         data-tab="draw"        role="tab" aria-selected="false">Draw Results</button>
+    <button class="tab-btn active"  data-tab="draw"        role="tab" aria-selected="true">Draw Results</button>
     <button class="tab-btn"         data-tab="live"        role="tab" aria-selected="false">Live Scores</button>
     <button class="tab-btn"         data-tab="scorers"     role="tab" aria-selected="false">Top Scorer</button>
     <button class="tab-btn"         data-tab="schedule"    role="tab" aria-selected="false">Fixtures</button>
+    <button class="tab-btn"         data-tab="sweepstake"  role="tab" aria-selected="false">Buster Info</button>
   </div>
 </nav>
 
 <main class="main-content">
 
-  <!-- BUSTER INFO -->
-  <section class="tab-panel active" id="tab-sweepstake">
-    <div class="buster-poster-wrap">
-      <img src="images/IMG_2536.jpeg" alt="World Cup Buster — Grattan United AFC" class="buster-poster" />
-    </div>
-    <div class="buster-full-wrap">
-      <div class="buster-full-card">
-        <div class="buster-full-badge">🔒 Buster Full — 48/48 Entries</div>
-        <h2 class="buster-full-title">The draw will take place shortly!</h2>
-        <p class="buster-full-msg">All 48 spots have been filled. Each entrant will be randomly drawn a team from the 48 nations competing at the 2026 FIFA World Cup. Stay tuned for the draw results.</p>
-        <p class="buster-good-luck">⚽ Good luck to all who have entered!</p>
-        <a href="https://wa.me/353852789446" class="buster-contact-pill" target="_blank" rel="noopener">💬 Contact the organisers with any questions</a>
-      </div>
-    </div>
-  </section>
-
   <!-- DRAW RESULTS -->
-  <section class="tab-panel" id="tab-draw">
+  <section class="tab-panel active" id="tab-draw">
     <div class="draw-header">
       <h2 class="draw-title">🎲 The Draw — Who Got Who</h2>
       <p class="draw-sub">All 48 entrants with their drawn team and top goalscorer pick. When your team is playing the card lights up — tap any card for match info and your player's World Cup goals.</p>
@@ -154,6 +138,16 @@
     <div class="schedule-body" id="scheduleBody"></div>
   </section>
 
+  <!-- BUSTER INFO -->
+  <section class="tab-panel" id="tab-sweepstake">
+    <div class="buster-contact-wrap">
+      <a href="https://wa.me/353852789446" class="buster-contact-pill" target="_blank" rel="noopener">💬 Contact the organiser with any questions</a>
+    </div>
+    <div class="buster-poster-wrap">
+      <img src="images/IMG_2536.jpeg" alt="World Cup Buster — Grattan United AFC" class="buster-poster" />
+    </div>
+  </section>
+
 </main>
 
 <footer class="site-footer">
@@ -163,7 +157,7 @@
 </footer>
 
 <script src="js/tournament.js?v=3"></script>
-<script src="js/draw.js?v=1"></script>
-<script src="js/app.js?v=9"></script>
+<script src="js/draw.js?v=2"></script>
+<script src="js/app.js?v=10"></script>
 </body>
 </html>

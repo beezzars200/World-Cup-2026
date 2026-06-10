@@ -11,7 +11,7 @@
 
   var state = {
     tz: 'Europe/Dublin',
-    tab: 'sweepstake',
+    tab: 'draw',
     liveSubTab: 'groups',
     statusFilter: 'all',
     groupFilter: 'all',
