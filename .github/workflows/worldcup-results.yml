@@ -24,15 +24,12 @@ jobs:
         with:
           ref: main
 
-      - name: Fetch results from football-data.org
-        env:
-          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+      - name: Fetch results from ESPN
         run: |
           python3 - <<'PYEOF'
-          import json, os, sys, urllib.request, urllib.error
-          from datetime import datetime, timezone
+          import json, sys, urllib.request, urllib.error
+          from datetime import datetime, timezone, timedelta
 
-          API_KEY = os.environ.get('FOOTBALL_DATA_API_KEY', '')
           RESULTS_PATH = 'data/results.json'
 
           try:
@@ -41,25 +38,20 @@ jobs:
           except FileNotFoundError:
               data = {'lastUpdated': '', 'matches': {}}
 
-          if not API_KEY:
-              print('No FOOTBALL_DATA_API_KEY secret set — skipping API call.')
-              sys.exit(0)
-
-          # Normalize football-data.org TLAs to our internal codes where they differ
-          TLA_NORM = {
-              'CDI': 'CIV',  # Ivory Coast
-              'SAU': 'KSA',  # Saudi Arabia
-              'DRC': 'COD',  # DR Congo
-              'BOS': 'BIH',  # Bosnia & Herzegovina
-              'CUR': 'CUW',  # Curaçao
+          # ESPN abbreviations → our internal TLAs
+          ESPN_NORM = {
               'SKO': 'KOR',  # South Korea
-              'URY': 'URU',  # Uruguay (API uses URY)
-              'CPV': 'CPV',  # Cape Verde (already correct)
+              'BOS': 'BIH',  # Bosnia & Herzegovina
+              'DRC': 'COD',  # DR Congo
+              'CUR': 'CUW',  # Curaçao
+              'SAU': 'KSA',  # Saudi Arabia
+              'KSA': 'KSA',  # Saudi Arabia (in case ESPN uses KSA directly)
+              'URY': 'URU',  # Uruguay
+              'CDI': 'CIV',  # Ivory Coast
           }
 
-          # Maps (date, tla) -> (internal_id, team1_tla)
-          # Covers BOTH teams for every group match so home/away order in the
-          # API doesn't matter. team1_tla lets us put scores in the right slots.
+          # Maps (date, our_tla) -> (internal_id, team1_tla)
+          # Covers BOTH teams for every group match.
           TEAM_DATE_LOOKUP = {
               # Group A: MEX, RSA, KOR, CZE
               ('2026-06-11', 'MEX'): ('GA-MD1a', 'MEX'), ('2026-06-11', 'RSA'): ('GA-MD1a', 'MEX'),
@@ -147,7 +139,7 @@ jobs:
               ('2026-06-27', 'CRO'): ('GL-MD3b', 'CRO'), ('2026-06-27', 'GHA'): ('GL-MD3b', 'CRO'),
           }
 
-          # Knockout matches: (date, utc_time) -> internal_id
+          # Knockout matches: (date, utc_time HH:MM) -> internal_id
           KO_LOOKUP = {
               ('2026-06-28', '19:00'): 'M73',
               ('2026-06-29', '20:30'): 'M74',
@@ -183,90 +175,116 @@ jobs:
               ('2026-07-19', '19:00'): 'M104',
           }
 
-          STATUS_MAP = {
-              'SCHEDULED': 'upcoming',
-              'TIMED':     'upcoming',
-              'IN_PLAY':   'live',
-              'PAUSED':    'live',
-              'FINISHED':  'finished',
-              'AWARDED':   'finished',
-              'CANCELLED': 'cancelled',
-              'POSTPONED': 'upcoming',
+          ESPN_STATUS_MAP = {
+              'STATUS_SCHEDULED':    'upcoming',
+              'STATUS_IN_PROGRESS':  'live',
+              'STATUS_HALFTIME':     'live',
+              'STATUS_END_PERIOD':   'live',
+              'STATUS_FINAL':        'finished',
+              'STATUS_FULL_TIME':    'finished',
+              'STATUS_POSTPONED':    'upcoming',
+              'STATUS_CANCELED':     'cancelled',
+              'STATUS_DELAYED':      'upcoming',
+              'STATUS_SUSPENDED':    'upcoming',
           }
 
-          url = 'https://api.football-data.org/v4/competitions/WC/matches'
-          req = urllib.request.Request(url, headers={'X-Auth-Token': API_KEY})
+          def parse_score(s):
+              try:
+                  return int(s)
+              except (TypeError, ValueError):
+                  return None
 
-          try:
-              with urllib.request.urlopen(req, timeout=15) as resp:
-                  api_data = json.loads(resp.read())
-          except urllib.error.URLError as e:
-              print(f'API fetch failed: {e}')
-              sys.exit(1)
+          now_utc = datetime.now(timezone.utc)
+          today_str = now_utc.strftime('%Y-%m-%d')
+          # Query today + yesterday to catch late-night matches
+          dates = [
+              (now_utc - timedelta(days=1)).strftime('%Y%m%d'),
+              now_utc.strftime('%Y%m%d'),
+          ]
 
           updated = False
           unmatched = []
-          today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
 
-          for m in api_data.get('matches', []):
-              utc_date_str = m.get('utcDate', '')
+          for date_str in dates:
+              url = (
+                  'https://site.api.espn.com/apis/site/v2/sports/soccer'
+                  f'/fifa.world/scoreboard?dates={date_str}'
+              )
               try:
-                  dt = datetime.fromisoformat(utc_date_str.replace('Z', '+00:00'))
-                  date_key = dt.strftime('%Y-%m-%d')
-                  time_key = dt.strftime('%H:%M')
-              except Exception:
+                  req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+                  with urllib.request.urlopen(req, timeout=15) as resp:
+                      api_data = json.loads(resp.read())
+              except Exception as e:
+                  print(f'ESPN fetch failed for {date_str}: {e}')
                   continue
 
-              home_tla_raw = m.get('homeTeam', {}).get('tla', '') or ''
-              away_tla_raw = m.get('awayTeam', {}).get('tla', '') or ''
-              home_tla = TLA_NORM.get(home_tla_raw.upper(), home_tla_raw.upper())
-              away_tla = TLA_NORM.get(away_tla_raw.upper(), away_tla_raw.upper())
-              api_status = m.get('status', '')
-              if date_key == today:
-                  score = m.get('score', {})
-                  print(f'TODAY {home_tla_raw} vs {away_tla_raw} | status={api_status} | score={score}')
+              events = api_data.get('events', [])
+              print(f'ESPN {date_str}: {len(events)} event(s) found')
 
-              # Try group lookup by either team on that date (order-independent)
-              group_result = (TEAM_DATE_LOOKUP.get((date_key, home_tla))
-                              or TEAM_DATE_LOOKUP.get((date_key, away_tla)))
+              for event in events:
+                  competitions = event.get('competitions', [])
+                  if not competitions:
+                      continue
+                  comp = competitions[0]
 
-              if group_result:
-                  internal_id, team1_tla = group_result
-              else:
-                  internal_id = KO_LOOKUP.get((date_key, time_key))
-                  team1_tla = home_tla  # for KO matches, assume home = team1
+                  # Parse event start date/time
+                  event_dt_str = event.get('date', '')  # e.g. '2026-06-11T18:00Z'
+                  event_date = event_dt_str[:10] if len(event_dt_str) >= 10 else ''
+                  event_time = event_dt_str[11:16] if len(event_dt_str) >= 16 else ''
 
-              if not internal_id:
-                  unmatched.append(f'{date_key} {time_key} home={home_tla_raw} away={away_tla_raw}')
-                  continue
+                  status_name = comp.get('status', {}).get('type', {}).get('name', '')
+                  our_status = ESPN_STATUS_MAP.get(status_name, 'upcoming')
 
-              status = STATUS_MAP.get(m.get('status', ''), 'upcoming')
-              score = m.get('score', {})
-              full = score.get('fullTime', {})
-              s_home = full.get('home')
-              s_away = full.get('away')
+                  competitors = comp.get('competitors', [])
+                  home_c = next((c for c in competitors if c.get('homeAway') == 'home'), None)
+                  away_c = next((c for c in competitors if c.get('homeAway') == 'away'), None)
+                  if not home_c or not away_c:
+                      continue
 
-              # Ensure score1 always belongs to team1, score2 to team2
-              if home_tla == team1_tla:
-                  s1, s2 = s_home, s_away
-              else:
-                  s1, s2 = s_away, s_home
+                  home_tla_raw = home_c.get('team', {}).get('abbreviation', '').upper()
+                  away_tla_raw = away_c.get('team', {}).get('abbreviation', '').upper()
+                  home_tla = ESPN_NORM.get(home_tla_raw, home_tla_raw)
+                  away_tla = ESPN_NORM.get(away_tla_raw, away_tla_raw)
 
-              entry = data['matches'].get(internal_id, {})
-              new_entry = {'score1': s1, 'score2': s2, 'status': status}
+                  home_score = parse_score(home_c.get('score'))
+                  away_score = parse_score(away_c.get('score'))
 
-              if entry != new_entry:
-                  data['matches'][internal_id] = new_entry
-                  updated = True
+                  if event_date == today_str:
+                      print(f'TODAY {home_tla_raw} vs {away_tla_raw} | status={status_name} | {home_score}-{away_score}')
+
+                  # Look up by team + date (covers both home and away)
+                  group_result = (TEAM_DATE_LOOKUP.get((event_date, home_tla))
+                                  or TEAM_DATE_LOOKUP.get((event_date, away_tla)))
+
+                  if group_result:
+                      internal_id, team1_tla = group_result
+                      if home_tla == team1_tla:
+                          s1, s2 = home_score, away_score
+                      else:
+                          s1, s2 = away_score, home_score
+                  else:
+                      internal_id = KO_LOOKUP.get((event_date, event_time))
+                      if internal_id:
+                          s1, s2 = home_score, away_score
+                      else:
+                          unmatched.append(
+                              f'{event_date} {event_time} {home_tla_raw} vs {away_tla_raw}'
+                          )
+                          continue
+
+                  new_entry = {'score1': s1, 'score2': s2, 'status': our_status}
+                  if data['matches'].get(internal_id) != new_entry:
+                      data['matches'][internal_id] = new_entry
+                      updated = True
 
           if unmatched:
-              print(f'Warning: {len(unmatched)} unmatched API matches: {unmatched[:5]}')
+              print(f'Unmatched events ({len(unmatched)}): {unmatched[:10]}')
 
           if updated:
               data['lastUpdated'] = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
               with open(RESULTS_PATH, 'w') as f:
                   json.dump(data, f, indent=2)
-              print(f'Results updated: {RESULTS_PATH}')
+              print('Results updated.')
           else:
               print('No changes to results.')
           PYEOF
