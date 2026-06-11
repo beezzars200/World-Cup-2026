@@ -428,7 +428,6 @@
       if (state.liveSubTab === 'groups')  renderGroups();
       if (state.liveSubTab === 'bracket') renderBracket();
     }
-    if (state.tab === 'schedule')   renderSchedule();
     if (state.tab === 'scorers')    renderScorers();
     if (state.tab === 'sweepstake') {
       renderSweepstake();

@@ -182,19 +182,6 @@ jobs:
               ('2026-07-19', '19:00'): 'M104',
           }
 
-          ESPN_STATUS_MAP = {
-              'STATUS_SCHEDULED':    'upcoming',
-              'STATUS_IN_PROGRESS':  'live',
-              'STATUS_HALFTIME':     'live',
-              'STATUS_END_PERIOD':   'live',
-              'STATUS_FINAL':        'finished',
-              'STATUS_FULL_TIME':    'finished',
-              'STATUS_POSTPONED':    'upcoming',
-              'STATUS_CANCELED':     'cancelled',
-              'STATUS_DELAYED':      'upcoming',
-              'STATUS_SUSPENDED':    'upcoming',
-          }
-
           def parse_score(s):
               try:
                   return int(s)
@@ -240,8 +227,21 @@ jobs:
                       event_date = event_dt_str[:10] if len(event_dt_str) >= 10 else ''
                       event_time = event_dt_str[11:16] if len(event_dt_str) >= 16 else ''
 
-                      status_name = comp.get('status', {}).get('type', {}).get('name', '')
-                      our_status = ESPN_STATUS_MAP.get(status_name, 'upcoming')
+                      # ESPN's state field is authoritative: pre/in/post.
+                      # Status *names* vary by phase (STATUS_FIRST_HALF,
+                      # STATUS_HALFTIME, ...) so never key off them for live.
+                      status_type = comp.get('status', {}).get('type', {})
+                      status_name = status_type.get('name', '')
+                      api_state = status_type.get('state', '')
+                      if api_state == 'in':
+                          our_status = 'live'
+                      elif api_state == 'post':
+                          if status_name in ('STATUS_CANCELED', 'STATUS_ABANDONED', 'STATUS_POSTPONED'):
+                              our_status = 'cancelled'
+                          else:
+                              our_status = 'finished'
+                      else:
+                          our_status = 'upcoming'
 
                       competitors = comp.get('competitors', [])
                       home_c = next((c for c in competitors if c.get('homeAway') == 'home'), None)
@@ -254,11 +254,17 @@ jobs:
                       home_tla = ESPN_NORM.get(home_tla_raw, home_tla_raw)
                       away_tla = ESPN_NORM.get(away_tla_raw, away_tla_raw)
 
-                      home_score = parse_score(home_c.get('score'))
-                      away_score = parse_score(away_c.get('score'))
+                      # ESPN reports "0" even for unplayed games — only trust
+                      # scores once the match has actually started.
+                      if our_status == 'upcoming' or our_status == 'cancelled':
+                          home_score = None
+                          away_score = None
+                      else:
+                          home_score = parse_score(home_c.get('score'))
+                          away_score = parse_score(away_c.get('score'))
 
                       if event_date == today_str:
-                          print(f'TODAY {home_tla_raw} vs {away_tla_raw} | status={status_name} | {home_score}-{away_score}')
+                          print(f'TODAY {home_tla_raw} vs {away_tla_raw} | state={api_state} name={status_name} | {home_score}-{away_score}')
 
                       # Look up by team + date (covers both home and away)
                       group_result = (TEAM_DATE_LOOKUP.get((event_date, home_tla))

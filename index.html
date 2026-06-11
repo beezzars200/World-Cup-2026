@@ -48,7 +48,6 @@
   <div class="tabs-inner">
     <button class="tab-btn active"  data-tab="live"        role="tab" aria-selected="true">Live Scores</button>
     <button class="tab-btn"         data-tab="scorers"     role="tab" aria-selected="false">Top Scorer</button>
-    <button class="tab-btn"         data-tab="schedule"    role="tab" aria-selected="false">Fixtures</button>
     <button class="tab-btn"         data-tab="sweepstake"  role="tab" aria-selected="false">Buster Info</button>
   </div>
 </nav>
@@ -96,39 +95,6 @@
     </div>
   </section>
 
-  <!-- FIXTURES -->
-  <section class="tab-panel" id="tab-schedule">
-    <div class="info-banner">📡 Live data for all games will be available once the tournament starts.</div>
-    <div class="schedule-filters">
-      <div class="filter-group">
-        <span class="filter-label">Show:</span>
-        <button class="filter-btn active" data-status="all">All</button>
-        <button class="filter-btn" data-status="upcoming">Upcoming</button>
-        <button class="filter-btn" data-status="today">Today</button>
-      </div>
-      <div class="filter-group">
-        <span class="filter-label">Group:</span>
-        <select class="filter-select" id="groupFilterSelect">
-          <option value="all">All Matches</option>
-          <option value="A">Group A</option>
-          <option value="B">Group B</option>
-          <option value="C">Group C</option>
-          <option value="D">Group D</option>
-          <option value="E">Group E</option>
-          <option value="F">Group F</option>
-          <option value="G">Group G</option>
-          <option value="H">Group H</option>
-          <option value="I">Group I</option>
-          <option value="J">Group J</option>
-          <option value="K">Group K</option>
-          <option value="L">Group L</option>
-          <option value="ko">Knockouts</option>
-        </select>
-      </div>
-    </div>
-    <div class="schedule-body" id="scheduleBody"></div>
-  </section>
-
   <!-- BUSTER INFO -->
   <section class="tab-panel" id="tab-sweepstake">
     <div class="buster-contact-wrap">
@@ -168,6 +134,6 @@
 
 <script src="js/tournament.js?v=4"></script>
 <script src="js/draw.js?v=3"></script>
-<script src="js/app.js?v=17"></script>
+<script src="js/app.js?v=18"></script>
 </body>
 </html>
