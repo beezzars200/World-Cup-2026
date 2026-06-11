@@ -52,95 +52,99 @@ jobs:
               'DRC': 'COD',  # DR Congo
               'BOS': 'BIH',  # Bosnia & Herzegovina
               'CUR': 'CUW',  # Curaçao
-              'SKO': 'KOR',  # South Korea (some providers)
+              'SKO': 'KOR',  # South Korea
+              'URY': 'URU',  # Uruguay (API uses URY)
+              'CPV': 'CPV',  # Cape Verde (already correct)
           }
 
-          # Group matches: (date, utc_time, home_team_code) -> internal_id
-          GROUP_LOOKUP = {
-              # Group A
-              ('2026-06-11', '19:00', 'MEX'): 'GA-MD1a',
-              ('2026-06-12', '02:00', 'KOR'): 'GA-MD1b',
-              ('2026-06-19', '01:00', 'MEX'): 'GA-MD2a',
-              ('2026-06-18', '16:00', 'CZE'): 'GA-MD2b',
-              ('2026-06-25', '01:00', 'MEX'): 'GA-MD3a',
-              ('2026-06-25', '01:00', 'KOR'): 'GA-MD3b',
-              # Group B
-              ('2026-06-12', '19:00', 'CAN'): 'GB-MD1a',
-              ('2026-06-13', '19:00', 'QAT'): 'GB-MD1b',
-              ('2026-06-18', '22:00', 'CAN'): 'GB-MD2a',
-              ('2026-06-18', '19:00', 'BIH'): 'GB-MD2b',
-              ('2026-06-24', '19:00', 'CAN'): 'GB-MD3a',
-              ('2026-06-24', '19:00', 'BIH'): 'GB-MD3b',
-              # Group C
-              ('2026-06-13', '22:00', 'BRA'): 'GC-MD1a',
-              ('2026-06-14', '01:00', 'HAI'): 'GC-MD1b',
-              ('2026-06-20', '00:30', 'BRA'): 'GC-MD2a',
-              ('2026-06-19', '22:00', 'MAR'): 'GC-MD2b',
-              ('2026-06-24', '22:00', 'BRA'): 'GC-MD3a',
-              ('2026-06-24', '22:00', 'MAR'): 'GC-MD3b',
-              # Group D
-              ('2026-06-13', '01:00', 'USA'): 'GD-MD1a',
-              ('2026-06-14', '04:00', 'AUS'): 'GD-MD1b',
-              ('2026-06-19', '19:00', 'USA'): 'GD-MD2a',
-              ('2026-06-20', '03:00', 'PAR'): 'GD-MD2b',
-              ('2026-06-26', '02:00', 'USA'): 'GD-MD3a',
-              ('2026-06-26', '02:00', 'PAR'): 'GD-MD3b',
-              # Group E
-              ('2026-06-14', '17:00', 'GER'): 'GE-MD1a',
-              ('2026-06-14', '23:00', 'CIV'): 'GE-MD1b',
-              ('2026-06-20', '20:00', 'GER'): 'GE-MD2a',
-              ('2026-06-21', '00:00', 'ECU'): 'GE-MD2b',
-              ('2026-06-25', '20:00', 'GER'): 'GE-MD3a',
-              ('2026-06-25', '20:00', 'CUW'): 'GE-MD3b',
-              # Group F
-              ('2026-06-14', '20:00', 'NED'): 'GF-MD1a',
-              ('2026-06-15', '02:00', 'SWE'): 'GF-MD1b',
-              ('2026-06-20', '17:00', 'NED'): 'GF-MD2a',
-              ('2026-06-21', '04:00', 'JPN'): 'GF-MD2b',
-              ('2026-06-25', '23:00', 'NED'): 'GF-MD3a',
-              ('2026-06-25', '23:00', 'JPN'): 'GF-MD3b',
-              # Group G
-              ('2026-06-15', '19:00', 'BEL'): 'GG-MD1a',
-              ('2026-06-16', '01:00', 'IRN'): 'GG-MD1b',
-              ('2026-06-21', '19:00', 'BEL'): 'GG-MD2a',
-              ('2026-06-22', '01:00', 'EGY'): 'GG-MD2b',
-              ('2026-06-27', '03:00', 'BEL'): 'GG-MD3a',
-              ('2026-06-27', '03:00', 'EGY'): 'GG-MD3b',
-              # Group H
-              ('2026-06-15', '16:00', 'ESP'): 'GH-MD1a',
-              ('2026-06-15', '22:00', 'KSA'): 'GH-MD1b',
-              ('2026-06-21', '16:00', 'ESP'): 'GH-MD2a',
-              ('2026-06-21', '22:00', 'CPV'): 'GH-MD2b',
-              ('2026-06-27', '00:00', 'ESP'): 'GH-MD3a',
-              ('2026-06-27', '00:00', 'CPV'): 'GH-MD3b',
-              # Group I
-              ('2026-06-16', '19:00', 'FRA'): 'GI-MD1a',
-              ('2026-06-16', '22:00', 'IRQ'): 'GI-MD1b',
-              ('2026-06-22', '21:00', 'FRA'): 'GI-MD2a',
-              ('2026-06-23', '00:00', 'SEN'): 'GI-MD2b',
-              ('2026-06-26', '19:00', 'FRA'): 'GI-MD3a',
-              ('2026-06-26', '19:00', 'SEN'): 'GI-MD3b',
-              # Group J
-              ('2026-06-17', '01:00', 'ARG'): 'GJ-MD1a',
-              ('2026-06-17', '04:00', 'AUT'): 'GJ-MD1b',
-              ('2026-06-22', '17:00', 'ARG'): 'GJ-MD2a',
-              ('2026-06-23', '03:00', 'ALG'): 'GJ-MD2b',
-              ('2026-06-28', '02:00', 'ARG'): 'GJ-MD3a',
-              ('2026-06-28', '02:00', 'ALG'): 'GJ-MD3b',
-              # Group K
-              ('2026-06-17', '17:00', 'POR'): 'GK-MD1a',
-              ('2026-06-18', '02:00', 'UZB'): 'GK-MD1b',
-              ('2026-06-23', '17:00', 'POR'): 'GK-MD2a',
-              ('2026-06-24', '02:00', 'COD'): 'GK-MD2b',
-              ('2026-06-27', '23:30', 'POR'): 'GK-MD3a',
-              ('2026-06-27', '23:30', 'COD'): 'GK-MD3b',
-              # Group L
-              ('2026-06-17', '20:00', 'ENG'): 'GL-MD1a',
-              ('2026-06-17', '23:00', 'GHA'): 'GL-MD1b',
-              ('2026-06-23', '20:00', 'ENG'): 'GL-MD2a',
-              ('2026-06-23', '23:00', 'CRO'): 'GL-MD2b',
-              ('2026-06-27', '21:00', 'ENG'): 'GL-MD3a',
-              ('2026-06-27', '21:00', 'CRO'): 'GL-MD3b',
+          # Maps (date, tla) -> (internal_id, team1_tla)
+          # Covers BOTH teams for every group match so home/away order in the
+          # API doesn't matter. team1_tla lets us put scores in the right slots.
+          TEAM_DATE_LOOKUP = {
+              # Group A: MEX, RSA, KOR, CZE
+              ('2026-06-11', 'MEX'): ('GA-MD1a', 'MEX'), ('2026-06-11', 'RSA'): ('GA-MD1a', 'MEX'),
+              ('2026-06-12', 'KOR'): ('GA-MD1b', 'KOR'), ('2026-06-12', 'CZE'): ('GA-MD1b', 'KOR'),
+              ('2026-06-19', 'MEX'): ('GA-MD2a', 'MEX'), ('2026-06-19', 'KOR'): ('GA-MD2a', 'MEX'),
+              ('2026-06-18', 'CZE'): ('GA-MD2b', 'CZE'), ('2026-06-18', 'RSA'): ('GA-MD2b', 'CZE'),
+              ('2026-06-25', 'MEX'): ('GA-MD3a', 'MEX'), ('2026-06-25', 'CZE'): ('GA-MD3a', 'MEX'),
+              ('2026-06-25', 'KOR'): ('GA-MD3b', 'KOR'), ('2026-06-25', 'RSA'): ('GA-MD3b', 'KOR'),
+              # Group B: CAN, BIH, QAT, SUI
+              ('2026-06-12', 'CAN'): ('GB-MD1a', 'CAN'), ('2026-06-12', 'BIH'): ('GB-MD1a', 'CAN'),
+              ('2026-06-13', 'QAT'): ('GB-MD1b', 'QAT'), ('2026-06-13', 'SUI'): ('GB-MD1b', 'QAT'),
+              ('2026-06-18', 'CAN'): ('GB-MD2a', 'CAN'), ('2026-06-18', 'QAT'): ('GB-MD2a', 'CAN'),
+              ('2026-06-18', 'BIH'): ('GB-MD2b', 'BIH'), ('2026-06-18', 'SUI'): ('GB-MD2b', 'BIH'),
+              ('2026-06-24', 'CAN'): ('GB-MD3a', 'CAN'), ('2026-06-24', 'SUI'): ('GB-MD3a', 'CAN'),
+              ('2026-06-24', 'BIH'): ('GB-MD3b', 'BIH'), ('2026-06-24', 'QAT'): ('GB-MD3b', 'BIH'),
+              # Group C: BRA, MAR, HAI, SCO
+              ('2026-06-13', 'BRA'): ('GC-MD1a', 'BRA'), ('2026-06-13', 'MAR'): ('GC-MD1a', 'BRA'),
+              ('2026-06-14', 'HAI'): ('GC-MD1b', 'HAI'), ('2026-06-14', 'SCO'): ('GC-MD1b', 'HAI'),
+              ('2026-06-20', 'BRA'): ('GC-MD2a', 'BRA'), ('2026-06-20', 'HAI'): ('GC-MD2a', 'BRA'),
+              ('2026-06-19', 'MAR'): ('GC-MD2b', 'MAR'), ('2026-06-19', 'SCO'): ('GC-MD2b', 'MAR'),
+              ('2026-06-24', 'BRA'): ('GC-MD3a', 'BRA'), ('2026-06-24', 'SCO'): ('GC-MD3a', 'BRA'),
+              ('2026-06-24', 'MAR'): ('GC-MD3b', 'MAR'), ('2026-06-24', 'HAI'): ('GC-MD3b', 'MAR'),
+              # Group D: USA, PAR, AUS, TUR
+              ('2026-06-13', 'USA'): ('GD-MD1a', 'USA'), ('2026-06-13', 'PAR'): ('GD-MD1a', 'USA'),
+              ('2026-06-14', 'AUS'): ('GD-MD1b', 'AUS'), ('2026-06-14', 'TUR'): ('GD-MD1b', 'AUS'),
+              ('2026-06-19', 'USA'): ('GD-MD2a', 'USA'), ('2026-06-19', 'AUS'): ('GD-MD2a', 'USA'),
+              ('2026-06-20', 'PAR'): ('GD-MD2b', 'PAR'), ('2026-06-20', 'TUR'): ('GD-MD2b', 'PAR'),
+              ('2026-06-26', 'USA'): ('GD-MD3a', 'USA'), ('2026-06-26', 'TUR'): ('GD-MD3a', 'USA'),
+              ('2026-06-26', 'PAR'): ('GD-MD3b', 'PAR'), ('2026-06-26', 'AUS'): ('GD-MD3b', 'PAR'),
+              # Group E: GER, CUW, CIV, ECU
+              ('2026-06-14', 'GER'): ('GE-MD1a', 'GER'), ('2026-06-14', 'CUW'): ('GE-MD1a', 'GER'),
+              ('2026-06-14', 'CIV'): ('GE-MD1b', 'CIV'), ('2026-06-14', 'ECU'): ('GE-MD1b', 'CIV'),
+              ('2026-06-20', 'GER'): ('GE-MD2a', 'GER'), ('2026-06-20', 'CIV'): ('GE-MD2a', 'GER'),
+              ('2026-06-21', 'ECU'): ('GE-MD2b', 'ECU'), ('2026-06-21', 'CUW'): ('GE-MD2b', 'ECU'),
+              ('2026-06-25', 'GER'): ('GE-MD3a', 'GER'), ('2026-06-25', 'ECU'): ('GE-MD3a', 'GER'),
+              ('2026-06-25', 'CUW'): ('GE-MD3b', 'CUW'), ('2026-06-25', 'CIV'): ('GE-MD3b', 'CUW'),
+              # Group F: NED, JPN, SWE, TUN
+              ('2026-06-14', 'NED'): ('GF-MD1a', 'NED'), ('2026-06-14', 'JPN'): ('GF-MD1a', 'NED'),
+              ('2026-06-15', 'SWE'): ('GF-MD1b', 'SWE'), ('2026-06-15', 'TUN'): ('GF-MD1b', 'SWE'),
+              ('2026-06-20', 'NED'): ('GF-MD2a', 'NED'), ('2026-06-20', 'SWE'): ('GF-MD2a', 'NED'),
+              ('2026-06-21', 'JPN'): ('GF-MD2b', 'JPN'), ('2026-06-21', 'TUN'): ('GF-MD2b', 'JPN'),
+              ('2026-06-25', 'NED'): ('GF-MD3a', 'NED'), ('2026-06-25', 'TUN'): ('GF-MD3a', 'NED'),
+              ('2026-06-25', 'JPN'): ('GF-MD3b', 'JPN'), ('2026-06-25', 'SWE'): ('GF-MD3b', 'JPN'),
+              # Group G: BEL, EGY, IRN, NZL
+              ('2026-06-15', 'BEL'): ('GG-MD1a', 'BEL'), ('2026-06-15', 'EGY'): ('GG-MD1a', 'BEL'),
+              ('2026-06-16', 'IRN'): ('GG-MD1b', 'IRN'), ('2026-06-16', 'NZL'): ('GG-MD1b', 'IRN'),
+              ('2026-06-21', 'BEL'): ('GG-MD2a', 'BEL'), ('2026-06-21', 'IRN'): ('GG-MD2a', 'BEL'),
+              ('2026-06-22', 'EGY'): ('GG-MD2b', 'EGY'), ('2026-06-22', 'NZL'): ('GG-MD2b', 'EGY'),
+              ('2026-06-27', 'BEL'): ('GG-MD3a', 'BEL'), ('2026-06-27', 'NZL'): ('GG-MD3a', 'BEL'),
+              ('2026-06-27', 'EGY'): ('GG-MD3b', 'EGY'), ('2026-06-27', 'IRN'): ('GG-MD3b', 'EGY'),
+              # Group H: ESP, CPV, KSA, URU
+              ('2026-06-15', 'ESP'): ('GH-MD1a', 'ESP'), ('2026-06-15', 'CPV'): ('GH-MD1a', 'ESP'),
+              ('2026-06-15', 'KSA'): ('GH-MD1b', 'KSA'), ('2026-06-15', 'URU'): ('GH-MD1b', 'KSA'),
+              ('2026-06-21', 'ESP'): ('GH-MD2a', 'ESP'), ('2026-06-21', 'KSA'): ('GH-MD2a', 'ESP'),
+              ('2026-06-21', 'CPV'): ('GH-MD2b', 'CPV'), ('2026-06-21', 'URU'): ('GH-MD2b', 'CPV'),
+              ('2026-06-27', 'ESP'): ('GH-MD3a', 'ESP'), ('2026-06-27', 'URU'): ('GH-MD3a', 'ESP'),
+              ('2026-06-27', 'CPV'): ('GH-MD3b', 'CPV'), ('2026-06-27', 'KSA'): ('GH-MD3b', 'CPV'),
+              # Group I: FRA, SEN, IRQ, NOR
+              ('2026-06-16', 'FRA'): ('GI-MD1a', 'FRA'), ('2026-06-16', 'SEN'): ('GI-MD1a', 'FRA'),
+              ('2026-06-16', 'IRQ'): ('GI-MD1b', 'IRQ'), ('2026-06-16', 'NOR'): ('GI-MD1b', 'IRQ'),
+              ('2026-06-22', 'FRA'): ('GI-MD2a', 'FRA'), ('2026-06-22', 'IRQ'): ('GI-MD2a', 'FRA'),
+              ('2026-06-23', 'SEN'): ('GI-MD2b', 'SEN'), ('2026-06-23', 'NOR'): ('GI-MD2b', 'SEN'),
+              ('2026-06-26', 'FRA'): ('GI-MD3a', 'FRA'), ('2026-06-26', 'NOR'): ('GI-MD3a', 'FRA'),
+              ('2026-06-26', 'SEN'): ('GI-MD3b', 'SEN'), ('2026-06-26', 'IRQ'): ('GI-MD3b', 'SEN'),
+              # Group J: ARG, ALG, AUT, JOR
+              ('2026-06-17', 'ARG'): ('GJ-MD1a', 'ARG'), ('2026-06-17', 'ALG'): ('GJ-MD1a', 'ARG'),
+              ('2026-06-17', 'AUT'): ('GJ-MD1b', 'AUT'), ('2026-06-17', 'JOR'): ('GJ-MD1b', 'AUT'),
+              ('2026-06-22', 'ARG'): ('GJ-MD2a', 'ARG'), ('2026-06-22', 'AUT'): ('GJ-MD2a', 'ARG'),
+              ('2026-06-23', 'ALG'): ('GJ-MD2b', 'ALG'), ('2026-06-23', 'JOR'): ('GJ-MD2b', 'ALG'),
+              ('2026-06-28', 'ARG'): ('GJ-MD3a', 'ARG'), ('2026-06-28', 'JOR'): ('GJ-MD3a', 'ARG'),
+              ('2026-06-28', 'ALG'): ('GJ-MD3b', 'ALG'), ('2026-06-28', 'AUT'): ('GJ-MD3b', 'ALG'),
+              # Group K: POR, COD, UZB, COL
+              ('2026-06-17', 'POR'): ('GK-MD1a', 'POR'), ('2026-06-17', 'COD'): ('GK-MD1a', 'POR'),
+              ('2026-06-18', 'UZB'): ('GK-MD1b', 'UZB'), ('2026-06-18', 'COL'): ('GK-MD1b', 'UZB'),
+              ('2026-06-23', 'POR'): ('GK-MD2a', 'POR'), ('2026-06-23', 'UZB'): ('GK-MD2a', 'POR'),
+              ('2026-06-24', 'COD'): ('GK-MD2b', 'COD'), ('2026-06-24', 'COL'): ('GK-MD2b', 'COD'),
+              ('2026-06-27', 'POR'): ('GK-MD3a', 'POR'), ('2026-06-27', 'COL'): ('GK-MD3a', 'POR'),
+              ('2026-06-27', 'COD'): ('GK-MD3b', 'COD'), ('2026-06-27', 'UZB'): ('GK-MD3b', 'COD'),
+              # Group L: ENG, CRO, GHA, PAN
+              ('2026-06-17', 'ENG'): ('GL-MD1a', 'ENG'), ('2026-06-17', 'CRO'): ('GL-MD1a', 'ENG'),
+              ('2026-06-17', 'GHA'): ('GL-MD1b', 'GHA'), ('2026-06-17', 'PAN'): ('GL-MD1b', 'GHA'),
+              ('2026-06-23', 'ENG'): ('GL-MD2a', 'ENG'), ('2026-06-23', 'GHA'): ('GL-MD2a', 'ENG'),
+              ('2026-06-23', 'CRO'): ('GL-MD2b', 'CRO'), ('2026-06-23', 'PAN'): ('GL-MD2b', 'CRO'),
+              ('2026-06-27', 'ENG'): ('GL-MD3a', 'ENG'), ('2026-06-27', 'PAN'): ('GL-MD3a', 'ENG'),
+              ('2026-06-27', 'CRO'): ('GL-MD3b', 'CRO'), ('2026-06-27', 'GHA'): ('GL-MD3b', 'CRO'),
           }
 
           # Knockout matches: (date, utc_time) -> internal_id
@@ -213,20 +217,35 @@ jobs:
                   continue
 
               home_tla_raw = m.get('homeTeam', {}).get('tla', '') or ''
+              away_tla_raw = m.get('awayTeam', {}).get('tla', '') or ''
               home_tla = TLA_NORM.get(home_tla_raw.upper(), home_tla_raw.upper())
+              away_tla = TLA_NORM.get(away_tla_raw.upper(), away_tla_raw.upper())
 
-              internal_id = GROUP_LOOKUP.get((date_key, time_key, home_tla))
-              if not internal_id:
+              # Try group lookup by either team on that date (order-independent)
+              group_result = (TEAM_DATE_LOOKUP.get((date_key, home_tla))
+                              or TEAM_DATE_LOOKUP.get((date_key, away_tla)))
+
+              if group_result:
+                  internal_id, team1_tla = group_result
+              else:
                   internal_id = KO_LOOKUP.get((date_key, time_key))
+                  team1_tla = home_tla  # for KO matches, assume home = team1
+
               if not internal_id:
-                  unmatched.append(f'{date_key} {time_key} home={home_tla_raw}')
+                  unmatched.append(f'{date_key} {time_key} home={home_tla_raw} away={away_tla_raw}')
                   continue
 
               status = STATUS_MAP.get(m.get('status', ''), 'upcoming')
               score = m.get('score', {})
               full = score.get('fullTime', {})
-              s1 = full.get('home')
-              s2 = full.get('away')
+              s_home = full.get('home')
+              s_away = full.get('away')
+
+              # Ensure score1 always belongs to team1, score2 to team2
+              if home_tla == team1_tla:
+                  s1, s2 = s_home, s_away
+              else:
+                  s1, s2 = s_away, s_home
 
               entry = data['matches'].get(internal_id, {})
               new_entry = {'score1': s1, 'score2': s2, 'status': status}
@@ -270,7 +289,7 @@ jobs:
 
           TLA_NORM = {
               'CDI': 'CIV', 'SAU': 'KSA', 'DRC': 'COD',
-              'BOS': 'BIH', 'CUR': 'CUW', 'SKO': 'KOR',
+              'BOS': 'BIH', 'CUR': 'CUW', 'SKO': 'KOR', 'URY': 'URU',
           }
 
           url = 'https://api.football-data.org/v4/competitions/WC/scorers'
