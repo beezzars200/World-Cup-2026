@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-11T14:34:41Z",
+  "lastUpdated": "2026-06-11T19:36:36Z",
   "matches": {
     "GA-MD1a": {
       "score1": null,
@@ -402,6 +402,121 @@
       "status": "upcoming"
     },
     "M104": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GB-MD2b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GC-MD2b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GD-MD2b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GF-MD2b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GH-MD2b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GG-MD2b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GI-MD2b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GJ-MD2b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GL-MD2b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GK-MD2b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GB-MD3a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GC-MD3a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GA-MD3a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GA-MD3b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GE-MD3a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GF-MD3a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GD-MD3a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GI-MD3a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GH-MD3a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GG-MD3a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GL-MD3a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GK-MD3a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GJ-MD3a": {
       "score1": null,
       "score2": null,
       "status": "upcoming"
