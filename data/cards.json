@@ -1,4 +1,53 @@
 {
-  "lastUpdated": "",
-  "cards": []
+  "lastUpdated": "2026-06-11T22:23:00Z",
+  "cards": [
+    {
+      "player": "C\u00e9sar Montes",
+      "team": "Mexico",
+      "teamTla": "MEX",
+      "yellow": 0,
+      "yellowRed": 0,
+      "red": 1
+    },
+    {
+      "player": "Sphephelo Sithole",
+      "team": "South Africa",
+      "teamTla": "RSA",
+      "yellow": 0,
+      "yellowRed": 0,
+      "red": 1
+    },
+    {
+      "player": "Themba Zwane",
+      "team": "South Africa",
+      "teamTla": "RSA",
+      "yellow": 0,
+      "yellowRed": 0,
+      "red": 1
+    },
+    {
+      "player": "Brian Guti\u00e9rrez",
+      "team": "Mexico",
+      "teamTla": "MEX",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Nkosinathi Sibisi",
+      "team": "South Africa",
+      "teamTla": "RSA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Teboho Mokoena",
+      "team": "South Africa",
+      "teamTla": "RSA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    }
+  ]
 }
