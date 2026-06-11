@@ -1,9 +1,19 @@
 {
-  "lastUpdated": "2026-06-11T19:23:36Z",
+  "lastUpdated": "2026-06-11T20:34:55Z",
   "scorers": [
     {
       "player": "Juli\u00e1n Qui\u00f1ones",
       "nationality": "Colombia",
+      "team": "Mexico",
+      "teamTla": "MEX",
+      "playedMatches": 1,
+      "goals": 1,
+      "assists": 0,
+      "penalties": 0
+    },
+    {
+      "player": "Ra\u00fal Jim\u00e9nez",
+      "nationality": "Mexico",
       "team": "Mexico",
       "teamTla": "MEX",
       "playedMatches": 1,
