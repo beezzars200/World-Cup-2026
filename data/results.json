@@ -1,4 +1,410 @@
 {
-  "lastUpdated": "2026-06-01T00:00:00Z",
-  "matches": {}
+  "lastUpdated": "2026-06-11T14:34:41Z",
+  "matches": {
+    "GA-MD1a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GA-MD1b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GB-MD1a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GD-MD1a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GB-MD1b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GC-MD1a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GC-MD1b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GD-MD1b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GE-MD1a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GF-MD1a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GE-MD1b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GF-MD1b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GH-MD1a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GG-MD1a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GH-MD1b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GG-MD1b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GI-MD1a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GI-MD1b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GJ-MD1a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GJ-MD1b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GK-MD1a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GL-MD1a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GL-MD1b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GK-MD1b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GA-MD2b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GB-MD2a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GA-MD2a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GD-MD2a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GC-MD2a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GF-MD2a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GE-MD2a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GE-MD2b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GH-MD2a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GG-MD2a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GJ-MD2a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GI-MD2a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GK-MD2a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GL-MD2a": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GB-MD3b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GC-MD3b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GE-MD3b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GF-MD3b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GD-MD3b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GI-MD3b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GH-MD3b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GG-MD3b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GL-MD3b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GK-MD3b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "GJ-MD3b": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M73": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M76": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M74": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M75": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M78": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M77": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M79": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M80": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M82": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M81": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M84": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M83": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M85": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M88": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M86": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M87": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M90": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M89": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M91": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M92": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M93": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M94": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M95": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M96": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M97": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M98": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M99": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M100": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M101": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M102": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M103": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    },
+    "M104": {
+      "score1": null,
+      "score2": null,
+      "status": "upcoming"
+    }
+  }
 }
