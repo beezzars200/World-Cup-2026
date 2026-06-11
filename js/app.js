@@ -272,53 +272,40 @@
     if (allDone) return;
 
     var wrap = el('div', 'ceremony-strip');
-    var title = el('div', 'ceremony-strip-title');
-    title.textContent = '🎉 Opening Ceremonies — Countdown';
-    wrap.appendChild(title);
+    var label = el('span', 'ceremony-strip-label');
+    label.textContent = '🎉 Ceremonies:';
+    wrap.appendChild(label);
 
-    var cards = el('div', 'ceremony-cards');
     WC.CEREMONIES.forEach(function (c) {
       var start = Date.parse(c.utc);
       var done = now > start + CEREMONY_DONE_MS;
 
-      var card = el('div', 'ceremony-card' + (done ? ' ceremony-done' : ''));
+      var pill = el('span', 'ceremony-pill' + (done ? ' ceremony-done' : ''));
+      pill.title = c.venue + ' — ' + c.note + (c.lineup ? ' · 🎤 ' + c.lineup : '');
 
-      var head = el('div', 'ceremony-head');
-      var flag = el('span', 'ceremony-flag'); flag.textContent = c.flag;
-      var cityCol = el('div');
-      var city = el('div', 'ceremony-city'); city.textContent = c.city;
-      var venue = el('div', 'ceremony-venue'); venue.textContent = c.venue;
-      cityCol.appendChild(city); cityCol.appendChild(venue);
-      head.appendChild(flag); head.appendChild(cityCol);
-      card.appendChild(head);
+      var flag = el('span', 'ceremony-pill-flag'); flag.textContent = c.flag;
+      pill.appendChild(flag);
 
-      var timeEl = el('div', 'ceremony-time');
-      timeEl.textContent = '📅 ' + formatCeremonyTime(c.utc, state.tz);
-      card.appendChild(timeEl);
+      var city = el('span', 'ceremony-pill-city'); city.textContent = c.city;
+      pill.appendChild(city);
 
-      var cd = el('div', 'ceremony-countdown');
+      var timeEl = el('span', 'ceremony-pill-time');
+      timeEl.textContent = formatCeremonyTime(c.utc, state.tz);
+      pill.appendChild(timeEl);
+
+      var cd = el('span', 'ceremony-pill-cd');
       if (done) {
-        cd.textContent = '✅ Ceremony complete';
-        cd.classList.add('complete');
+        cd.textContent = '✅';
       } else {
         cd.dataset.kickoff = c.utc;
-        cd.dataset.doneText = '🔴 Underway now!';
+        cd.dataset.doneText = '🔴 Underway';
         cd.dataset.prefix = '⏳ ';
         cd.textContent = '⏳ —';
       }
-      card.appendChild(cd);
+      pill.appendChild(cd);
 
-      var note = el('div', 'ceremony-note'); note.textContent = c.note;
-      card.appendChild(note);
-
-      if (c.lineup) {
-        var lineup = el('div', 'ceremony-lineup'); lineup.textContent = '🎤 ' + c.lineup;
-        card.appendChild(lineup);
-      }
-
-      cards.appendChild(card);
+      wrap.appendChild(pill);
     });
-    wrap.appendChild(cards);
     strip.appendChild(wrap);
     tickCountdowns();
   }
