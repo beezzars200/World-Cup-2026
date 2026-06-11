@@ -234,16 +234,22 @@
 
   function tickCountdowns() {
     var now = Date.now();
+    var needsRerender = false;
     document.querySelectorAll('[data-kickoff]').forEach(function (n) {
       var t = Date.parse(n.dataset.kickoff);
       if (isNaN(t)) return;
       var diff = t - now;
       if (diff <= 0) {
+        if (!n.dataset.expired) {
+          n.dataset.expired = '1';
+          needsRerender = true;
+        }
         n.textContent = n.dataset.doneText || '';
       } else {
         n.textContent = (n.dataset.prefix || '⏱ ') + formatCountdown(diff);
       }
     });
+    if (needsRerender) renderCurrentTab();
   }
 
   function startCountdownTicker() {
@@ -557,10 +563,16 @@
       ftBadge.textContent = 'FT';
       side.appendChild(ftBadge);
     } else {
+      var kickoffIsoB = m.date + 'T' + m.utc + ':00Z';
+      var kickoffPassedB = Date.parse(kickoffIsoB) <= Date.now();
       var upBadge = el('div', 'mrow-status-badge mrow-upcoming-badge');
-      var upDot = el('span', 'upcoming-dot');
-      upBadge.appendChild(upDot);
-      upBadge.appendChild(document.createTextNode('Soon'));
+      if (kickoffPassedB) {
+        upBadge.textContent = '⌛ Starting…';
+      } else {
+        var upDot = el('span', 'upcoming-dot');
+        upBadge.appendChild(upDot);
+        upBadge.appendChild(document.createTextNode('Soon'));
+      }
       side.appendChild(upBadge);
     }
 
