@@ -1,1 +1,15 @@
-{ "lastUpdated": "", "scorers": [] }
+{
+  "lastUpdated": "2026-06-11T19:23:36Z",
+  "scorers": [
+    {
+      "player": "Juli\u00e1n Qui\u00f1ones",
+      "nationality": "Colombia",
+      "team": "Mexico",
+      "teamTla": "MEX",
+      "playedMatches": 1,
+      "goals": 1,
+      "assists": 0,
+      "penalties": 0
+    }
+  ]
+}
