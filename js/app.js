@@ -23,6 +23,7 @@
     drawFilter: '',
     drawExpanded: {},
     drawSubTab: 'list',
+    mdExpanded: {},
   };
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -488,10 +489,31 @@
     [1, 2, 3].forEach(function (md) {
       var mdMatches = groupMatches.filter(function (m) { return m.md === md; });
       if (!mdMatches.length) return;
+
+      var key = g + '-' + md;
+      var explicit = state.mdExpanded[key];
+      var hasLive = mdMatches.some(function (m) { return m.status === 'live'; });
+      var open = explicit === undefined ? hasLive : explicit;
+
       var sec = el('div', 'matchday-section');
-      var mdLbl = el('div', 'matchday-label'); mdLbl.textContent = 'Matchday ' + md;
-      sec.appendChild(mdLbl);
-      mdMatches.forEach(function (m) { sec.appendChild(buildMatchRow(m)); });
+      var hdrRow = el('div', 'matchday-header');
+      var mdLbl = el('div', 'matchday-label');
+      mdLbl.textContent = 'Matchday ' + md;
+      if (hasLive) {
+        var liveDot = el('span', 'live-dot');
+        mdLbl.appendChild(liveDot);
+      }
+      var toggle = el('button', 'matchday-toggle');
+      toggle.textContent = open ? '▾ Collapse' : '▸ Expand';
+      hdrRow.appendChild(mdLbl);
+      hdrRow.appendChild(toggle);
+      hdrRow.addEventListener('click', function () {
+        state.mdExpanded[key] = !open;
+        renderGroups();
+      });
+      sec.appendChild(hdrRow);
+
+      if (open) mdMatches.forEach(function (m) { sec.appendChild(buildMatchRow(m)); });
       matchSec.appendChild(sec);
     });
     card.appendChild(matchSec);
@@ -877,6 +899,19 @@
     return null;
   }
 
+  function matchPerspective(m, code) {
+    var t1 = (m.team1 && m.team1.code) ? m.team1 : resolveKoTeam(m.team1, m.team1Label);
+    var t2 = (m.team2 && m.team2.code) ? m.team2 : resolveKoTeam(m.team2, m.team2Label);
+    if (t1 && t1.code === code) return { us: t1, them: t2, ours: m.score1, theirs: m.score2 };
+    return { us: t2, them: t1, ours: m.score2, theirs: m.score1 };
+  }
+
+  function getFinishedMatchesForTeam(code) {
+    return getAllMatchesForTeam(code).filter(function (m) {
+      return m.status === 'finished' || (m.score1 !== null && m.score2 !== null && m.status !== 'live');
+    });
+  }
+
   function normName(s) {
     return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
@@ -974,6 +1009,29 @@
     }
     card.appendChild(scorerRow);
 
+    var finished = getFinishedMatchesForTeam(e.team);
+    var nextMatch = liveMatch ? null : getNextMatchForTeam(e.team);
+    if (finished.length || nextMatch) {
+      var quick = el('div', 'draw-quick-row');
+      if (finished.length) {
+        var lastM = finished[finished.length - 1];
+        var p = matchPerspective(lastM, e.team);
+        var lastEl = el('span', 'draw-quick-item');
+        var res = p.ours > p.theirs ? 'W' : (p.ours < p.theirs ? 'L' : 'D');
+        lastEl.textContent = '📊 Last: ' + res + ' ' + p.ours + '–' + p.theirs + (p.them ? ' v ' + p.them.flag : '');
+        lastEl.classList.add('draw-res-' + res.toLowerCase());
+        quick.appendChild(lastEl);
+      }
+      if (nextMatch) {
+        var np = matchPerspective(nextMatch, e.team);
+        var nextEl = el('span', 'draw-quick-item');
+        nextEl.textContent = '📅 Next: ' + formatMatchTime(nextMatch.date, nextMatch.utc, state.tz, nextMatch.est) +
+          (np.them ? ' v ' + np.them.flag : '');
+        quick.appendChild(nextEl);
+      }
+      card.appendChild(quick);
+    }
+
     if (expanded) card.appendChild(buildDrawDetail(e, team, liveMatch, stats));
 
     card.addEventListener('click', function () {
@@ -1023,6 +1081,24 @@
       var noneLbl = el('div', 'draw-detail-meta');
       noneLbl.textContent = 'No upcoming fixtures for ' + (team ? team.name : e.team) + '.';
       detail.appendChild(noneLbl);
+    }
+
+    var finished = getFinishedMatchesForTeam(e.team);
+    if (finished.length) {
+      var resLbl = el('div', 'draw-detail-label');
+      resLbl.textContent = '📊 Results so far';
+      detail.appendChild(resLbl);
+      finished.forEach(function (fm) {
+        var p = matchPerspective(fm, e.team);
+        var line = el('div', 'draw-detail-result');
+        var res = p.ours > p.theirs ? 'W' : (p.ours < p.theirs ? 'L' : 'D');
+        line.textContent = (p.us ? p.us.flag + ' ' + p.us.name : '?') + '  ' + p.ours + ' – ' + p.theirs + '  ' +
+          (p.them ? p.them.flag + ' ' + p.them.name : '?');
+        var badge = el('span', 'draw-result-badge draw-res-' + res.toLowerCase());
+        badge.textContent = res;
+        line.appendChild(badge);
+        detail.appendChild(line);
+      });
     }
 
     var scorerLbl = el('div', 'draw-detail-label');
