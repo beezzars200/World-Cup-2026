@@ -206,6 +206,7 @@ jobs:
 
           updated = False
           unmatched = []
+          today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
 
           for m in api_data.get('matches', []):
               utc_date_str = m.get('utcDate', '')
@@ -220,6 +221,10 @@ jobs:
               away_tla_raw = m.get('awayTeam', {}).get('tla', '') or ''
               home_tla = TLA_NORM.get(home_tla_raw.upper(), home_tla_raw.upper())
               away_tla = TLA_NORM.get(away_tla_raw.upper(), away_tla_raw.upper())
+              api_status = m.get('status', '')
+              if date_key == today:
+                  score = m.get('score', {})
+                  print(f'TODAY {home_tla_raw} vs {away_tla_raw} | status={api_status} | score={score}')
 
               # Try group lookup by either team on that date (order-independent)
               group_result = (TEAM_DATE_LOOKUP.get((date_key, home_tla))
