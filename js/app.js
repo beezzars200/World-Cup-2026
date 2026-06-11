@@ -32,6 +32,8 @@
     bindScheduleFilters();
     bindBusterCtas();
     bindDrawSearch();
+    renderCeremonies();
+    startCountdownTicker();
     Promise.all([fetchResults(), fetchScorers()]).then(function () {
       computeAllStandings();
       renderLiveNow();
@@ -40,6 +42,7 @@
         Promise.all([fetchResults(), fetchScorers()]).then(function () {
           computeAllStandings();
           renderLiveNow();
+          renderCeremonies();
           renderCurrentTab();
         });
       }, 60000);
@@ -71,6 +74,7 @@
     });
     sel.addEventListener('change', function () {
       state.tz = sel.value;
+      renderCeremonies();
       renderCurrentTab();
     });
   }
@@ -213,6 +217,110 @@
       });
       return y + '-' + mo + '-' + dy;
     } catch (e) { return new Date().toISOString().slice(0, 10); }
+  }
+
+  // ── COUNTDOWNS ────────────────────────────────────────────────────────────
+  function formatCountdown(ms) {
+    var s = Math.floor(ms / 1000);
+    var d = Math.floor(s / 86400); s -= d * 86400;
+    var h = Math.floor(s / 3600);  s -= h * 3600;
+    var m = Math.floor(s / 60);    s -= m * 60;
+    if (d > 0) return d + 'd ' + h + 'h ' + m + 'm';
+    if (h > 0) return h + 'h ' + m + 'm ' + s + 's';
+    return m + 'm ' + s + 's';
+  }
+
+  function tickCountdowns() {
+    var now = Date.now();
+    document.querySelectorAll('[data-kickoff]').forEach(function (n) {
+      var t = Date.parse(n.dataset.kickoff);
+      if (isNaN(t)) return;
+      var diff = t - now;
+      if (diff <= 0) {
+        n.textContent = n.dataset.doneText || '';
+      } else {
+        n.textContent = (n.dataset.prefix || '⏱ ') + formatCountdown(diff);
+      }
+    });
+  }
+
+  function startCountdownTicker() {
+    tickCountdowns();
+    setInterval(tickCountdowns, 1000);
+  }
+
+  function formatCeremonyTime(iso, tz) {
+    try {
+      return new Intl.DateTimeFormat('en-IE', {
+        timeZone: tz, weekday: 'short', day: 'numeric', month: 'short',
+        hour: '2-digit', minute: '2-digit', hour12: false
+      }).format(new Date(iso));
+    } catch (e) { return iso; }
+  }
+
+  var CEREMONY_DONE_MS = 4 * 3600 * 1000; // hide a ceremony ~4h after it starts
+
+  function renderCeremonies() {
+    var strip = document.getElementById('ceremonyStrip');
+    if (!strip || !WC.CEREMONIES) return;
+    var now = Date.now();
+
+    var allDone = WC.CEREMONIES.every(function (c) {
+      return now > Date.parse(c.utc) + CEREMONY_DONE_MS;
+    });
+    strip.innerHTML = '';
+    if (allDone) return;
+
+    var wrap = el('div', 'ceremony-strip');
+    var title = el('div', 'ceremony-strip-title');
+    title.textContent = '🎉 Opening Ceremonies — Countdown';
+    wrap.appendChild(title);
+
+    var cards = el('div', 'ceremony-cards');
+    WC.CEREMONIES.forEach(function (c) {
+      var start = Date.parse(c.utc);
+      var done = now > start + CEREMONY_DONE_MS;
+
+      var card = el('div', 'ceremony-card' + (done ? ' ceremony-done' : ''));
+
+      var head = el('div', 'ceremony-head');
+      var flag = el('span', 'ceremony-flag'); flag.textContent = c.flag;
+      var cityCol = el('div');
+      var city = el('div', 'ceremony-city'); city.textContent = c.city;
+      var venue = el('div', 'ceremony-venue'); venue.textContent = c.venue;
+      cityCol.appendChild(city); cityCol.appendChild(venue);
+      head.appendChild(flag); head.appendChild(cityCol);
+      card.appendChild(head);
+
+      var timeEl = el('div', 'ceremony-time');
+      timeEl.textContent = '📅 ' + formatCeremonyTime(c.utc, state.tz);
+      card.appendChild(timeEl);
+
+      var cd = el('div', 'ceremony-countdown');
+      if (done) {
+        cd.textContent = '✅ Ceremony complete';
+        cd.classList.add('complete');
+      } else {
+        cd.dataset.kickoff = c.utc;
+        cd.dataset.doneText = '🔴 Underway now!';
+        cd.dataset.prefix = '⏳ ';
+        cd.textContent = '⏳ —';
+      }
+      card.appendChild(cd);
+
+      var note = el('div', 'ceremony-note'); note.textContent = c.note;
+      card.appendChild(note);
+
+      if (c.lineup) {
+        var lineup = el('div', 'ceremony-lineup'); lineup.textContent = '🎤 ' + c.lineup;
+        card.appendChild(lineup);
+      }
+
+      cards.appendChild(card);
+    });
+    wrap.appendChild(cards);
+    strip.appendChild(wrap);
+    tickCountdowns();
   }
 
   // ── LIVE NOW SECTION ──────────────────────────────────────────────────────
@@ -449,6 +557,16 @@
     var timeEl = el('div', 'mrow-time' + (m.est ? ' est' : ''));
     timeEl.textContent = formatMatchTime(m.date, m.utc, state.tz, m.est);
     side.appendChild(timeEl);
+
+    if (status === 'upcoming') {
+      var kickoffIso = m.date + 'T' + m.utc + ':00Z';
+      if (Date.parse(kickoffIso) > Date.now()) {
+        var cd = el('div', 'mrow-countdown');
+        cd.dataset.kickoff = kickoffIso;
+        cd.dataset.doneText = '⚽ Kick-off!';
+        side.appendChild(cd);
+      }
+    }
 
     row.appendChild(body);
     row.appendChild(side);
@@ -704,6 +822,18 @@
     cityEl.textContent = m.city && m.city !== 'TBD' ? m.city : '';
     metaCol.appendChild(timeEl);
     if (m.est) { var estBadge = el('span', 'est-badge'); estBadge.textContent = 'est.'; metaCol.appendChild(estBadge); }
+
+    var notStarted = m.status !== 'live' && m.status !== 'finished' && (s1 === null || s2 === null);
+    if (notStarted) {
+      var kickoffIso = m.date + 'T' + m.utc + ':00Z';
+      if (Date.parse(kickoffIso) > Date.now()) {
+        var cd = el('div', 'match-item-countdown');
+        cd.dataset.kickoff = kickoffIso;
+        cd.dataset.doneText = '⚽ Kick-off!';
+        metaCol.appendChild(cd);
+      }
+    }
+
     metaCol.appendChild(venueEl); metaCol.appendChild(cityEl);
     item.appendChild(metaCol);
     return item;
@@ -892,6 +1022,16 @@
       var when = formatMatchTime(m.date, m.utc, state.tz, m.est);
       meta.textContent = when + ((m.city && m.city !== 'TBD') ? ' · ' + m.city : '');
       detail.appendChild(meta);
+
+      if (!liveMatch) {
+        var kickoffIso = m.date + 'T' + m.utc + ':00Z';
+        if (Date.parse(kickoffIso) > Date.now()) {
+          var cd = el('div', 'draw-detail-countdown');
+          cd.dataset.kickoff = kickoffIso;
+          cd.dataset.doneText = '⚽ Kick-off!';
+          detail.appendChild(cd);
+        }
+      }
     } else {
       var noneLbl = el('div', 'draw-detail-meta');
       noneLbl.textContent = 'No upcoming fixtures for ' + (team ? team.name : e.team) + '.';

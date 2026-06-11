@@ -317,3 +317,26 @@ WC.TIMEZONES = [
   { region: 'Oceania', name: 'Australia (West)', tz: 'Australia/Perth',  flag: '🇦🇺' },
   { region: 'Oceania', name: 'New Zealand',      tz: 'Pacific/Auckland', flag: '🇳🇿' },
 ];
+
+// Opening ceremonies — one in each host nation, each 90 min before
+// that host's first match. Times in UTC.
+WC.CEREMONIES = [
+  {
+    city: 'Mexico City', flag: '🇲🇽', venue: 'Estadio Azteca',
+    utc: '2026-06-11T17:30:00Z',
+    note: "Ahead of Mexico's opening match",
+    lineup: ''
+  },
+  {
+    city: 'Toronto', flag: '🇨🇦', venue: 'Toronto Stadium',
+    utc: '2026-06-12T17:30:00Z',
+    note: "Ahead of Canada's opening match",
+    lineup: 'Michael Bublé headlines · Jessie Reyez · Elyanna · Alanis Morissette · Alessia Cara · Nora Fatehi & more'
+  },
+  {
+    city: 'Los Angeles', flag: '🇺🇸', venue: 'SoFi Stadium',
+    utc: '2026-06-12T23:30:00Z',
+    note: "Ahead of USA's opening match",
+    lineup: 'Katy Perry · Blackpink · Future · Tyla · Anitta · Rema'
+  },
+];
