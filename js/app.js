@@ -20,9 +20,12 @@
     sweepTeam: null,
     scorers: [],
     scorersUpdated: null,
+    cards: [],
+    cardsUpdated: null,
     drawFilter: '',
     drawExpanded: {},
     drawSubTab: 'list',
+    playerStatsSubTab: 'scorers',
     mdExpanded: {},
   };
 
@@ -35,12 +38,12 @@
     bindDrawSearch();
     renderCeremonies();
     startCountdownTicker();
-    Promise.all([fetchResults(), fetchScorers()]).then(function () {
+    Promise.all([fetchResults(), fetchScorers(), fetchCards()]).then(function () {
       computeAllStandings();
       renderLiveNow();
       renderCurrentTab();
       setInterval(function () {
-        Promise.all([fetchResults(), fetchScorers()]).then(function () {
+        Promise.all([fetchResults(), fetchScorers(), fetchCards()]).then(function () {
           computeAllStandings();
           renderLiveNow();
           renderCeremonies();
@@ -110,6 +113,17 @@
             m.winner = r.winner || m.winner;
           }
         });
+      })
+      .catch(function () {});
+  }
+
+  function fetchCards() {
+    return fetch('data/cards.json?_=' + Date.now())
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (!data || !Array.isArray(data.cards)) return;
+        state.cards = data.cards;
+        state.cardsUpdated = data.lastUpdated || null;
       })
       .catch(function () {});
   }
@@ -421,6 +435,18 @@
         renderCurrentTab();
       });
     });
+    document.querySelectorAll('#tab-scorers .sub-tab-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        state.playerStatsSubTab = btn.dataset.playerstatssub;
+        document.querySelectorAll('#tab-scorers .sub-tab-btn').forEach(function (b) {
+          b.classList.toggle('active', b === btn);
+        });
+        document.querySelectorAll('#tab-scorers .sub-tab-panel').forEach(function (p) {
+          p.classList.toggle('active', p.id === 'playerstatssub-' + state.playerStatsSubTab);
+        });
+        renderCurrentTab();
+      });
+    });
   }
 
   function renderCurrentTab() {
@@ -428,7 +454,10 @@
       if (state.liveSubTab === 'groups')  renderGroups();
       if (state.liveSubTab === 'bracket') renderBracket();
     }
-    if (state.tab === 'scorers')    renderScorers();
+    if (state.tab === 'scorers') {
+      if (state.playerStatsSubTab === 'scorers') renderScorers();
+      if (state.playerStatsSubTab === 'cards')   renderCards();
+    }
     if (state.tab === 'sweepstake') {
       renderSweepstake();
       if (state.drawSubTab === 'list')    renderDraw();
@@ -1226,6 +1255,70 @@
       var tdGoals = el('td', 'scorer-goals'); tdGoals.textContent = s.goals; tr.appendChild(tdGoals);
       var tdAst   = el('td'); tdAst.textContent = s.assists || 0; tr.appendChild(tdAst);
       var tdPen   = el('td'); tdPen.textContent = s.penalties || 0; tr.appendChild(tdPen);
+
+      tbody.appendChild(tr);
+    });
+    tbl.appendChild(tbody);
+    wrap.appendChild(tbl);
+    container.appendChild(wrap);
+  }
+
+  // ── CARDS TAB ─────────────────────────────────────────────────────────────
+  function renderCards() {
+    var container = document.getElementById('cardsContainer');
+    if (!container) return;
+    container.innerHTML = '';
+
+    if (!state.cards || !state.cards.length) {
+      var banner = el('div', 'info-banner');
+      banner.textContent = '📡 Disciplinary stats will appear once matches are played.';
+      container.appendChild(banner);
+      return;
+    }
+
+    var teamByCode = {};
+    Object.keys(WC.GROUPS).forEach(function (g) {
+      WC.GROUPS[g].teams.forEach(function (t) { teamByCode[t.code] = t; });
+    });
+
+    var wrap = el('div', 'scorers-table-wrap');
+
+    var hdr = el('div', 'scorers-header');
+    var title = el('span', 'scorers-title'); title.textContent = '🟨 Disciplinary';
+    hdr.appendChild(title);
+    if (state.cardsUpdated) {
+      var upd = el('span', 'scorers-updated');
+      upd.textContent = 'Updated ' + formatDateTimeDisplay(new Date(state.cardsUpdated));
+      hdr.appendChild(upd);
+    }
+    wrap.appendChild(hdr);
+
+    var tbl = el('table', 'scorers-table');
+    var thead = el('thead');
+    var hr = el('tr');
+    ['#', 'Player', '🟨', '🟨🟥', '🟥'].forEach(function (h) {
+      var th = el('th'); th.textContent = h; hr.appendChild(th);
+    });
+    thead.appendChild(hr);
+    tbl.appendChild(thead);
+
+    var tbody = el('tbody');
+    state.cards.forEach(function (s, i) {
+      var teamInfo = teamByCode[s.teamTla] || null;
+      var tr = el('tr');
+
+      var tdRank = el('td'); tdRank.textContent = i + 1; tr.appendChild(tdRank);
+
+      var tdPlayer = el('td');
+      var nameEl = el('div', 'scorer-player'); nameEl.textContent = s.player;
+      var teamEl = el('div', 'scorer-team');
+      teamEl.textContent = teamInfo ? (teamInfo.flag + ' ' + teamInfo.name) : s.team;
+      tdPlayer.appendChild(nameEl); tdPlayer.appendChild(teamEl);
+      tr.appendChild(tdPlayer);
+
+      var tdY  = el('td', 'scorer-goals'); tdY.textContent  = s.yellow    || 0; tr.appendChild(tdY);
+      var tdYR = el('td');                 tdYR.textContent = s.yellowRed || 0; tr.appendChild(tdYR);
+      var tdR  = el('td');                 tdR.textContent  = s.red        || 0; tr.appendChild(tdR);
 
       tbody.appendChild(tr);
     });

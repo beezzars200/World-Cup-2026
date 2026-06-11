@@ -47,7 +47,7 @@
 <nav class="tabs-bar" role="tablist">
   <div class="tabs-inner">
     <button class="tab-btn active"  data-tab="live"        role="tab" aria-selected="true">Live Scores</button>
-    <button class="tab-btn"         data-tab="scorers"     role="tab" aria-selected="false">Top Scorer</button>
+    <button class="tab-btn"         data-tab="scorers"     role="tab" aria-selected="false">Player Stats</button>
     <button class="tab-btn"         data-tab="sweepstake"  role="tab" aria-selected="false">Buster Info</button>
   </div>
 </nav>
@@ -79,19 +79,28 @@
 
   <!-- TOP SCORER -->
   <section class="tab-panel" id="tab-scorers">
-    <div id="scorersContainer" class="scorers-container"></div>
-    <div class="buster-info-wrap">
-      <div class="buster-info-card">
-        <h3 class="buster-info-title">⚽ Top Goalscorer Prize Fund</h3>
-        <div class="buster-prizes" style="margin-top:8px;">
-          <div class="prizes-fund">
-            <div class="prizes-label">Top Goalscorer Fund</div>
-            <div class="prizes-row"><span>🥇 1st Prize</span><span>€200</span></div>
-            <div class="prizes-row"><span>🥈 Runners Up</span><span>€100</span></div>
-            <div class="prizes-row"><span>🥉 3rd Place</span><span>€60</span></div>
+    <nav class="sub-tabs-bar">
+      <button class="sub-tab-btn active" data-playerstatssub="scorers">Top Scorer</button>
+      <button class="sub-tab-btn"        data-playerstatssub="cards">Cards</button>
+    </nav>
+    <div class="sub-tab-panel active" id="playerstatssub-scorers">
+      <div id="scorersContainer" class="scorers-container"></div>
+      <div class="buster-info-wrap">
+        <div class="buster-info-card">
+          <h3 class="buster-info-title">⚽ Top Goalscorer Prize Fund</h3>
+          <div class="buster-prizes" style="margin-top:8px;">
+            <div class="prizes-fund">
+              <div class="prizes-label">Top Goalscorer Fund</div>
+              <div class="prizes-row"><span>🥇 1st Prize</span><span>€200</span></div>
+              <div class="prizes-row"><span>🥈 Runners Up</span><span>€100</span></div>
+              <div class="prizes-row"><span>🥉 3rd Place</span><span>€60</span></div>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="sub-tab-panel" id="playerstatssub-cards">
+      <div id="cardsContainer" class="scorers-container"></div>
     </div>
   </section>
 
@@ -134,6 +143,6 @@
 
 <script src="js/tournament.js?v=4"></script>
 <script src="js/draw.js?v=3"></script>
-<script src="js/app.js?v=18"></script>
+<script src="js/app.js?v=19"></script>
 </body>
 </html>

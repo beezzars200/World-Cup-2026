@@ -385,12 +385,92 @@ jobs:
               print('No changes to scorers.')
           PYEOF
 
+      - name: Fetch disciplinary cards from football-data.org
+        env:
+          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+        run: |
+          python3 - <<'PYEOF'
+          import json, os, urllib.request, urllib.error
+          from datetime import datetime, timezone
+
+          API_KEY = os.environ.get('FOOTBALL_DATA_API_KEY', '')
+          CARDS_PATH = 'data/cards.json'
+
+          if not API_KEY:
+              print('No FOOTBALL_DATA_API_KEY — skipping cards.')
+              import sys; sys.exit(0)
+
+          try:
+              with open(CARDS_PATH) as f:
+                  existing = json.load(f)
+          except FileNotFoundError:
+              existing = {'lastUpdated': '', 'cards': []}
+
+          TLA_NORM = {
+              'CDI': 'CIV', 'SAU': 'KSA', 'DRC': 'COD',
+              'BOS': 'BIH', 'CUR': 'CUW', 'SKO': 'KOR', 'URY': 'URU',
+          }
+
+          url = 'https://api.football-data.org/v4/competitions/WC/matches'
+          req = urllib.request.Request(url, headers={'X-Auth-Token': API_KEY})
+
+          try:
+              with urllib.request.urlopen(req, timeout=15) as resp:
+                  data = json.loads(resp.read())
+          except urllib.error.URLError as e:
+              print(f'Cards API fetch failed: {e}')
+              import sys; sys.exit(0)
+
+          players = {}
+          for m in data.get('matches', []):
+              if m.get('status') not in ('FINISHED', 'AWARDED'):
+                  continue
+              for b in m.get('bookings', []):
+                  player = b.get('player', {})
+                  team   = b.get('team', {})
+                  name   = player.get('name', '')
+                  if not name:
+                      continue
+                  tla_raw = (team.get('tla') or '').upper()
+                  tla = TLA_NORM.get(tla_raw, tla_raw)
+                  if name not in players:
+                      players[name] = {
+                          'player':      name,
+                          'nationality': player.get('nationality', ''),
+                          'team':        team.get('name', ''),
+                          'teamTla':     tla,
+                          'yellow':      0,
+                          'yellowRed':   0,
+                          'red':         0,
+                      }
+                  btype = b.get('type', '')
+                  if btype == 'YELLOW_CARD':      players[name]['yellow']    += 1
+                  elif btype == 'YELLOW_RED_CARD': players[name]['yellowRed'] += 1
+                  elif btype == 'RED_CARD':        players[name]['red']       += 1
+
+          cards = sorted(
+              players.values(),
+              key=lambda x: (-x['red'], -x['yellowRed'], -x['yellow'])
+          )
+
+          if existing.get('cards') != cards:
+              new_data = {
+                  'lastUpdated': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
+                  'cards': cards,
+              }
+              with open(CARDS_PATH, 'w') as f:
+                  json.dump(new_data, f, indent=2)
+              print(f'Cards updated: {len(cards)} players')
+          else:
+              print('No changes to cards.')
+          PYEOF
+
       - name: Commit and push if changed
         id: commit
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/results.json data/scorers.json
+          git add data/results.json data/scorers.json data/cards.json
           if git diff --cached --quiet; then
             echo "Nothing to commit."
             echo "changed=false" >> "$GITHUB_OUTPUT"
