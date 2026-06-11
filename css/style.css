@@ -1416,8 +1416,8 @@ body {
 
 /* ── BUSTER CONTENT ── */
 .buster-poster-wrap {
-  max-width: 480px;
-  margin: 0 auto 20px;
+  max-width: 300px;
+  margin: 28px auto 20px;
 }
 .buster-poster {
   width: 100%;

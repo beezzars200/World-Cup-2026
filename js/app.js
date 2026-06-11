@@ -11,7 +11,7 @@
 
   var state = {
     tz: 'Europe/Dublin',
-    tab: 'draw',
+    tab: 'live',
     liveSubTab: 'groups',
     statusFilter: 'all',
     groupFilter: 'all',
@@ -409,13 +409,13 @@
         renderCurrentTab();
       });
     });
-    document.querySelectorAll('#tab-draw .sub-tab-btn').forEach(function (btn) {
+    document.querySelectorAll('#tab-sweepstake .sub-tab-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         state.drawSubTab = btn.dataset.drawsub;
-        document.querySelectorAll('#tab-draw .sub-tab-btn').forEach(function (b) {
+        document.querySelectorAll('#tab-sweepstake .sub-tab-btn').forEach(function (b) {
           b.classList.toggle('active', b === btn);
         });
-        document.querySelectorAll('#tab-draw .sub-tab-panel').forEach(function (p) {
+        document.querySelectorAll('#tab-sweepstake .sub-tab-panel').forEach(function (p) {
           p.classList.toggle('active', p.id === 'drawsub-' + state.drawSubTab);
         });
         renderCurrentTab();
@@ -429,9 +429,9 @@
       if (state.liveSubTab === 'bracket') renderBracket();
     }
     if (state.tab === 'schedule')   renderSchedule();
-    if (state.tab === 'sweepstake') renderSweepstake();
     if (state.tab === 'scorers')    renderScorers();
-    if (state.tab === 'draw') {
+    if (state.tab === 'sweepstake') {
+      renderSweepstake();
       if (state.drawSubTab === 'list')    renderDraw();
       if (state.drawSubTab === 'reserve') renderReserve();
     }
