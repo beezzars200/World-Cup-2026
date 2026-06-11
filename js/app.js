@@ -77,6 +77,7 @@
       state.tz = sel.value;
       renderCeremonies();
       renderCurrentTab();
+      tickCountdowns();
     });
   }
 
@@ -493,7 +494,7 @@
       var key = g + '-' + md;
       var explicit = state.mdExpanded[key];
       var hasLive = mdMatches.some(function (m) { return m.status === 'live'; });
-      var open = explicit === undefined ? hasLive : explicit;
+      var open = explicit === undefined ? true : explicit;
 
       var sec = el('div', 'matchday-section');
       var hdrRow = el('div', 'matchday-header');
