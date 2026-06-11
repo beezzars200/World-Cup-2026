@@ -385,20 +385,13 @@ jobs:
               print('No changes to scorers.')
           PYEOF
 
-      - name: Fetch disciplinary cards from football-data.org
-        env:
-          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+      - name: Fetch disciplinary cards from ESPN
         run: |
           python3 - <<'PYEOF'
-          import json, os, urllib.request, urllib.error
-          from datetime import datetime, timezone
+          import json, urllib.request, urllib.error
+          from datetime import datetime, timezone, timedelta
 
-          API_KEY = os.environ.get('FOOTBALL_DATA_API_KEY', '')
           CARDS_PATH = 'data/cards.json'
-
-          if not API_KEY:
-              print('No FOOTBALL_DATA_API_KEY — skipping cards.')
-              import sys; sys.exit(0)
 
           try:
               with open(CARDS_PATH) as f:
@@ -406,52 +399,87 @@ jobs:
           except FileNotFoundError:
               existing = {'lastUpdated': '', 'cards': []}
 
-          TLA_NORM = {
-              'CDI': 'CIV', 'SAU': 'KSA', 'DRC': 'COD',
-              'BOS': 'BIH', 'CUR': 'CUW', 'SKO': 'KOR', 'URY': 'URU',
+          ESPN_NORM = {
+              'SKO': 'KOR', 'BOS': 'BIH', 'DRC': 'COD', 'CUR': 'CUW',
+              'SAU': 'KSA', 'URY': 'URU', 'CDI': 'CIV',
           }
 
-          url = 'https://api.football-data.org/v4/competitions/WC/matches'
-          req = urllib.request.Request(url, headers={'X-Auth-Token': API_KEY})
+          # Whole tournament to date in one range query
+          end = (datetime.now(timezone.utc) + timedelta(days=1)).strftime('%Y%m%d')
+          url = (
+              'https://site.api.espn.com/apis/site/v2/sports/soccer'
+              f'/fifa.world/scoreboard?dates=20260611-{end}'
+          )
 
           try:
-              with urllib.request.urlopen(req, timeout=15) as resp:
-                  data = json.loads(resp.read())
-          except urllib.error.URLError as e:
-              print(f'Cards API fetch failed: {e}')
+              req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+              with urllib.request.urlopen(req, timeout=20) as resp:
+                  api_data = json.loads(resp.read())
+          except Exception as e:
+              print(f'ESPN cards fetch failed: {e}')
               import sys; sys.exit(0)
 
           players = {}
-          for m in data.get('matches', []):
-              if m.get('status') not in ('FINISHED', 'AWARDED'):
+
+          for event in api_data.get('events', []):
+              competitions = event.get('competitions', [])
+              if not competitions:
                   continue
-              for b in m.get('bookings', []):
-                  player = b.get('player', {})
-                  team   = b.get('team', {})
-                  name   = player.get('name', '')
+              comp = competitions[0]
+
+              # team id -> (abbreviation, display name)
+              team_by_id = {}
+              for c in comp.get('competitors', []):
+                  t = c.get('team', {})
+                  tla_raw = (t.get('abbreviation') or '').upper()
+                  team_by_id[str(t.get('id'))] = (
+                      ESPN_NORM.get(tla_raw, tla_raw),
+                      t.get('displayName', ''),
+                  )
+
+              # Per-match tally so a second yellow + red counts as one 🟨🟥
+              match_tally = {}
+              for d in comp.get('details', []):
+                  is_red = d.get('redCard', False)
+                  is_yellow = d.get('yellowCard', False)
+                  if not is_red and not is_yellow:
+                      continue
+                  athletes = d.get('athletesInvolved', [])
+                  if not athletes:
+                      continue
+                  name = athletes[0].get('displayName', '')
                   if not name:
                       continue
-                  tla_raw = (team.get('tla') or '').upper()
-                  tla = TLA_NORM.get(tla_raw, tla_raw)
+                  team_id = str(d.get('team', {}).get('id', ''))
+                  tla, team_name = team_by_id.get(team_id, ('', ''))
+                  key = name
+                  if key not in match_tally:
+                      match_tally[key] = {'y': 0, 'r': 0, 'tla': tla, 'team': team_name}
+                  if is_red:
+                      match_tally[key]['r'] += 1
+                  else:
+                      match_tally[key]['y'] += 1
+
+              for name, t in match_tally.items():
                   if name not in players:
                       players[name] = {
-                          'player':      name,
-                          'nationality': player.get('nationality', ''),
-                          'team':        team.get('name', ''),
-                          'teamTla':     tla,
-                          'yellow':      0,
-                          'yellowRed':   0,
-                          'red':         0,
+                          'player': name, 'team': t['team'], 'teamTla': t['tla'],
+                          'yellow': 0, 'yellowRed': 0, 'red': 0,
                       }
-                  btype = b.get('type', '')
-                  if btype == 'YELLOW_CARD':      players[name]['yellow']    += 1
-                  elif btype == 'YELLOW_RED_CARD': players[name]['yellowRed'] += 1
-                  elif btype == 'RED_CARD':        players[name]['red']       += 1
+                  p = players[name]
+                  if t['r'] >= 1 and t['y'] >= 2:
+                      # Second yellow: one yellow stands, the rest is a 🟨🟥
+                      p['yellowRed'] += 1
+                      p['yellow'] += t['y'] - 1
+                  else:
+                      p['yellow'] += t['y']
+                      p['red'] += t['r']
 
           cards = sorted(
               players.values(),
-              key=lambda x: (-x['red'], -x['yellowRed'], -x['yellow'])
+              key=lambda x: (-x['red'], -x['yellowRed'], -x['yellow'], x['player'])
           )
+          print(f'Cards: {len(cards)} player(s) with bookings')
 
           if existing.get('cards') != cards:
               new_data = {
@@ -460,7 +488,7 @@ jobs:
               }
               with open(CARDS_PATH, 'w') as f:
                   json.dump(new_data, f, indent=2)
-              print(f'Cards updated: {len(cards)} players')
+              print('Cards updated.')
           else:
               print('No changes to cards.')
           PYEOF
