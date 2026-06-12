@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-12T19:24:23Z",
+  "lastUpdated": "2026-06-12T21:12:31Z",
   "scorers": [
     {
       "player": "Juli\u00e1n Qui\u00f1ones",
@@ -56,6 +56,16 @@
       "nationality": "Bosnia-Herzegovina",
       "team": "Bosnia-Herzegovina",
       "teamTla": "BIH",
+      "playedMatches": 1,
+      "goals": 1,
+      "assists": 0,
+      "penalties": 0
+    },
+    {
+      "player": "Cyle Larin",
+      "nationality": "Canada",
+      "team": "Canada",
+      "teamTla": "CAN",
       "playedMatches": 1,
       "goals": 1,
       "assists": 0,

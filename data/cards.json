@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-12T19:24:23Z",
+  "lastUpdated": "2026-06-12T21:12:31Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -42,9 +42,41 @@
       "red": 0
     },
     {
+      "player": "Ermedin Demirovic",
+      "team": "Bosnia-Herzegovina",
+      "teamTla": "BIH",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Jovo Lukic",
+      "team": "Bosnia-Herzegovina",
+      "teamTla": "BIH",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
       "player": "Lee Gi-Hyuk",
       "team": "South Korea",
       "teamTla": "KOR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Luc de Fougerolles",
+      "team": "Canada",
+      "teamTla": "CAN",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Nikola Katic",
+      "team": "Bosnia-Herzegovina",
+      "teamTla": "BIH",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
