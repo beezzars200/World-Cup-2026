@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-11T20:34:55Z",
+  "lastUpdated": "2026-06-12T04:40:47Z",
   "scorers": [
     {
       "player": "Juli\u00e1n Qui\u00f1ones",
@@ -16,6 +16,36 @@
       "nationality": "Mexico",
       "team": "Mexico",
       "teamTla": "MEX",
+      "playedMatches": 1,
+      "goals": 1,
+      "assists": 0,
+      "penalties": 0
+    },
+    {
+      "player": "Ladislav Krej\u010d\u00ed",
+      "nationality": "Czech Republic",
+      "team": "Czechia",
+      "teamTla": "CZE",
+      "playedMatches": 1,
+      "goals": 1,
+      "assists": 0,
+      "penalties": 0
+    },
+    {
+      "player": "In-beom Hwang",
+      "nationality": "South Korea",
+      "team": "South Korea",
+      "teamTla": "KOR",
+      "playedMatches": 1,
+      "goals": 1,
+      "assists": 1,
+      "penalties": 0
+    },
+    {
+      "player": "Hyun-Gyu Oh",
+      "nationality": "South Korea",
+      "team": "South Korea",
+      "teamTla": "KOR",
       "playedMatches": 1,
       "goals": 1,
       "assists": 0,
