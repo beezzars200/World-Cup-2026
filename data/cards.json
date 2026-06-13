@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-13T19:31:27Z",
+  "lastUpdated": "2026-06-13T20:24:45Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -45,6 +45,14 @@
       "player": "Brian Guti\u00e9rrez",
       "team": "Mexico",
       "teamTla": "MEX",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Denis Zakaria",
+      "team": "Switzerland",
+      "teamTla": "SUI",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
