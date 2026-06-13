@@ -512,10 +512,16 @@
     var groupKeys = Object.keys(WC.GROUPS).filter(function (g) {
       if (teamFilter && !WC.GROUPS[g].teams.some(function (t) { return t.code === teamFilter; })) return false;
       if (matchFilter === 'upcoming') {
-        var hasUnplayed = WC.GROUP_MATCHES.some(function (m) {
-          return m.group === g && m.status !== 'finished';
-        });
-        if (!hasUnplayed) return false;
+        if (!WC.GROUP_MATCHES.some(function (m) { return m.group === g && m.status !== 'finished'; })) return false;
+      }
+      if (matchFilter === 'next24') {
+        var cutoff = Date.now() + 24 * 3600 * 1000;
+        if (!WC.GROUP_MATCHES.some(function (m) {
+          if (m.group !== g) return false;
+          if (m.status === 'live') return true;
+          var ko = Date.parse(m.date + 'T' + m.utc + ':00Z');
+          return m.status !== 'finished' && ko <= cutoff;
+        })) return false;
       }
       return true;
     });
@@ -580,10 +586,18 @@
       var mdMatches = groupMatches.filter(function (m) { return m.md === md; });
       if (!mdMatches.length) return;
 
-      // When "Upcoming" filter is on, hide matchdays where all matches are done
+      // Hide matchdays with no relevant matches for the active filter
       if (state.groupMatchFilter === 'upcoming') {
-        var allDone = mdMatches.every(function (m) { return m.status === 'finished'; });
-        if (allDone) return;
+        if (mdMatches.every(function (m) { return m.status === 'finished'; })) return;
+      }
+      if (state.groupMatchFilter === 'next24') {
+        var cutoff24 = Date.now() + 24 * 3600 * 1000;
+        var hasNext = mdMatches.some(function (m) {
+          if (m.status === 'live') return true;
+          var ko = Date.parse(m.date + 'T' + m.utc + ':00Z');
+          return m.status !== 'finished' && ko <= cutoff24;
+        });
+        if (!hasNext) return;
       }
 
       var key = g + '-' + md;
@@ -610,9 +624,17 @@
       sec.appendChild(hdrRow);
 
       if (open) {
-        var rowsToShow = state.groupMatchFilter === 'upcoming'
-          ? mdMatches.filter(function (m) { return m.status !== 'finished'; })
-          : mdMatches;
+        var rowsToShow = mdMatches;
+        if (state.groupMatchFilter === 'upcoming') {
+          rowsToShow = mdMatches.filter(function (m) { return m.status !== 'finished'; });
+        } else if (state.groupMatchFilter === 'next24') {
+          var cut = Date.now() + 24 * 3600 * 1000;
+          rowsToShow = mdMatches.filter(function (m) {
+            if (m.status === 'live') return true;
+            var ko = Date.parse(m.date + 'T' + m.utc + ':00Z');
+            return m.status !== 'finished' && ko <= cut;
+          });
+        }
         rowsToShow.forEach(function (m) { sec.appendChild(buildMatchRow(m)); });
       }
       matchSec.appendChild(sec);
