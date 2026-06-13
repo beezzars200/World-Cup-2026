@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-12T21:12:31Z",
+  "lastUpdated": "2026-06-13T01:53:35Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -53,6 +53,14 @@
       "player": "Jovo Lukic",
       "team": "Bosnia-Herzegovina",
       "teamTla": "BIH",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Juan C\u00e1ceres",
+      "team": "Paraguay",
+      "teamTla": "PAR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0

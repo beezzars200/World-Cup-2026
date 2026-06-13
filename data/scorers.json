@@ -1,6 +1,16 @@
 {
-  "lastUpdated": "2026-06-12T21:12:31Z",
+  "lastUpdated": "2026-06-13T01:53:35Z",
   "scorers": [
+    {
+      "player": "Folarin Balogun",
+      "nationality": "USA",
+      "team": "United States",
+      "teamTla": "USA",
+      "playedMatches": 1,
+      "goals": 2,
+      "assists": 0,
+      "penalties": 0
+    },
     {
       "player": "Juli\u00e1n Qui\u00f1ones",
       "nationality": "Colombia",
