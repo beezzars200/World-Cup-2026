@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-13T01:53:35Z",
+  "lastUpdated": "2026-06-13T02:19:54Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -77,6 +77,14 @@
       "player": "Luc de Fougerolles",
       "team": "Canada",
       "teamTla": "CAN",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Miguel Almir\u00f3n",
+      "team": "Paraguay",
+      "teamTla": "PAR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
