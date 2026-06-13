@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-13T02:19:54Z",
+  "lastUpdated": "2026-06-13T06:33:23Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -26,6 +26,14 @@
       "red": 1
     },
     {
+      "player": "Alex Arce",
+      "team": "Paraguay",
+      "teamTla": "PAR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
       "player": "Alistair Johnston",
       "team": "Canada",
       "teamTla": "CAN",
@@ -37,6 +45,14 @@
       "player": "Brian Guti\u00e9rrez",
       "team": "Mexico",
       "teamTla": "MEX",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Diego G\u00f3mez",
+      "team": "Paraguay",
+      "teamTla": "PAR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
@@ -58,7 +74,15 @@
       "red": 0
     },
     {
-      "player": "Juan C\u00e1ceres",
+      "player": "Juan Jose C\u00e1ceres",
+      "team": "Paraguay",
+      "teamTla": "PAR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "J\u00fanior Alonso",
       "team": "Paraguay",
       "teamTla": "PAR",
       "yellow": 1,
@@ -109,6 +133,14 @@
       "player": "Teboho Mokoena",
       "team": "South Africa",
       "teamTla": "RSA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Tyler Adams",
+      "team": "United States",
+      "teamTla": "USA",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
