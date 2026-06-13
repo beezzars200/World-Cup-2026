@@ -29,7 +29,7 @@
   <meta name="twitter:description" content="Enter the World Cup Buster — €20 entry, randomly drawn team from all 48 nations." />
   <meta name="twitter:image"       content="https://beezzars200.github.io/World-Cup-2026/images/IMG_2536.jpeg" />
 
-  <link rel="stylesheet" href="css/style.css?v=18" />
+  <link rel="stylesheet" href="css/style.css?v=19" />
 </head>
 <body>
 
@@ -64,7 +64,17 @@
       <button class="sub-tab-btn"        data-subtab="bracket">Knockout</button>
     </nav>
     <div class="sub-tab-panel active" id="subtab-groups">
-      <div class="info-banner">📡 Live scores for all games will be available once the tournament starts.</div>
+      <div class="group-filters">
+        <div class="filter-group">
+          <span class="filter-label">Team:</span>
+          <select class="filter-select" id="groupTeamSelect"><option value="">All Teams</option></select>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">Matches:</span>
+          <button class="filter-btn active" data-groupstatus="all">All</button>
+          <button class="filter-btn"        data-groupstatus="upcoming">Upcoming</button>
+        </div>
+      </div>
       <div class="groups-grid" id="groupsGrid"></div>
     </div>
     <div class="sub-tab-panel" id="subtab-bracket">
@@ -143,6 +153,6 @@
 
 <script src="js/tournament.js?v=4"></script>
 <script src="js/draw.js?v=3"></script>
-<script src="js/app.js?v=19"></script>
+<script src="js/app.js?v=20"></script>
 </body>
 </html>

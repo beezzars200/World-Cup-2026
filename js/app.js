@@ -22,6 +22,8 @@
     scorersUpdated: null,
     cards: [],
     cardsUpdated: null,
+    groupTeamFilter: '',
+    groupMatchFilter: 'all',
     drawFilter: '',
     drawExpanded: {},
     drawSubTab: 'list',
@@ -33,6 +35,7 @@
     populateCountrySelector();
     bindTabButtons();
     bindSubTabButtons();
+    bindGroupFilters();
     bindScheduleFilters();
     bindBusterCtas();
     bindDrawSearch();
@@ -465,13 +468,65 @@
     }
   }
 
+  // ── GROUP FILTERS ─────────────────────────────────────────────────────────
+  function bindGroupFilters() {
+    // Populate team dropdown once from WC.GROUPS
+    var sel = document.getElementById('groupTeamSelect');
+    if (sel) {
+      var teams = [];
+      Object.keys(WC.GROUPS).forEach(function (g) {
+        WC.GROUPS[g].teams.forEach(function (t) { teams.push(t); });
+      });
+      teams.sort(function (a, b) { return a.name.localeCompare(b.name); });
+      teams.forEach(function (t) {
+        var opt = document.createElement('option');
+        opt.value = t.code;
+        opt.textContent = t.flag + ' ' + t.name;
+        sel.appendChild(opt);
+      });
+      sel.addEventListener('change', function () {
+        state.groupTeamFilter = sel.value;
+        renderGroups();
+      });
+    }
+
+    document.querySelectorAll('[data-groupstatus]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        state.groupMatchFilter = btn.dataset.groupstatus;
+        document.querySelectorAll('[data-groupstatus]').forEach(function (b) {
+          b.classList.toggle('active', b === btn);
+        });
+        renderGroups();
+      });
+    });
+  }
+
   // ── GROUPS TAB ────────────────────────────────────────────────────────────
   function renderGroups() {
     var grid = document.getElementById('groupsGrid');
     grid.innerHTML = '';
-    Object.keys(WC.GROUPS).forEach(function (g) {
-      grid.appendChild(buildGroupCard(g));
+
+    var teamFilter  = state.groupTeamFilter;
+    var matchFilter = state.groupMatchFilter;
+
+    var groupKeys = Object.keys(WC.GROUPS).filter(function (g) {
+      if (teamFilter && !WC.GROUPS[g].teams.some(function (t) { return t.code === teamFilter; })) return false;
+      if (matchFilter === 'upcoming') {
+        var hasUnplayed = WC.GROUP_MATCHES.some(function (m) {
+          return m.group === g && m.status !== 'finished';
+        });
+        if (!hasUnplayed) return false;
+      }
+      return true;
     });
+
+    groupKeys.forEach(function (g) { grid.appendChild(buildGroupCard(g)); });
+
+    if (!grid.children.length) {
+      var msg = el('div', 'info-banner');
+      msg.textContent = teamFilter ? 'No upcoming matches for this team.' : 'No upcoming matches.';
+      grid.appendChild(msg);
+    }
   }
 
   function buildGroupCard(g) {
@@ -525,6 +580,12 @@
       var mdMatches = groupMatches.filter(function (m) { return m.md === md; });
       if (!mdMatches.length) return;
 
+      // When "Upcoming" filter is on, hide matchdays where all matches are done
+      if (state.groupMatchFilter === 'upcoming') {
+        var allDone = mdMatches.every(function (m) { return m.status === 'finished'; });
+        if (allDone) return;
+      }
+
       var key = g + '-' + md;
       var explicit = state.mdExpanded[key];
       var hasLive = mdMatches.some(function (m) { return m.status === 'live'; });
@@ -548,7 +609,12 @@
       });
       sec.appendChild(hdrRow);
 
-      if (open) mdMatches.forEach(function (m) { sec.appendChild(buildMatchRow(m)); });
+      if (open) {
+        var rowsToShow = state.groupMatchFilter === 'upcoming'
+          ? mdMatches.filter(function (m) { return m.status !== 'finished'; })
+          : mdMatches;
+        rowsToShow.forEach(function (m) { sec.appendChild(buildMatchRow(m)); });
+      }
       matchSec.appendChild(sec);
     });
     card.appendChild(matchSec);

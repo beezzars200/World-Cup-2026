@@ -128,6 +128,15 @@ body {
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
 
+/* ── GROUP FILTERS ── */
+.group-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: center;
+  padding: 10px 0 14px;
+}
+
 /* ── GROUP GRID ── */
 .groups-grid {
   display: grid;
