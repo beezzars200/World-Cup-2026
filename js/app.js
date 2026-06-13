@@ -541,6 +541,9 @@
       if (matchFilter === 'upcoming') {
         if (!WC.GROUP_MATCHES.some(function (m) { return m.group === g && m.status !== 'finished'; })) return false;
       }
+      if (matchFilter === 'completed') {
+        if (!WC.GROUP_MATCHES.some(function (m) { return m.group === g && m.status === 'finished'; })) return false;
+      }
       if (matchFilter === 'next24') {
         var cutoff = Date.now() + 24 * 3600 * 1000;
         if (!WC.GROUP_MATCHES.some(function (m) {
@@ -557,7 +560,9 @@
 
     if (!grid.children.length) {
       var msg = el('div', 'info-banner');
-      msg.textContent = teamFilter.length ? 'No upcoming matches for selected teams.' : 'No upcoming matches.';
+      msg.textContent = matchFilter === 'completed'
+        ? (teamFilter.length ? 'No completed matches for selected teams.' : 'No completed matches yet.')
+        : (teamFilter.length ? 'No upcoming matches for selected teams.' : 'No upcoming matches.');
       grid.appendChild(msg);
     }
   }
@@ -617,6 +622,9 @@
       if (state.groupMatchFilter === 'upcoming') {
         if (mdMatches.every(function (m) { return m.status === 'finished'; })) return;
       }
+      if (state.groupMatchFilter === 'completed') {
+        if (!mdMatches.some(function (m) { return m.status === 'finished'; })) return;
+      }
       if (state.groupMatchFilter === 'next24') {
         var cutoff24 = Date.now() + 24 * 3600 * 1000;
         var hasNext = mdMatches.some(function (m) {
@@ -654,6 +662,8 @@
         var rowsToShow = mdMatches;
         if (state.groupMatchFilter === 'upcoming') {
           rowsToShow = mdMatches.filter(function (m) { return m.status !== 'finished'; });
+        } else if (state.groupMatchFilter === 'completed') {
+          rowsToShow = mdMatches.filter(function (m) { return m.status === 'finished'; });
         } else if (state.groupMatchFilter === 'next24') {
           var cut = Date.now() + 24 * 3600 * 1000;
           rowsToShow = mdMatches.filter(function (m) {
