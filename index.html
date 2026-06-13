@@ -67,7 +67,10 @@
       <div class="group-filters">
         <div class="filter-group">
           <span class="filter-label">Team:</span>
-          <select class="filter-select" id="groupTeamSelect"><option value="">All Teams</option></select>
+          <div class="team-multiselect" id="teamMultiSelect">
+            <button class="team-ms-trigger" id="teamMsTrigger">All Teams ▾</button>
+            <div class="team-ms-panel" id="teamMsPanel"></div>
+          </div>
         </div>
         <div class="filter-group">
           <span class="filter-label">Matches:</span>
@@ -154,6 +157,6 @@
 
 <script src="js/tournament.js?v=4"></script>
 <script src="js/draw.js?v=3"></script>
-<script src="js/app.js?v=21"></script>
+<script src="js/app.js?v=22"></script>
 </body>
 </html>

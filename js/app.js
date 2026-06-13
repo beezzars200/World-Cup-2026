@@ -22,7 +22,7 @@
     scorersUpdated: null,
     cards: [],
     cardsUpdated: null,
-    groupTeamFilter: '',
+    groupTeamFilter: [],
     groupMatchFilter: 'all',
     drawFilter: '',
     drawExpanded: {},
@@ -470,24 +470,51 @@
 
   // ── GROUP FILTERS ─────────────────────────────────────────────────────────
   function bindGroupFilters() {
-    // Populate team dropdown once from WC.GROUPS
-    var sel = document.getElementById('groupTeamSelect');
-    if (sel) {
+    var trigger = document.getElementById('teamMsTrigger');
+    var panel   = document.getElementById('teamMsPanel');
+
+    if (trigger && panel) {
+      // Build sorted team chips
       var teams = [];
       Object.keys(WC.GROUPS).forEach(function (g) {
         WC.GROUPS[g].teams.forEach(function (t) { teams.push(t); });
       });
       teams.sort(function (a, b) { return a.name.localeCompare(b.name); });
+
       teams.forEach(function (t) {
-        var opt = document.createElement('option');
-        opt.value = t.code;
-        opt.textContent = t.flag + ' ' + t.name;
-        sel.appendChild(opt);
+        var chip = el('button', 'team-chip');
+        chip.dataset.code = t.code;
+        chip.textContent = t.flag + ' ' + t.name;
+        chip.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var idx = state.groupTeamFilter.indexOf(t.code);
+          if (idx >= 0) {
+            state.groupTeamFilter.splice(idx, 1);
+            chip.classList.remove('selected');
+          } else {
+            state.groupTeamFilter.push(t.code);
+            chip.classList.add('selected');
+          }
+          updateTeamTrigger();
+          renderGroups();
+        });
+        panel.appendChild(chip);
       });
-      sel.addEventListener('change', function () {
-        state.groupTeamFilter = sel.value;
-        renderGroups();
+
+      trigger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        panel.classList.toggle('open');
       });
+      document.addEventListener('click', function () {
+        panel.classList.remove('open');
+      });
+    }
+
+    function updateTeamTrigger() {
+      if (!trigger) return;
+      var n = state.groupTeamFilter.length;
+      trigger.textContent = n === 0 ? 'All Teams ▾' : n + ' team' + (n > 1 ? 's' : '') + ' ▾';
+      trigger.classList.toggle('active', n > 0);
     }
 
     document.querySelectorAll('[data-groupstatus]').forEach(function (btn) {
@@ -506,11 +533,11 @@
     var grid = document.getElementById('groupsGrid');
     grid.innerHTML = '';
 
-    var teamFilter  = state.groupTeamFilter;
+    var teamFilter  = state.groupTeamFilter;   // array
     var matchFilter = state.groupMatchFilter;
 
     var groupKeys = Object.keys(WC.GROUPS).filter(function (g) {
-      if (teamFilter && !WC.GROUPS[g].teams.some(function (t) { return t.code === teamFilter; })) return false;
+      if (teamFilter.length && !WC.GROUPS[g].teams.some(function (t) { return teamFilter.indexOf(t.code) >= 0; })) return false;
       if (matchFilter === 'upcoming') {
         if (!WC.GROUP_MATCHES.some(function (m) { return m.group === g && m.status !== 'finished'; })) return false;
       }
@@ -530,7 +557,7 @@
 
     if (!grid.children.length) {
       var msg = el('div', 'info-banner');
-      msg.textContent = teamFilter ? 'No upcoming matches for this team.' : 'No upcoming matches.';
+      msg.textContent = teamFilter.length ? 'No upcoming matches for selected teams.' : 'No upcoming matches.';
       grid.appendChild(msg);
     }
   }

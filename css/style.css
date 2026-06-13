@@ -137,6 +137,68 @@ body {
   padding: 10px 0 14px;
 }
 
+/* ── TEAM MULTI-SELECT ── */
+.team-multiselect { position: relative; }
+
+.team-ms-trigger {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.team-ms-trigger:hover { color: var(--text); border-color: var(--text); }
+.team-ms-trigger.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #000;
+}
+
+.team-ms-panel {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 200;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px;
+  width: 300px;
+  max-height: 280px;
+  overflow-y: auto;
+  flex-wrap: wrap;
+  gap: 6px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+.team-ms-panel.open { display: flex; }
+
+.team-chip {
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.78rem;
+  white-space: nowrap;
+  transition: all 0.12s;
+}
+.team-chip:hover { border-color: var(--text); color: var(--text); }
+.team-chip.selected {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #000;
+}
+
+@media (max-width: 480px) {
+  .team-ms-panel { width: calc(100vw - 32px); max-height: 240px; }
+}
+
 /* ── GROUP GRID ── */
 .groups-grid {
   display: grid;
