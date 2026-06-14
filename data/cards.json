@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-14T03:00:45Z",
+  "lastUpdated": "2026-06-14T05:49:34Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -213,6 +213,14 @@
       "player": "Tyler Adams",
       "team": "United States",
       "teamTla": "USA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Yunus Akg\u00fcn",
+      "team": "T\u00fcrkiye",
+      "teamTla": "TUR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
