@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-14T21:54:33Z",
+  "lastUpdated": "2026-06-14T23:34:40Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -221,6 +221,14 @@
       "player": "Roger Iba\u00f1ez",
       "team": "Brazil",
       "teamTla": "BRA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Seko Fofana",
+      "team": "Ivory Coast",
+      "teamTla": "CIV",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
