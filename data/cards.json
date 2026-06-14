@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-14T05:49:34Z",
+  "lastUpdated": "2026-06-14T21:23:32Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -61,6 +61,14 @@
       "player": "Casemiro",
       "team": "Brazil",
       "teamTla": "BRA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Crysencio Summerville",
+      "team": "Netherlands",
+      "teamTla": "NED",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
