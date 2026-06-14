@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-14T02:14:32Z",
+  "lastUpdated": "2026-06-14T02:56:17Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -85,6 +85,14 @@
       "player": "Ermedin Demirovic",
       "team": "Bosnia-Herzegovina",
       "teamTla": "BIH",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Findlay Curtis",
+      "team": "Scotland",
+      "teamTla": "SCO",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
