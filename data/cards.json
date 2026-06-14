@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-13T22:49:30Z",
+  "lastUpdated": "2026-06-14T01:44:43Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -85,6 +85,14 @@
       "player": "Jassem Gaber",
       "team": "Qatar",
       "teamTla": "QAT",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Jean-Ricner Bellegarde",
+      "team": "Haiti",
+      "teamTla": "HAI",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
