@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-14T21:23:32Z",
+  "lastUpdated": "2026-06-14T21:44:31Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -173,6 +173,14 @@
       "player": "Mahmoud Abunada",
       "team": "Qatar",
       "teamTla": "QAT",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Memphis Depay",
+      "team": "Netherlands",
+      "teamTla": "NED",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
