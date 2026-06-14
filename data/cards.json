@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-14T23:34:40Z",
+  "lastUpdated": "2026-06-14T23:44:33Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -101,6 +101,22 @@
       "player": "Findlay Curtis",
       "team": "Scotland",
       "teamTla": "SCO",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Franck Kessi\u00e9",
+      "team": "Ivory Coast",
+      "teamTla": "CIV",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Guela Dou\u00e9",
+      "team": "Ivory Coast",
+      "teamTla": "CIV",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
