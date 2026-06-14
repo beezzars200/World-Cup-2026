@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-14T02:56:17Z",
+  "lastUpdated": "2026-06-14T03:00:45Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -133,6 +133,14 @@
       "player": "J\u00fanior Alonso",
       "team": "Paraguay",
       "teamTla": "PAR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Kenny McLean",
+      "team": "Scotland",
+      "teamTla": "SCO",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
