@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-15T16:19:36Z",
+  "lastUpdated": "2026-06-15T17:54:40Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -237,6 +237,14 @@
       "player": "Nkosinathi Sibisi",
       "team": "South Africa",
       "teamTla": "RSA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Pedri",
+      "team": "Spain",
+      "teamTla": "ESP",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
