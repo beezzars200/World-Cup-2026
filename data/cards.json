@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-15T03:14:34Z",
+  "lastUpdated": "2026-06-15T16:19:36Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -261,6 +261,14 @@
       "player": "Seko Fofana",
       "team": "Ivory Coast",
       "teamTla": "CIV",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Sidny Lopes Cabral",
+      "team": "Cape Verde",
+      "teamTla": "CPV",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
