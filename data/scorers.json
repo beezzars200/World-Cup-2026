@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-14T18:53:34Z",
+  "lastUpdated": "2026-06-15T04:00:48Z",
   "scorers": [
     {
       "player": "Folarin Balogun",
@@ -20,6 +20,16 @@
       "goals": 2,
       "assists": 0,
       "penalties": 1
+    },
+    {
+      "player": "Yasin Ayari",
+      "nationality": "Sweden",
+      "team": "Sweden",
+      "teamTla": "SWE",
+      "playedMatches": 1,
+      "goals": 2,
+      "assists": 0,
+      "penalties": 0
     },
     {
       "player": "Juli\u00e1n Qui\u00f1ones",
@@ -86,16 +96,6 @@
       "nationality": "Canada",
       "team": "Canada",
       "teamTla": "CAN",
-      "playedMatches": 1,
-      "goals": 1,
-      "assists": 0,
-      "penalties": 0
-    },
-    {
-      "player": "Mauricio",
-      "nationality": "Paraguay",
-      "team": "Paraguay",
-      "teamTla": "PAR",
       "playedMatches": 1,
       "goals": 1,
       "assists": 0,
