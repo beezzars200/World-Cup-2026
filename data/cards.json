@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-15T19:14:40Z",
+  "lastUpdated": "2026-06-15T19:19:38Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -293,6 +293,14 @@
       "player": "Teboho Mokoena",
       "team": "South Africa",
       "teamTla": "RSA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Timothy Castagne",
+      "team": "Belgium",
+      "teamTla": "BEL",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
