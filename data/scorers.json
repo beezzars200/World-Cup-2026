@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-16T21:05:28Z",
+  "lastUpdated": "2026-06-16T22:45:35Z",
   "scorers": [
     {
       "player": "Folarin Balogun",
@@ -52,6 +52,16 @@
       "penalties": 0
     },
     {
+      "player": "Erling Haaland",
+      "nationality": "Norway",
+      "team": "Norway",
+      "teamTla": "NOR",
+      "playedMatches": 1,
+      "goals": 2,
+      "assists": 0,
+      "penalties": 0
+    },
+    {
       "player": "Juli\u00e1n Qui\u00f1ones",
       "nationality": "Colombia",
       "team": "Mexico",
@@ -89,16 +99,6 @@
       "playedMatches": 1,
       "goals": 1,
       "assists": 1,
-      "penalties": 0
-    },
-    {
-      "player": "Hyun-Gyu Oh",
-      "nationality": "South Korea",
-      "team": "South Korea",
-      "teamTla": "KOR",
-      "playedMatches": 1,
-      "goals": 1,
-      "assists": 0,
       "penalties": 0
     }
   ]
