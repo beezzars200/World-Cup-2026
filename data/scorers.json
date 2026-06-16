@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-16T02:29:26Z",
+  "lastUpdated": "2026-06-16T21:05:28Z",
   "scorers": [
     {
       "player": "Folarin Balogun",
@@ -36,6 +36,16 @@
       "nationality": "New Zealand",
       "team": "New Zealand",
       "teamTla": "NZL",
+      "playedMatches": 1,
+      "goals": 2,
+      "assists": 0,
+      "penalties": 0
+    },
+    {
+      "player": "Kylian Mbapp\u00e9",
+      "nationality": "France",
+      "team": "France",
+      "teamTla": "FRA",
       "playedMatches": 1,
       "goals": 2,
       "assists": 0,
@@ -86,16 +96,6 @@
       "nationality": "South Korea",
       "team": "South Korea",
       "teamTla": "KOR",
-      "playedMatches": 1,
-      "goals": 1,
-      "assists": 0,
-      "penalties": 0
-    },
-    {
-      "player": "Jovo Luki\u0107",
-      "nationality": "Bosnia-Herzegovina",
-      "team": "Bosnia-Herzegovina",
-      "teamTla": "BIH",
       "playedMatches": 1,
       "goals": 1,
       "assists": 0,
