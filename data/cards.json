@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-15T22:50:23Z",
+  "lastUpdated": "2026-06-16T02:57:59Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -101,6 +101,14 @@
       "player": "Diego G\u00f3mez",
       "team": "Paraguay",
       "teamTla": "PAR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Ehsan Hajsafi",
+      "team": "Iran",
+      "teamTla": "IRN",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
