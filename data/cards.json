@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-17T18:54:35Z",
+  "lastUpdated": "2026-06-17T18:59:34Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -365,6 +365,14 @@
       "player": "Timothy Castagne",
       "team": "Belgium",
       "teamTla": "BEL",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Tom\u00e1s Ara\u00fajo",
+      "team": "Portugal",
+      "teamTla": "POR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
