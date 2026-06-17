@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-16T23:52:04Z",
+  "lastUpdated": "2026-06-17T05:43:05Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -229,6 +229,14 @@
       "player": "Marawan Attia",
       "team": "Egypt",
       "teamTla": "EGY",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Marcel Sabitzer",
+      "team": "Austria",
+      "teamTla": "AUT",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
