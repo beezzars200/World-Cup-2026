@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-17T02:46:25Z",
+  "lastUpdated": "2026-06-17T20:49:42Z",
   "scorers": [
     {
       "player": "Lionel Messi",
@@ -72,6 +72,16 @@
       "penalties": 0
     },
     {
+      "player": "Harry Kane",
+      "nationality": "England",
+      "team": "England",
+      "teamTla": "ENG",
+      "playedMatches": 1,
+      "goals": 2,
+      "assists": 0,
+      "penalties": 1
+    },
+    {
       "player": "Juli\u00e1n Qui\u00f1ones",
       "nationality": "Colombia",
       "team": "Mexico",
@@ -86,16 +96,6 @@
       "nationality": "Mexico",
       "team": "Mexico",
       "teamTla": "MEX",
-      "playedMatches": 1,
-      "goals": 1,
-      "assists": 0,
-      "penalties": 0
-    },
-    {
-      "player": "Ladislav Krej\u010d\u00ed",
-      "nationality": "Czech Republic",
-      "team": "Czechia",
-      "teamTla": "CZE",
       "playedMatches": 1,
       "goals": 1,
       "assists": 0,
