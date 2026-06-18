@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-18T01:03:47Z",
+  "lastUpdated": "2026-06-18T02:09:29Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -205,6 +205,14 @@
       "player": "Jean-Ricner Bellegarde",
       "team": "Haiti",
       "teamTla": "HAI",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Johan Mojica",
+      "team": "Colombia",
+      "teamTla": "COL",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
