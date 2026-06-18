@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-18T16:34:43Z",
+  "lastUpdated": "2026-06-18T16:44:37Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -397,6 +397,14 @@
       "player": "Sidny Lopes Cabral",
       "team": "Cape Verde",
       "teamTla": "CPV",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Thalente Mbatha",
+      "team": "South Africa",
+      "teamTla": "RSA",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
