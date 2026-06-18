@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-17T20:49:42Z",
+  "lastUpdated": "2026-06-18T20:49:33Z",
   "scorers": [
     {
       "player": "Lionel Messi",
@@ -82,18 +82,18 @@
       "penalties": 1
     },
     {
-      "player": "Juli\u00e1n Qui\u00f1ones",
-      "nationality": "Colombia",
-      "team": "Mexico",
-      "teamTla": "MEX",
-      "playedMatches": 1,
-      "goals": 1,
+      "player": "Johan Manzambi",
+      "nationality": "Switzerland",
+      "team": "Switzerland",
+      "teamTla": "SUI",
+      "playedMatches": 2,
+      "goals": 2,
       "assists": 0,
       "penalties": 0
     },
     {
-      "player": "Ra\u00fal Jim\u00e9nez",
-      "nationality": "Mexico",
+      "player": "Juli\u00e1n Qui\u00f1ones",
+      "nationality": "Colombia",
       "team": "Mexico",
       "teamTla": "MEX",
       "playedMatches": 1,
