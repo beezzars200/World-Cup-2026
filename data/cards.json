@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-18T00:34:40Z",
+  "lastUpdated": "2026-06-18T01:03:47Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -85,6 +85,14 @@
       "player": "Caleb Yirenkyi",
       "team": "Ghana",
       "teamTla": "GHA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Carlos Harvey",
+      "team": "Panama",
+      "teamTla": "PAN",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
