@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-18T22:39:28Z",
+  "lastUpdated": "2026-06-18T23:14:32Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -101,6 +101,14 @@
       "player": "Amar Dedic",
       "team": "Bosnia-Herzegovina",
       "teamTla": "BIH",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Assim Madibo",
+      "team": "Qatar",
+      "teamTla": "QAT",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
