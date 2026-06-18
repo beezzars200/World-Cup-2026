@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-18T22:24:34Z",
+  "lastUpdated": "2026-06-18T23:59:25Z",
   "scorers": [
     {
       "player": "Lionel Messi",
@@ -7,6 +7,16 @@
       "team": "Argentina",
       "teamTla": "ARG",
       "playedMatches": 1,
+      "goals": 3,
+      "assists": 0,
+      "penalties": 0
+    },
+    {
+      "player": "Jonathan David",
+      "nationality": "Canada",
+      "team": "Canada",
+      "teamTla": "CAN",
+      "playedMatches": 2,
       "goals": 3,
       "assists": 0,
       "penalties": 0
@@ -90,16 +100,6 @@
       "goals": 2,
       "assists": 0,
       "penalties": 1
-    },
-    {
-      "player": "Johan Manzambi",
-      "nationality": "Switzerland",
-      "team": "Switzerland",
-      "teamTla": "SUI",
-      "playedMatches": 2,
-      "goals": 2,
-      "assists": 0,
-      "penalties": 0
     }
   ]
 }
