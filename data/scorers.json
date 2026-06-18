@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-18T20:49:33Z",
+  "lastUpdated": "2026-06-18T22:24:34Z",
   "scorers": [
     {
       "player": "Lionel Messi",
@@ -8,6 +8,16 @@
       "teamTla": "ARG",
       "playedMatches": 1,
       "goals": 3,
+      "assists": 0,
+      "penalties": 0
+    },
+    {
+      "player": "Cyle Larin",
+      "nationality": "Canada",
+      "team": "Canada",
+      "teamTla": "CAN",
+      "playedMatches": 2,
+      "goals": 2,
       "assists": 0,
       "penalties": 0
     },
@@ -88,16 +98,6 @@
       "teamTla": "SUI",
       "playedMatches": 2,
       "goals": 2,
-      "assists": 0,
-      "penalties": 0
-    },
-    {
-      "player": "Juli\u00e1n Qui\u00f1ones",
-      "nationality": "Colombia",
-      "team": "Mexico",
-      "teamTla": "MEX",
-      "playedMatches": 1,
-      "goals": 1,
       "assists": 0,
       "penalties": 0
     }
