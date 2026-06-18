@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-18T20:19:33Z",
+  "lastUpdated": "2026-06-18T20:24:36Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -165,6 +165,14 @@
       "player": "Diego G\u00f3mez",
       "team": "Paraguay",
       "teamTla": "PAR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Edin Dzeko",
+      "team": "Bosnia-Herzegovina",
+      "teamTla": "BIH",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
@@ -349,6 +357,14 @@
       "player": "Miguel Almir\u00f3n",
       "team": "Paraguay",
       "teamTla": "PAR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Nico Elvedi",
+      "team": "Switzerland",
+      "teamTla": "SUI",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
