@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-18T20:39:29Z",
+  "lastUpdated": "2026-06-18T22:11:21Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -165,6 +165,14 @@
       "player": "Denis Zakaria",
       "team": "Switzerland",
       "teamTla": "SUI",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Derek Cornelius",
+      "team": "Canada",
+      "teamTla": "CAN",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
