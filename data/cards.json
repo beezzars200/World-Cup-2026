@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-18T16:44:37Z",
+  "lastUpdated": "2026-06-18T17:37:48Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -261,6 +261,14 @@
       "player": "Kenny McLean",
       "team": "Scotland",
       "teamTla": "SCO",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Ladislav Krejc\u00ed",
+      "team": "Czechia",
+      "teamTla": "CZE",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
