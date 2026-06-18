@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-18T23:19:33Z",
+  "lastUpdated": "2026-06-18T23:24:35Z",
   "cards": [
     {
       "player": "Assim Madibo",
@@ -77,6 +77,14 @@
       "player": "Abdulelah Al-Amri",
       "team": "Saudi Arabia",
       "teamTla": "KSA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Ahmed Fathy",
+      "team": "Qatar",
+      "teamTla": "QAT",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
