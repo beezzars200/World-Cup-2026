@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-18T02:09:29Z",
+  "lastUpdated": "2026-06-18T02:34:38Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -29,6 +29,14 @@
       "player": "Aaron Hickey",
       "team": "Scotland",
       "teamTla": "SCO",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Abdukodir Khusanov",
+      "team": "Uzbekistan",
+      "teamTla": "UZB",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
