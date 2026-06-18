@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-18T20:24:36Z",
+  "lastUpdated": "2026-06-18T20:39:29Z",
   "cards": [
     {
       "player": "C\u00e9sar Montes",
@@ -13,6 +13,14 @@
       "player": "Sphephelo Sithole",
       "team": "South Africa",
       "teamTla": "RSA",
+      "yellow": 0,
+      "yellowRed": 0,
+      "red": 1
+    },
+    {
+      "player": "Tarik Muharemovic",
+      "team": "Bosnia-Herzegovina",
+      "teamTla": "BIH",
       "yellow": 0,
       "yellowRed": 0,
       "red": 1
