@@ -1,6 +1,14 @@
 {
-  "lastUpdated": "2026-06-18T23:14:32Z",
+  "lastUpdated": "2026-06-18T23:19:33Z",
   "cards": [
+    {
+      "player": "Assim Madibo",
+      "team": "Qatar",
+      "teamTla": "QAT",
+      "yellow": 0,
+      "yellowRed": 0,
+      "red": 1
+    },
     {
       "player": "C\u00e9sar Montes",
       "team": "Mexico",
@@ -101,14 +109,6 @@
       "player": "Amar Dedic",
       "team": "Bosnia-Herzegovina",
       "teamTla": "BIH",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Assim Madibo",
-      "team": "Qatar",
-      "teamTla": "QAT",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
