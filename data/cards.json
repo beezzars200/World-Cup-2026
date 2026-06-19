@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-19T20:23:00Z",
+  "lastUpdated": "2026-06-19T20:54:35Z",
   "cards": [
     {
       "player": "Assim Madibo",
@@ -258,6 +258,14 @@
       "red": 0
     },
     {
+      "player": "Folarin Balogun",
+      "team": "United States",
+      "teamTla": "USA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
       "player": "Franck Kessi\u00e9",
       "team": "Ivory Coast",
       "teamTla": "CIV",
@@ -274,9 +282,25 @@
       "red": 0
     },
     {
+      "player": "Harry Souttar",
+      "team": "Australia",
+      "teamTla": "AUS",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
       "player": "Jackson Porozo",
       "team": "Ecuador",
       "teamTla": "ECU",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Jacob Italiano",
+      "team": "Australia",
+      "teamTla": "AUS",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
