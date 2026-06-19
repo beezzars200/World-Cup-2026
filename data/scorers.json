@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-19T17:59:25Z",
+  "lastUpdated": "2026-06-19T22:09:26Z",
   "scorers": [
     {
       "player": "Lionel Messi",
@@ -36,6 +36,16 @@
       "nationality": "USA",
       "team": "United States",
       "teamTla": "USA",
+      "playedMatches": 2,
+      "goals": 2,
+      "assists": 0,
+      "penalties": 0
+    },
+    {
+      "player": "Ismael Saibari",
+      "nationality": "Morocco",
+      "team": "Morocco",
+      "teamTla": "MAR",
       "playedMatches": 2,
       "goals": 2,
       "assists": 0,
@@ -90,16 +100,6 @@
       "goals": 2,
       "assists": 0,
       "penalties": 0
-    },
-    {
-      "player": "Harry Kane",
-      "nationality": "England",
-      "team": "England",
-      "teamTla": "ENG",
-      "playedMatches": 1,
-      "goals": 2,
-      "assists": 0,
-      "penalties": 1
     }
   ]
 }
