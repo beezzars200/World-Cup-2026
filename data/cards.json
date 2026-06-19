@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-19T19:19:35Z",
+  "lastUpdated": "2026-06-19T19:34:39Z",
   "cards": [
     {
       "player": "Assim Madibo",
@@ -93,6 +93,14 @@
       "player": "Ahmed Fatouh",
       "team": "Egypt",
       "teamTla": "EGY",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Alessandro Circati",
+      "team": "Australia",
+      "teamTla": "AUS",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
