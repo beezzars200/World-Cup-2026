@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-19T22:24:31Z",
+  "lastUpdated": "2026-06-19T23:29:28Z",
   "cards": [
     {
       "player": "Assim Madibo",
@@ -125,6 +125,14 @@
       "player": "Amar Dedic",
       "team": "Bosnia-Herzegovina",
       "teamTla": "BIH",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Andy Robertson",
+      "team": "Scotland",
+      "teamTla": "SCO",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
