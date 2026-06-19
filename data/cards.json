@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-19T20:54:35Z",
+  "lastUpdated": "2026-06-19T20:59:38Z",
   "cards": [
     {
       "player": "Assim Madibo",
@@ -181,6 +181,14 @@
       "player": "Chancel Mbemba",
       "team": "Congo DR",
       "teamTla": "COD",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Chris Richards",
+      "team": "United States",
+      "teamTla": "USA",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
