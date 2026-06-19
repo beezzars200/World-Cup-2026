@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-19T22:00:51Z",
+  "lastUpdated": "2026-06-19T22:02:21Z",
   "matches": {
     "GA-MD1a": {
       "score1": 2,
@@ -412,7 +412,7 @@
       "status": "finished"
     },
     "GC-MD2b": {
-      "score1": 0,
+      "score1": 1,
       "score2": 0,
       "status": "live"
     },
