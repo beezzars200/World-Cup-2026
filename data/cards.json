@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-19T02:19:33Z",
+  "lastUpdated": "2026-06-19T19:19:35Z",
   "cards": [
     {
       "player": "Assim Madibo",
@@ -285,6 +285,14 @@
       "player": "Johan Mojica",
       "team": "Colombia",
       "teamTla": "COL",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Jordan Bos",
+      "team": "Australia",
+      "teamTla": "AUS",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
