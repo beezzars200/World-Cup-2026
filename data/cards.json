@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-19T01:09:26Z",
+  "lastUpdated": "2026-06-19T02:19:33Z",
   "cards": [
     {
       "player": "Assim Madibo",
@@ -437,6 +437,14 @@
       "player": "N\u00e9lson Semedo",
       "team": "Portugal",
       "teamTla": "POR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Paik Seung-Ho",
+      "team": "South Korea",
+      "teamTla": "KOR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
