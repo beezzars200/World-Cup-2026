@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-18T23:24:35Z",
+  "lastUpdated": "2026-06-19T01:09:26Z",
   "cards": [
     {
       "player": "Assim Madibo",
@@ -331,6 +331,14 @@
     },
     {
       "player": "Lee Gi-Hyuk",
+      "team": "South Korea",
+      "teamTla": "KOR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Lee Kang-In",
       "team": "South Korea",
       "teamTla": "KOR",
       "yellow": 1,
