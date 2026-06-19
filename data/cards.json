@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-19T20:59:38Z",
+  "lastUpdated": "2026-06-19T22:24:31Z",
   "cards": [
     {
       "player": "Assim Madibo",
@@ -293,6 +293,14 @@
       "player": "Harry Souttar",
       "team": "Australia",
       "teamTla": "AUS",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Issa Diop",
+      "team": "Morocco",
+      "teamTla": "MAR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
