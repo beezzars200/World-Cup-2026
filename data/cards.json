@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-20T02:11:43Z",
+  "lastUpdated": "2026-06-20T03:05:27Z",
   "cards": [
     {
       "player": "Assim Madibo",
@@ -477,6 +477,14 @@
       "player": "Marcel Sabitzer",
       "team": "Austria",
       "teamTla": "AUT",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Mat\u00edas Galarza",
+      "team": "Paraguay",
+      "teamTla": "PAR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
