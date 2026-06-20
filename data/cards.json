@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-20T00:39:25Z",
+  "lastUpdated": "2026-06-20T01:29:29Z",
   "cards": [
     {
       "player": "Assim Madibo",
@@ -293,6 +293,14 @@
       "player": "Franck Kessi\u00e9",
       "team": "Ivory Coast",
       "teamTla": "CIV",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Frantzdy Pierrot",
+      "team": "Haiti",
+      "teamTla": "HAI",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0

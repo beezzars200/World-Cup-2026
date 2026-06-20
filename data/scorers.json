@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-19T22:09:26Z",
+  "lastUpdated": "2026-06-20T01:29:29Z",
   "scorers": [
     {
       "player": "Lionel Messi",
@@ -52,6 +52,16 @@
       "penalties": 0
     },
     {
+      "player": "Vinicius Junior",
+      "nationality": "Brazil",
+      "team": "Brazil",
+      "teamTla": "BRA",
+      "playedMatches": 2,
+      "goals": 2,
+      "assists": 2,
+      "penalties": 0
+    },
+    {
       "player": "Kai Havertz",
       "nationality": "Germany",
       "team": "Germany",
@@ -86,16 +96,6 @@
       "nationality": "France",
       "team": "France",
       "teamTla": "FRA",
-      "playedMatches": 1,
-      "goals": 2,
-      "assists": 0,
-      "penalties": 0
-    },
-    {
-      "player": "Erling Haaland",
-      "nationality": "Norway",
-      "team": "Norway",
-      "teamTla": "NOR",
       "playedMatches": 1,
       "goals": 2,
       "assists": 0,
