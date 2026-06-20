@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-20T18:39:26Z",
+  "lastUpdated": "2026-06-20T18:44:34Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -477,6 +477,14 @@
       "player": "Luc de Fougerolles",
       "team": "Canada",
       "teamTla": "CAN",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Lucas Bergvall",
+      "team": "Sweden",
+      "teamTla": "SWE",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
