@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-19T23:29:28Z",
+  "lastUpdated": "2026-06-20T00:39:25Z",
   "cards": [
     {
       "player": "Assim Madibo",
@@ -165,6 +165,14 @@
       "player": "Caleb Yirenkyi",
       "team": "Ghana",
       "teamTla": "GHA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Carlens Arcus",
+      "team": "Haiti",
+      "teamTla": "HAI",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
