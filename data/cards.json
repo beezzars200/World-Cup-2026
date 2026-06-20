@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-20T18:14:34Z",
+  "lastUpdated": "2026-06-20T18:39:26Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -645,6 +645,14 @@
       "player": "Tyler Adams",
       "team": "United States",
       "teamTla": "USA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Yasin Ayari",
+      "team": "Sweden",
+      "teamTla": "SWE",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
