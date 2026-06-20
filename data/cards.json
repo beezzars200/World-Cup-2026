@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-20T02:03:04Z",
+  "lastUpdated": "2026-06-20T02:11:43Z",
   "cards": [
     {
       "player": "Assim Madibo",
@@ -221,6 +221,14 @@
       "player": "C\u00e9sar Blackman",
       "team": "Panama",
       "teamTla": "PAN",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Danley Jean Jacques",
+      "team": "Haiti",
+      "teamTla": "HAI",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
