@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-20T01:29:29Z",
+  "lastUpdated": "2026-06-20T02:03:04Z",
   "cards": [
     {
       "player": "Assim Madibo",
@@ -245,6 +245,14 @@
       "player": "Diego G\u00f3mez",
       "team": "Paraguay",
       "teamTla": "PAR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Douglas Santos",
+      "team": "Brazil",
+      "teamTla": "BRA",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
