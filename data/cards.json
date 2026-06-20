@@ -1,6 +1,14 @@
 {
-  "lastUpdated": "2026-06-20T03:05:27Z",
+  "lastUpdated": "2026-06-20T03:49:31Z",
   "cards": [
+    {
+      "player": "Miguel Almir\u00f3n",
+      "team": "Paraguay",
+      "teamTla": "PAR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 1
+    },
     {
       "player": "Assim Madibo",
       "team": "Qatar",
@@ -509,14 +517,6 @@
       "player": "Micky van de Ven",
       "team": "Netherlands",
       "teamTla": "NED",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Miguel Almir\u00f3n",
-      "team": "Paraguay",
-      "teamTla": "PAR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
