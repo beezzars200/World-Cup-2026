@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-20T18:49:32Z",
+  "lastUpdated": "2026-06-20T21:32:11Z",
   "scorers": [
     {
       "player": "Lionel Messi",
@@ -72,6 +72,16 @@
       "penalties": 1
     },
     {
+      "player": "Deniz Undav",
+      "nationality": "Germany",
+      "team": "Germany",
+      "teamTla": "GER",
+      "playedMatches": 2,
+      "goals": 2,
+      "assists": 2,
+      "penalties": 0
+    },
+    {
       "player": "Yasin Ayari",
       "nationality": "Sweden",
       "team": "Sweden",
@@ -86,16 +96,6 @@
       "nationality": "New Zealand",
       "team": "New Zealand",
       "teamTla": "NZL",
-      "playedMatches": 1,
-      "goals": 2,
-      "assists": 0,
-      "penalties": 0
-    },
-    {
-      "player": "Kylian Mbapp\u00e9",
-      "nationality": "France",
-      "team": "France",
-      "teamTla": "FRA",
       "playedMatches": 1,
       "goals": 2,
       "assists": 0,
