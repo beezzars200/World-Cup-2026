@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-20T04:39:24Z",
+  "lastUpdated": "2026-06-20T18:14:34Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -333,6 +333,14 @@
       "player": "Frantzdy Pierrot",
       "team": "Haiti",
       "teamTla": "HAI",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Gabriel Gudmundsson",
+      "team": "Sweden",
+      "teamTla": "SWE",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
