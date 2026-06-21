@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-21T01:39:29Z",
+  "lastUpdated": "2026-06-21T01:54:37Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -341,6 +341,14 @@
       "player": "Gabriel Gudmundsson",
       "team": "Sweden",
       "teamTla": "SWE",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Gervane Kastaneer",
+      "team": "Cura\u00e7ao",
+      "teamTla": "CUW",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
