@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-21T19:09:26Z",
+  "lastUpdated": "2026-06-21T19:39:26Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -669,6 +669,14 @@
       "player": "Romelu Lukaku",
       "team": "Belgium",
       "teamTla": "BEL",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Saeid Ezatolahi",
+      "team": "Iran",
+      "teamTla": "IRN",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
