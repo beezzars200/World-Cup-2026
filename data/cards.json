@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-21T16:34:40Z",
+  "lastUpdated": "2026-06-21T17:24:31Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -589,6 +589,14 @@
       "player": "Micky van de Ven",
       "team": "Netherlands",
       "teamTla": "NED",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Mohamed Kanno",
+      "team": "Saudi Arabia",
+      "teamTla": "KSA",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
