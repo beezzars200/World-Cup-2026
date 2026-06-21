@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-21T01:19:31Z",
+  "lastUpdated": "2026-06-21T01:39:29Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -443,6 +443,14 @@
     },
     {
       "player": "Juninho Bacuna",
+      "team": "Cura\u00e7ao",
+      "teamTla": "CUW",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Juri\u00ebn Gaari",
       "team": "Cura\u00e7ao",
       "teamTla": "CUW",
       "yellow": 1,
