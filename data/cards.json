@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-21T20:34:43Z",
+  "lastUpdated": "2026-06-21T22:09:27Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -64,6 +64,14 @@
       "yellow": 0,
       "yellowRed": 0,
       "red": 1
+    },
+    {
+      "player": "Sidny Lopes Cabral",
+      "team": "Cape Verde",
+      "teamTla": "CPV",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
     },
     {
       "player": "Teboho Mokoena",
@@ -701,14 +709,6 @@
       "player": "Seko Fofana",
       "team": "Ivory Coast",
       "teamTla": "CIV",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Sidny Lopes Cabral",
-      "team": "Cape Verde",
-      "teamTla": "CPV",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
