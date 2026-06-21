@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-21T01:14:35Z",
+  "lastUpdated": "2026-06-21T01:19:31Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -493,6 +493,14 @@
       "player": "Lee Kang-In",
       "team": "South Korea",
       "teamTla": "KOR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Livano Comenencia",
+      "team": "Cura\u00e7ao",
+      "teamTla": "CUW",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
