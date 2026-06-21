@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-20T22:00:49Z",
+  "lastUpdated": "2026-06-21T04:14:35Z",
   "scorers": [
     {
       "player": "Deniz Undav",
@@ -82,21 +82,21 @@
       "penalties": 1
     },
     {
-      "player": "Yasin Ayari",
-      "nationality": "Sweden",
-      "team": "Sweden",
-      "teamTla": "SWE",
+      "player": "Daichi Kamada",
+      "nationality": "Japan",
+      "team": "Japan",
+      "teamTla": "JPN",
       "playedMatches": 2,
       "goals": 2,
       "assists": 0,
       "penalties": 0
     },
     {
-      "player": "Elijah Just",
-      "nationality": "New Zealand",
-      "team": "New Zealand",
-      "teamTla": "NZL",
-      "playedMatches": 1,
+      "player": "Yasin Ayari",
+      "nationality": "Sweden",
+      "team": "Sweden",
+      "teamTla": "SWE",
+      "playedMatches": 2,
       "goals": 2,
       "assists": 0,
       "penalties": 0
