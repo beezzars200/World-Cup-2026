@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-21T17:24:31Z",
+  "lastUpdated": "2026-06-21T19:09:26Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -661,6 +661,14 @@
       "player": "Roger Iba\u00f1ez",
       "team": "Brazil",
       "teamTla": "BRA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Romelu Lukaku",
+      "team": "Belgium",
+      "teamTla": "BEL",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
