@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-20T18:44:34Z",
+  "lastUpdated": "2026-06-21T00:39:29Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -418,6 +418,14 @@
       "red": 0
     },
     {
+      "player": "Jordy Alc\u00edvar",
+      "team": "Ecuador",
+      "teamTla": "ECU",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
       "player": "Jovo Lukic",
       "team": "Bosnia-Herzegovina",
       "teamTla": "BIH",
@@ -453,6 +461,14 @@
       "player": "Ladislav Krejc\u00ed",
       "team": "Czechia",
       "teamTla": "CZE",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Leandro Bacuna",
+      "team": "Cura\u00e7ao",
+      "teamTla": "CUW",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
