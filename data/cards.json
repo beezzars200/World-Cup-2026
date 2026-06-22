@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-22T17:49:33Z",
+  "lastUpdated": "2026-06-22T18:44:39Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -338,6 +338,14 @@
       "red": 0
     },
     {
+      "player": "Facundo Medina",
+      "team": "Argentina",
+      "teamTla": "ARG",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
       "player": "Findlay Curtis",
       "team": "Scotland",
       "teamTla": "SCO",
@@ -509,6 +517,14 @@
       "player": "Kenny McLean",
       "team": "Scotland",
       "teamTla": "SCO",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Konrad Laimer",
+      "team": "Austria",
+      "teamTla": "AUT",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
