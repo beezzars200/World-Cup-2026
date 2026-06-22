@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-21T23:59:28Z",
+  "lastUpdated": "2026-06-22T01:24:33Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -634,6 +634,14 @@
       "red": 0
     },
     {
+      "player": "Mohanad Lashin",
+      "team": "Egypt",
+      "teamTla": "EGY",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
       "player": "Nico Elvedi",
       "team": "Switzerland",
       "teamTla": "SUI",
@@ -725,6 +733,14 @@
       "player": "Salem Al-Dawsari",
       "team": "Saudi Arabia",
       "teamTla": "KSA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Sarpreet Singh",
+      "team": "New Zealand",
+      "teamTla": "NZL",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
