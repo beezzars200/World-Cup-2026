@@ -1,6 +1,16 @@
 {
-  "lastUpdated": "2026-06-22T15:54:09Z",
+  "lastUpdated": "2026-06-22T17:49:33Z",
   "scorers": [
+    {
+      "player": "Lionel Messi",
+      "nationality": "Argentina",
+      "team": "Argentina",
+      "teamTla": "ARG",
+      "playedMatches": 2,
+      "goals": 4,
+      "assists": 0,
+      "penalties": 0
+    },
     {
       "player": "Deniz Undav",
       "nationality": "Germany",
@@ -9,16 +19,6 @@
       "playedMatches": 2,
       "goals": 3,
       "assists": 2,
-      "penalties": 0
-    },
-    {
-      "player": "Lionel Messi",
-      "nationality": "Argentina",
-      "team": "Argentina",
-      "teamTla": "ARG",
-      "playedMatches": 2,
-      "goals": 3,
-      "assists": 0,
       "penalties": 0
     },
     {

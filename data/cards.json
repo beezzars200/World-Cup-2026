@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-22T01:39:28Z",
+  "lastUpdated": "2026-06-22T17:49:33Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -757,6 +757,14 @@
       "player": "Seko Fofana",
       "team": "Ivory Coast",
       "teamTla": "CIV",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Stefan Posch",
+      "team": "Austria",
+      "teamTla": "AUT",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
