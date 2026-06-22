@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-22T18:44:39Z",
+  "lastUpdated": "2026-06-22T18:59:27Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -541,6 +541,14 @@
       "player": "Leandro Bacuna",
       "team": "Cura\u00e7ao",
       "teamTla": "CUW",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Leandro Paredes",
+      "team": "Argentina",
+      "teamTla": "ARG",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
