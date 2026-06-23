@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-23T04:29:27Z",
+  "lastUpdated": "2026-06-23T17:15:03Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -717,6 +717,14 @@
       "player": "N\u00e9lson Semedo",
       "team": "Portugal",
       "teamTla": "POR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Odiljon Xamrobekov",
+      "team": "Uzbekistan",
+      "teamTla": "UZB",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
