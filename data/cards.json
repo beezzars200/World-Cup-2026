@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-23T17:15:03Z",
+  "lastUpdated": "2026-06-23T18:34:51Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -757,6 +757,14 @@
       "player": "Rani Khedira",
       "team": "Tunisia",
       "teamTla": "TUN",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Renato Veiga",
+      "team": "Portugal",
+      "teamTla": "POR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
