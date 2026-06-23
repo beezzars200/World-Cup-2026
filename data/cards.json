@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-23T20:42:05Z",
+  "lastUpdated": "2026-06-23T21:24:32Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -437,6 +437,14 @@
       "player": "Issa Diop",
       "team": "Morocco",
       "teamTla": "MAR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "I\u00f1aki Williams",
+      "team": "Ghana",
+      "teamTla": "GHA",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
