@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-23T00:19:33Z",
+  "lastUpdated": "2026-06-23T01:13:04Z",
   "scorers": [
     {
       "player": "Lionel Messi",
@@ -29,6 +29,16 @@
       "playedMatches": 2,
       "goals": 3,
       "assists": 2,
+      "penalties": 0
+    },
+    {
+      "player": "Erling Haaland",
+      "nationality": "Norway",
+      "team": "Norway",
+      "teamTla": "NOR",
+      "playedMatches": 2,
+      "goals": 3,
+      "assists": 0,
       "penalties": 0
     },
     {
@@ -90,16 +100,6 @@
       "goals": 2,
       "assists": 0,
       "penalties": 1
-    },
-    {
-      "player": "Daichi Kamada",
-      "nationality": "Japan",
-      "team": "Japan",
-      "teamTla": "JPN",
-      "playedMatches": 2,
-      "goals": 2,
-      "assists": 0,
-      "penalties": 0
     }
   ]
 }
