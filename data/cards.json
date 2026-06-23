@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-23T18:34:51Z",
+  "lastUpdated": "2026-06-23T20:42:05Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -269,6 +269,14 @@
       "player": "Danley Jean Jacques",
       "team": "Haiti",
       "teamTla": "HAI",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Declan Rice",
+      "team": "England",
+      "teamTla": "ENG",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
