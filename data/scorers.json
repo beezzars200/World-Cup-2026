@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-23T01:13:04Z",
+  "lastUpdated": "2026-06-23T01:24:33Z",
   "scorers": [
     {
       "player": "Lionel Messi",
@@ -22,6 +22,16 @@
       "penalties": 0
     },
     {
+      "player": "Erling Haaland",
+      "nationality": "Norway",
+      "team": "Norway",
+      "teamTla": "NOR",
+      "playedMatches": 2,
+      "goals": 4,
+      "assists": 0,
+      "penalties": 0
+    },
+    {
       "player": "Deniz Undav",
       "nationality": "Germany",
       "team": "Germany",
@@ -29,16 +39,6 @@
       "playedMatches": 2,
       "goals": 3,
       "assists": 2,
-      "penalties": 0
-    },
-    {
-      "player": "Erling Haaland",
-      "nationality": "Norway",
-      "team": "Norway",
-      "teamTla": "NOR",
-      "playedMatches": 2,
-      "goals": 3,
-      "assists": 0,
       "penalties": 0
     },
     {
