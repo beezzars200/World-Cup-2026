@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-24T23:45:31Z",
+  "lastUpdated": "2026-06-24T23:50:05Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -394,6 +394,14 @@
       "red": 0
     },
     {
+      "player": "Fabinho",
+      "team": "Brazil",
+      "teamTla": "BRA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
       "player": "Facundo Medina",
       "team": "Argentina",
       "teamTla": "ARG",
@@ -549,6 +557,14 @@
       "player": "Johan Mojica",
       "team": "Colombia",
       "teamTla": "COL",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Johny Placide",
+      "team": "Haiti",
+      "teamTla": "HAI",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
