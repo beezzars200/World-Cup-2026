@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-24T22:31:09Z",
+  "lastUpdated": "2026-06-24T22:50:33Z",
   "scorers": [
     {
       "player": "Lionel Messi",
@@ -9,6 +9,16 @@
       "playedMatches": 2,
       "goals": 5,
       "assists": 0,
+      "penalties": 0
+    },
+    {
+      "player": "Vinicius Junior",
+      "nationality": "Brazil",
+      "team": "Brazil",
+      "teamTla": "BRA",
+      "playedMatches": 3,
+      "goals": 4,
+      "assists": 1,
       "penalties": 0
     },
     {
@@ -32,13 +42,13 @@
       "penalties": 0
     },
     {
-      "player": "Vinicius Junior",
-      "nationality": "Brazil",
-      "team": "Brazil",
-      "teamTla": "BRA",
+      "player": "Ismael Saibari",
+      "nationality": "Morocco",
+      "team": "Morocco",
+      "teamTla": "MAR",
       "playedMatches": 3,
       "goals": 3,
-      "assists": 1,
+      "assists": 0,
       "penalties": 0
     },
     {
@@ -87,16 +97,6 @@
       "team": "United States",
       "teamTla": "USA",
       "playedMatches": 2,
-      "goals": 2,
-      "assists": 0,
-      "penalties": 0
-    },
-    {
-      "player": "Ismael Saibari",
-      "nationality": "Morocco",
-      "team": "Morocco",
-      "teamTla": "MAR",
-      "playedMatches": 3,
       "goals": 2,
       "assists": 0,
       "penalties": 0
