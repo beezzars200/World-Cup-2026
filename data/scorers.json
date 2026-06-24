@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-24T17:47:19Z",
+  "lastUpdated": "2026-06-24T20:24:33Z",
   "scorers": [
     {
       "player": "Lionel Messi",
@@ -39,6 +39,16 @@
       "playedMatches": 2,
       "goals": 3,
       "assists": 2,
+      "penalties": 0
+    },
+    {
+      "player": "Johan Manzambi",
+      "nationality": "Switzerland",
+      "team": "Switzerland",
+      "teamTla": "SUI",
+      "playedMatches": 3,
+      "goals": 3,
+      "assists": 1,
       "penalties": 0
     },
     {
@@ -90,16 +100,6 @@
       "goals": 2,
       "assists": 1,
       "penalties": 0
-    },
-    {
-      "player": "Kai Havertz",
-      "nationality": "Germany",
-      "team": "Germany",
-      "teamTla": "GER",
-      "playedMatches": 2,
-      "goals": 2,
-      "assists": 0,
-      "penalties": 1
     }
   ]
 }
