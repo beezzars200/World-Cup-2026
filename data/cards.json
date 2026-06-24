@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-24T00:22:14Z",
+  "lastUpdated": "2026-06-24T00:54:36Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -757,6 +757,14 @@
       "player": "Pedri ",
       "team": "Spain",
       "teamTla": "ESP",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Petar Sucic",
+      "team": "Croatia",
+      "teamTla": "CRO",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
