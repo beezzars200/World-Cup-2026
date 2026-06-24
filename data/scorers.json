@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-24T22:50:33Z",
+  "lastUpdated": "2026-06-24T23:26:56Z",
   "scorers": [
     {
       "player": "Lionel Messi",
@@ -82,21 +82,21 @@
       "penalties": 0
     },
     {
+      "player": "Matheus Cunha",
+      "nationality": "Brazil",
+      "team": "Brazil",
+      "teamTla": "BRA",
+      "playedMatches": 3,
+      "goals": 3,
+      "assists": 0,
+      "penalties": 0
+    },
+    {
       "player": "Cyle Larin",
       "nationality": "Canada",
       "team": "Canada",
       "teamTla": "CAN",
       "playedMatches": 3,
-      "goals": 2,
-      "assists": 0,
-      "penalties": 0
-    },
-    {
-      "player": "Folarin Balogun",
-      "nationality": "USA",
-      "team": "United States",
-      "teamTla": "USA",
-      "playedMatches": 2,
       "goals": 2,
       "assists": 0,
       "penalties": 0
