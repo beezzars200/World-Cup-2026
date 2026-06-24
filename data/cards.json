@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-24T00:54:36Z",
+  "lastUpdated": "2026-06-24T03:24:37Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -477,6 +477,14 @@
       "player": "Jean-Ricner Bellegarde",
       "team": "Haiti",
       "teamTla": "HAI",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Jhon Lucum\u00ed",
+      "team": "Colombia",
+      "teamTla": "COL",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
