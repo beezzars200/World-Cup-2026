@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-24T21:09:29Z",
+  "lastUpdated": "2026-06-24T22:11:34Z",
   "scorers": [
     {
       "player": "Lionel Messi",
@@ -29,6 +29,16 @@
       "playedMatches": 2,
       "goals": 4,
       "assists": 0,
+      "penalties": 0
+    },
+    {
+      "player": "Vinicius Junior",
+      "nationality": "Brazil",
+      "team": "Brazil",
+      "teamTla": "BRA",
+      "playedMatches": 3,
+      "goals": 3,
+      "assists": 1,
       "penalties": 0
     },
     {
@@ -89,16 +99,6 @@
       "playedMatches": 3,
       "goals": 2,
       "assists": 0,
-      "penalties": 0
-    },
-    {
-      "player": "Vinicius Junior",
-      "nationality": "Brazil",
-      "team": "Brazil",
-      "teamTla": "BRA",
-      "playedMatches": 3,
-      "goals": 2,
-      "assists": 1,
       "penalties": 0
     }
   ]
