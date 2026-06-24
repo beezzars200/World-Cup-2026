@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-24T03:58:58Z",
+  "lastUpdated": "2026-06-24T19:35:10Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -266,6 +266,14 @@
       "red": 0
     },
     {
+      "player": "Cyle Larin",
+      "team": "Canada",
+      "teamTla": "CAN",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
       "player": "C\u00e9sar Blackman",
       "team": "Panama",
       "teamTla": "PAN",
@@ -413,6 +421,14 @@
       "player": "Gervane Kastaneer",
       "team": "Cura\u00e7ao",
       "teamTla": "CUW",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Granit Xhaka",
+      "team": "Switzerland",
+      "teamTla": "SUI",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
