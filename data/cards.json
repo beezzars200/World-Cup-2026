@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-24T03:24:37Z",
+  "lastUpdated": "2026-06-24T03:58:58Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -242,6 +242,14 @@
       "red": 0
     },
     {
+      "player": "Charles Pickel",
+      "team": "Congo DR",
+      "teamTla": "COD",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
       "player": "Chris Richards",
       "team": "United States",
       "teamTla": "USA",
@@ -477,6 +485,14 @@
       "player": "Jean-Ricner Bellegarde",
       "team": "Haiti",
       "teamTla": "HAI",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Jefferson Lerma",
+      "team": "Colombia",
+      "teamTla": "COL",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
