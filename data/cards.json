@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-24T23:50:05Z",
+  "lastUpdated": "2026-06-24T23:59:29Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -586,6 +586,14 @@
       "red": 0
     },
     {
+      "player": "Josu\u00e9 Casimir",
+      "team": "Haiti",
+      "teamTla": "HAI",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
       "player": "Jovo Lukic",
       "team": "Bosnia-Herzegovina",
       "teamTla": "BIH",
@@ -901,6 +909,14 @@
       "player": "Romelu Lukaku",
       "team": "Belgium",
       "teamTla": "BEL",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Ryan Christie",
+      "team": "Scotland",
+      "teamTla": "SCO",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
