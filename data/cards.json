@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-25T21:49:31Z",
+  "lastUpdated": "2026-06-25T23:34:41Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -541,6 +541,14 @@
       "player": "Husam Abu Dahab",
       "team": "Jordan",
       "teamTla": "JOR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Isak Hien",
+      "team": "Sweden",
+      "teamTla": "SWE",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
