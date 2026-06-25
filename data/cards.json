@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-25T02:44:32Z",
+  "lastUpdated": "2026-06-25T20:39:24Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -829,6 +829,14 @@
       "player": "Nico Elvedi",
       "team": "Switzerland",
       "teamTla": "SUI",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Nicolas P\u00e9p\u00e9",
+      "team": "Ivory Coast",
+      "teamTla": "CIV",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
