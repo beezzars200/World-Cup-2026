@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-25T02:34:41Z",
+  "lastUpdated": "2026-06-25T02:44:32Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -253,6 +253,14 @@
       "player": "Charles Pickel",
       "team": "Congo DR",
       "teamTla": "COD",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Cho Gue-Sung",
+      "team": "South Korea",
+      "teamTla": "KOR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
