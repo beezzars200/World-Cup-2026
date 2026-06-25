@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-25T21:38:54Z",
+  "lastUpdated": "2026-06-25T21:49:31Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -69,6 +69,14 @@
       "player": "Ahmed Fathy",
       "team": "Qatar",
       "teamTla": "QAT",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Gervane Kastaneer",
+      "team": "Cura\u00e7ao",
+      "teamTla": "CUW",
       "yellow": 2,
       "yellowRed": 0,
       "red": 0
@@ -498,9 +506,9 @@
       "red": 0
     },
     {
-      "player": "Gervane Kastaneer",
-      "team": "Cura\u00e7ao",
-      "teamTla": "CUW",
+      "player": "Gonzalo Plata",
+      "team": "Ecuador",
+      "teamTla": "ECU",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
