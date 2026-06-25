@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-25T21:14:32Z",
+  "lastUpdated": "2026-06-25T21:38:54Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -69,6 +69,14 @@
       "player": "Ahmed Fathy",
       "team": "Qatar",
       "teamTla": "QAT",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Juninho Bacuna",
+      "team": "Cura\u00e7ao",
+      "teamTla": "CUW",
       "yellow": 2,
       "yellowRed": 0,
       "red": 0
@@ -645,14 +653,6 @@
       "player": "Juan Jose C\u00e1ceres",
       "team": "Paraguay",
       "teamTla": "PAR",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Juninho Bacuna",
-      "team": "Cura\u00e7ao",
-      "teamTla": "CUW",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
