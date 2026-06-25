@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-25T18:59:25Z",
+  "lastUpdated": "2026-06-25T23:14:31Z",
   "scorers": [
     {
       "player": "Lionel Messi",
@@ -92,12 +92,12 @@
       "penalties": 0
     },
     {
-      "player": "Juli\u00e1n Qui\u00f1ones",
-      "nationality": "Colombia",
-      "team": "Mexico",
-      "teamTla": "MEX",
+      "player": "Brian Brobbey",
+      "nationality": "Netherlands",
+      "team": "Netherlands",
+      "teamTla": "NED",
       "playedMatches": 3,
-      "goals": 2,
+      "goals": 3,
       "assists": 0,
       "penalties": 0
     }
