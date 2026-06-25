@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-24T23:59:29Z",
+  "lastUpdated": "2026-06-25T02:25:24Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -357,6 +357,14 @@
       "player": "Edin Dzeko",
       "team": "Bosnia-Herzegovina",
       "teamTla": "BIH",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Edson \u00c1lvarez",
+      "team": "Mexico",
+      "teamTla": "MEX",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
