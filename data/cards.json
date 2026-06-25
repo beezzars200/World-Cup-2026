@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-25T02:25:24Z",
+  "lastUpdated": "2026-06-25T02:34:41Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -173,6 +173,14 @@
       "player": "Antonee Robinson",
       "team": "United States",
       "teamTla": "USA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Aubrey Modiba",
+      "team": "South Africa",
+      "teamTla": "RSA",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
