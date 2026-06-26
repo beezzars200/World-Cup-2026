@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-26T02:22:36Z",
+  "lastUpdated": "2026-06-26T03:12:03Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -565,6 +565,14 @@
       "player": "I\u00f1aki Williams",
       "team": "Ghana",
       "teamTla": "GHA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Jackson Irvine",
+      "team": "Australia",
+      "teamTla": "AUS",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
