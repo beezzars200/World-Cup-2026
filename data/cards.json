@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-26T20:49:33Z",
+  "lastUpdated": "2026-06-26T20:58:26Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -861,6 +861,14 @@
       "player": "Memphis Depay",
       "team": "Netherlands",
       "teamTla": "NED",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Merchas Doski",
+      "team": "Iraq",
+      "teamTla": "IRQ",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
