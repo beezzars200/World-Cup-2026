@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-26T19:19:42Z",
+  "lastUpdated": "2026-06-26T19:22:06Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -125,6 +125,14 @@
       "player": "Aaron Hickey",
       "team": "Scotland",
       "teamTla": "SCO",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Abdoulaye Seck",
+      "team": "Senegal",
+      "teamTla": "SEN",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
