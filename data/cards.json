@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-26T00:49:35Z",
+  "lastUpdated": "2026-06-26T02:22:36Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -1013,6 +1013,14 @@
       "player": "Sarpreet Singh",
       "team": "New Zealand",
       "teamTla": "NZL",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Sebastian Berhalter",
+      "team": "United States",
+      "teamTla": "USA",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
