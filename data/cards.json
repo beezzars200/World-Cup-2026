@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-26T03:44:33Z",
+  "lastUpdated": "2026-06-26T19:15:19Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -917,6 +917,14 @@
       "player": "Paik Seung-Ho",
       "team": "South Korea",
       "teamTla": "KOR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Patrick Berg",
+      "team": "Norway",
+      "teamTla": "NOR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
