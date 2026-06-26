@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-26T03:12:03Z",
+  "lastUpdated": "2026-06-26T03:44:33Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -69,6 +69,14 @@
       "player": "Ahmed Fathy",
       "team": "Qatar",
       "teamTla": "QAT",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Diego G\u00f3mez",
+      "team": "Paraguay",
+      "teamTla": "PAR",
       "yellow": 2,
       "yellowRed": 0,
       "red": 0
@@ -365,14 +373,6 @@
       "player": "Derek Cornelius",
       "team": "Canada",
       "teamTla": "CAN",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Diego G\u00f3mez",
-      "team": "Paraguay",
-      "teamTla": "PAR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
