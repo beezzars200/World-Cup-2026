@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-26T19:25:28Z",
+  "lastUpdated": "2026-06-26T19:39:24Z",
   "scorers": [
     {
       "player": "Lionel Messi",
@@ -39,6 +39,16 @@
       "playedMatches": 3,
       "goals": 4,
       "assists": 0,
+      "penalties": 0
+    },
+    {
+      "player": "Ousmane Demb\u00e9l\u00e9",
+      "nationality": "France",
+      "team": "France",
+      "teamTla": "FRA",
+      "playedMatches": 3,
+      "goals": 4,
+      "assists": 1,
       "penalties": 0
     },
     {
@@ -86,16 +96,6 @@
       "nationality": "Brazil",
       "team": "Brazil",
       "teamTla": "BRA",
-      "playedMatches": 3,
-      "goals": 3,
-      "assists": 0,
-      "penalties": 0
-    },
-    {
-      "player": "Brian Brobbey",
-      "nationality": "Netherlands",
-      "team": "Netherlands",
-      "teamTla": "NED",
       "playedMatches": 3,
       "goals": 3,
       "assists": 0,
