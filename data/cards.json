@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-26T19:15:19Z",
+  "lastUpdated": "2026-06-26T19:19:42Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -37,6 +37,14 @@
       "player": "Nathan Ngoy",
       "team": "Belgium",
       "teamTla": "BEL",
+      "yellow": 0,
+      "yellowRed": 0,
+      "red": 1
+    },
+    {
+      "player": "Rebin Sulaka",
+      "team": "Iraq",
+      "teamTla": "IRQ",
       "yellow": 0,
       "yellowRed": 0,
       "red": 1
