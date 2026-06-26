@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-25T23:34:41Z",
+  "lastUpdated": "2026-06-26T00:39:28Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -1021,6 +1021,14 @@
       "player": "Seko Fofana",
       "team": "Ivory Coast",
       "teamTla": "CIV",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Shogo Taniguchi",
+      "team": "Japan",
+      "teamTla": "JPN",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
