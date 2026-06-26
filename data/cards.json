@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-26T19:22:06Z",
+  "lastUpdated": "2026-06-26T20:39:24Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -237,6 +237,14 @@
       "player": "Aubrey Modiba",
       "team": "South Africa",
       "teamTla": "RSA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Aur\u00e9lien Tchouam\u00e9ni",
+      "team": "France",
+      "teamTla": "FRA",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
