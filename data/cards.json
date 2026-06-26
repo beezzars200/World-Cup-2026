@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-26T20:39:24Z",
+  "lastUpdated": "2026-06-26T20:49:33Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -77,6 +77,14 @@
       "player": "Ahmed Fathy",
       "team": "Qatar",
       "teamTla": "QAT",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Amir Al-Ammari",
+      "team": "Iraq",
+      "teamTla": "IRQ",
       "yellow": 2,
       "yellowRed": 0,
       "red": 0
@@ -205,14 +213,6 @@
       "player": "Amar Dedic",
       "team": "Bosnia-Herzegovina",
       "teamTla": "BIH",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Amir Al-Ammari",
-      "team": "Iraq",
-      "teamTla": "IRQ",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
@@ -941,6 +941,14 @@
       "player": "Paik Seung-Ho",
       "team": "South Korea",
       "teamTla": "KOR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Pape Gueye",
+      "team": "Senegal",
+      "teamTla": "SEN",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
