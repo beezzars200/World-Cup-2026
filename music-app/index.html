@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vibe — AI Playlist Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="app">
+  <header class="site-header">
+    <div class="logo">🎵 Vibe</div>
+    <p class="tagline">Describe your mood. Get your playlist.</p>
+  </header>
+
+  <!-- API key setup -->
+  <div id="keySetup" class="key-setup">
+    <div class="key-card">
+      <h2>Set up your API key</h2>
+      <p>Enter your Anthropic API key to get started. It's stored only in your browser.</p>
+      <input type="password" id="apiKeyInput" placeholder="sk-ant-…" autocomplete="off" />
+      <button id="saveKeyBtn">Save &amp; Continue</button>
+      <p class="key-note">Get a key at <a href="https://console.anthropic.com" target="_blank" rel="noopener">console.anthropic.com</a></p>
+    </div>
+  </div>
+
+  <!-- Main app -->
+  <div id="mainApp" class="main-app hidden">
+
+    <button class="change-key-btn" id="changeKeyBtn">Change API key</button>
+
+    <div class="search-section">
+      <div class="vibe-input-wrap">
+        <textarea id="vibeInput" placeholder="Describe the vibe… late night city drive, morning coffee ritual, pre-game hype…" rows="2"></textarea>
+        <button id="generateBtn" class="generate-btn">
+          <span class="btn-icon">✨</span>
+          <span class="btn-text">Generate Playlist</span>
+        </button>
+      </div>
+      <div class="suggestions">
+        <span class="suggestions-label">Try:</span>
+        <button class="suggestion-chip" data-vibe="Late night city drive, rain on the windshield, neon lights">🌆 Night Drive</button>
+        <button class="suggestion-chip" data-vibe="Sunday morning coffee, slow and peaceful, acoustic vibes">☕ Morning Coffee</button>
+        <button class="suggestion-chip" data-vibe="Pre-game hype, high energy, pump up the crowd">⚡ Pre-Game</button>
+        <button class="suggestion-chip" data-vibe="Deep focus coding session, no lyrics, ambient electronic">💻 Deep Focus</button>
+        <button class="suggestion-chip" data-vibe="Summer beach party, tropical, fun and carefree">🏖️ Beach Vibes</button>
+      </div>
+    </div>
+
+    <div id="playlistSection" class="playlist-section hidden">
+      <div id="playlistHeader" class="playlist-header"></div>
+      <div id="tracksGrid" class="tracks-grid"></div>
+      <div id="loadingMore" class="loading-more">
+        <div class="pulse-dot"></div>
+        <div class="pulse-dot"></div>
+        <div class="pulse-dot"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
