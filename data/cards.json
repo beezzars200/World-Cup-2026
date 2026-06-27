@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-27T00:14:35Z",
+  "lastUpdated": "2026-06-27T01:14:36Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -1181,6 +1181,14 @@
       "player": "Zaid Tahseen",
       "team": "Iraq",
       "teamTla": "IRQ",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "\u00c1lex Baena",
+      "team": "Spain",
+      "teamTla": "ESP",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
