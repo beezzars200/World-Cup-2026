@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-27T03:24:33Z",
+  "lastUpdated": "2026-06-27T03:44:34Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -205,6 +205,14 @@
       "player": "Alex Arce",
       "team": "Paraguay",
       "teamTla": "PAR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Ali Nemati",
+      "team": "Iran",
+      "teamTla": "IRN",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
@@ -1229,6 +1237,14 @@
       "player": "Yasin Ayari",
       "team": "Sweden",
       "teamTla": "SWE",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Yasser Ibrahim",
+      "team": "Egypt",
+      "teamTla": "EGY",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
