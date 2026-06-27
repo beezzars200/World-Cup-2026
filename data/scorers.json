@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-26T19:39:24Z",
+  "lastUpdated": "2026-06-27T04:50:30Z",
   "scorers": [
     {
       "player": "Lionel Messi",
@@ -72,6 +72,16 @@
       "penalties": 0
     },
     {
+      "player": "Elijah Just",
+      "nationality": "New Zealand",
+      "team": "New Zealand",
+      "teamTla": "NZL",
+      "playedMatches": 3,
+      "goals": 3,
+      "assists": 0,
+      "penalties": 0
+    },
+    {
       "player": "Johan Manzambi",
       "nationality": "Switzerland",
       "team": "Switzerland",
@@ -86,16 +96,6 @@
       "nationality": "Canada",
       "team": "Canada",
       "teamTla": "CAN",
-      "playedMatches": 3,
-      "goals": 3,
-      "assists": 0,
-      "penalties": 0
-    },
-    {
-      "player": "Matheus Cunha",
-      "nationality": "Brazil",
-      "team": "Brazil",
-      "teamTla": "BRA",
       "playedMatches": 3,
       "goals": 3,
       "assists": 0,
