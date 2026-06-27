@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-27T04:57:25Z",
+  "lastUpdated": "2026-06-27T05:00:50Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -1189,6 +1189,14 @@
       "player": "Shogo Taniguchi",
       "team": "Japan",
       "teamTla": "JPN",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Shoja Khalilzadeh",
+      "team": "Iran",
+      "teamTla": "IRN",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
