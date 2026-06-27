@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-27T01:24:34Z",
+  "lastUpdated": "2026-06-27T01:34:43Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -909,6 +909,14 @@
       "player": "Mohanad Lashin",
       "team": "Egypt",
       "teamTla": "EGY",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Nasser Al-Dawsari",
+      "team": "Saudi Arabia",
+      "teamTla": "KSA",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
