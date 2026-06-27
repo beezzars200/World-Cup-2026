@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-27T04:44:36Z",
+  "lastUpdated": "2026-06-27T04:57:25Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -117,6 +117,14 @@
       "player": "Juninho Bacuna",
       "team": "Cura\u00e7ao",
       "teamTla": "CUW",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Mohanad Lashin",
+      "team": "Egypt",
+      "teamTla": "EGY",
       "yellow": 2,
       "yellowRed": 0,
       "red": 0
@@ -965,14 +973,6 @@
       "player": "Mohamed Kanno",
       "team": "Saudi Arabia",
       "teamTla": "KSA",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Mohanad Lashin",
-      "team": "Egypt",
-      "teamTla": "EGY",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
