@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-27T23:00:48Z",
+  "lastUpdated": "2026-06-27T23:32:07Z",
   "matches": {
     "GA-MD1a": {
       "score1": 2,
@@ -237,9 +237,9 @@
       "status": "finished"
     },
     "GK-MD3b": {
-      "score1": null,
-      "score2": null,
-      "status": "upcoming"
+      "score1": 0,
+      "score2": 0,
+      "status": "live"
     },
     "GJ-MD3b": {
       "score1": null,
@@ -512,9 +512,9 @@
       "status": "finished"
     },
     "GK-MD3a": {
-      "score1": null,
-      "score2": null,
-      "status": "upcoming"
+      "score1": 0,
+      "score2": 0,
+      "status": "live"
     },
     "GJ-MD3a": {
       "score1": null,
