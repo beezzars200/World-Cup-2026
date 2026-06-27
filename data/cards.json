@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-27T04:09:28Z",
+  "lastUpdated": "2026-06-27T04:19:29Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -461,6 +461,14 @@
       "player": "Ehsan Hajsafi",
       "team": "Iran",
       "teamTla": "IRN",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Elijah Just",
+      "team": "New Zealand",
+      "teamTla": "NZL",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
