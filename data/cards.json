@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-27T01:19:30Z",
+  "lastUpdated": "2026-06-27T01:24:34Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -549,6 +549,14 @@
       "player": "Guela Dou\u00e9",
       "team": "Ivory Coast",
       "teamTla": "CIV",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Guillermo Varela",
+      "team": "Uruguay",
+      "teamTla": "URU",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
