@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-27T04:50:30Z",
+  "lastUpdated": "2026-06-27T22:27:24Z",
   "scorers": [
     {
       "player": "Lionel Messi",
@@ -82,6 +82,16 @@
       "penalties": 0
     },
     {
+      "player": "Harry Kane",
+      "nationality": "England",
+      "team": "England",
+      "teamTla": "ENG",
+      "playedMatches": 3,
+      "goals": 3,
+      "assists": 0,
+      "penalties": 1
+    },
+    {
       "player": "Johan Manzambi",
       "nationality": "Switzerland",
       "team": "Switzerland",
@@ -89,16 +99,6 @@
       "playedMatches": 3,
       "goals": 3,
       "assists": 1,
-      "penalties": 0
-    },
-    {
-      "player": "Jonathan David",
-      "nationality": "Canada",
-      "team": "Canada",
-      "teamTla": "CAN",
-      "playedMatches": 3,
-      "goals": 3,
-      "assists": 0,
       "penalties": 0
     }
   ]
