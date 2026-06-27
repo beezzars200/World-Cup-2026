@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-27T01:14:36Z",
+  "lastUpdated": "2026-06-27T01:19:30Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -701,6 +701,14 @@
       "player": "Juan Jose C\u00e1ceres",
       "team": "Paraguay",
       "teamTla": "PAR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Juan Manuel Sanabria",
+      "team": "Uruguay",
+      "teamTla": "URU",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
