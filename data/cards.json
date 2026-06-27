@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-27T23:00:50Z",
+  "lastUpdated": "2026-06-27T23:59:26Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -1061,6 +1061,14 @@
       "player": "Nkosinathi Sibisi",
       "team": "South Africa",
       "teamTla": "RSA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Noah Sadiki",
+      "team": "Congo DR",
+      "teamTla": "COD",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
