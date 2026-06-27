@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-27T03:44:34Z",
+  "lastUpdated": "2026-06-27T04:09:28Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -885,6 +885,14 @@
       "player": "Marcel Sabitzer",
       "team": "Austria",
       "teamTla": "AUT",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Marko Stamenic",
+      "team": "New Zealand",
+      "teamTla": "NZL",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
