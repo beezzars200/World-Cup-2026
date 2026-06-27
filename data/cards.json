@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-27T05:00:50Z",
+  "lastUpdated": "2026-06-27T22:14:32Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -749,6 +749,14 @@
       "player": "Josu\u00e9 Casimir",
       "team": "Haiti",
       "teamTla": "HAI",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Jos\u00e9 Fajardo",
+      "team": "Panama",
+      "teamTla": "PAN",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
