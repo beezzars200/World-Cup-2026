@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-27T22:14:32Z",
+  "lastUpdated": "2026-06-27T22:19:31Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -677,6 +677,14 @@
       "player": "Jacob Italiano",
       "team": "Australia",
       "teamTla": "AUS",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Jarell Quansah",
+      "team": "England",
+      "teamTla": "ENG",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
