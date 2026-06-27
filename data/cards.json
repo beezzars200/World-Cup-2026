@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-27T22:44:03Z",
+  "lastUpdated": "2026-06-27T23:00:50Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -829,6 +829,14 @@
       "player": "Kenny McLean",
       "team": "Scotland",
       "teamTla": "SCO",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Kojo Peprah Oppong",
+      "team": "Ghana",
+      "teamTla": "GHA",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
