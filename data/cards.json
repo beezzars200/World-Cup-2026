@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-28T00:24:32Z",
+  "lastUpdated": "2026-06-28T00:44:34Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -1237,6 +1237,14 @@
       "player": "Seko Fofana",
       "team": "Ivory Coast",
       "teamTla": "CIV",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Sherzod Nasrullaev",
+      "team": "Uzbekistan",
+      "teamTla": "UZB",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
