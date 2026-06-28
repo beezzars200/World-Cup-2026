@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-28T20:19:28Z",
+  "lastUpdated": "2026-06-28T20:28:24Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -1093,6 +1093,14 @@
       "player": "Nicol\u00e1s de la Cruz",
       "team": "Uruguay",
       "teamTla": "URU",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Niko Sigur",
+      "team": "Canada",
+      "teamTla": "CAN",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
