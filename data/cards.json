@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-28T03:29:24Z",
+  "lastUpdated": "2026-06-28T04:00:53Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -1029,6 +1029,14 @@
       "player": "Mohamed Kanno",
       "team": "Saudi Arabia",
       "teamTla": "KSA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Mohammed Abu Zraiq",
+      "team": "Jordan",
+      "teamTla": "JOR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
