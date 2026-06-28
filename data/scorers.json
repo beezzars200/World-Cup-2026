@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-28T01:19:30Z",
+  "lastUpdated": "2026-06-28T01:25:27Z",
   "scorers": [
     {
       "player": "Lionel Messi",
@@ -82,6 +82,16 @@
       "penalties": 0
     },
     {
+      "player": "Yoane Wissa",
+      "nationality": "Congo DR",
+      "team": "Congo DR",
+      "teamTla": "COD",
+      "playedMatches": 2,
+      "goals": 3,
+      "assists": 0,
+      "penalties": 1
+    },
+    {
       "player": "Harry Kane",
       "nationality": "England",
       "team": "England",
@@ -90,16 +100,6 @@
       "goals": 3,
       "assists": 0,
       "penalties": 1
-    },
-    {
-      "player": "Johan Manzambi",
-      "nationality": "Switzerland",
-      "team": "Switzerland",
-      "teamTla": "SUI",
-      "playedMatches": 3,
-      "goals": 3,
-      "assists": 1,
-      "penalties": 0
     }
   ]
 }
