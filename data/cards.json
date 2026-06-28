@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-27T23:59:26Z",
+  "lastUpdated": "2026-06-28T00:19:30Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -80,6 +80,14 @@
       "yellow": 0,
       "yellowRed": 0,
       "red": 1
+    },
+    {
+      "player": "Abdukodir Khusanov",
+      "team": "Uzbekistan",
+      "teamTla": "UZB",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
     },
     {
       "player": "Ahmed Fathy",
@@ -165,14 +173,6 @@
       "player": "Abdoulaye Seck",
       "team": "Senegal",
       "teamTla": "SEN",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Abdukodir Khusanov",
-      "team": "Uzbekistan",
-      "teamTla": "UZB",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
