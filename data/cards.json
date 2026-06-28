@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-28T00:19:30Z",
+  "lastUpdated": "2026-06-28T00:24:32Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -1021,6 +1021,14 @@
       "player": "Nasser Al-Dawsari",
       "team": "Saudi Arabia",
       "teamTla": "KSA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Nathana\u00ebl Mbuku",
+      "team": "Congo DR",
+      "teamTla": "COD",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
