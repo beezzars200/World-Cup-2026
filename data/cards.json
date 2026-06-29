@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-29T22:59:21Z",
+  "lastUpdated": "2026-06-29T23:09:23Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -141,6 +141,14 @@
       "player": "Juninho Bacuna",
       "team": "Cura\u00e7ao",
       "teamTla": "CUW",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Mat\u00edas Galarza",
+      "team": "Paraguay",
+      "teamTla": "PAR",
       "yellow": 2,
       "yellowRed": 0,
       "red": 0
@@ -722,6 +730,14 @@
       "red": 0
     },
     {
+      "player": "Jamal Musiala",
+      "team": "Germany",
+      "teamTla": "GER",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
       "player": "Jarell Quansah",
       "team": "England",
       "teamTla": "ENG",
@@ -1021,14 +1037,6 @@
       "player": "Math\u00edas Olivera",
       "team": "Uruguay",
       "teamTla": "URU",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Mat\u00edas Galarza",
-      "team": "Paraguay",
-      "teamTla": "PAR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
