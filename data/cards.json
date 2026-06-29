@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-29T18:14:28Z",
+  "lastUpdated": "2026-06-29T18:49:26Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -821,6 +821,14 @@
       "player": "Juan Manuel Sanabria",
       "team": "Uruguay",
       "teamTla": "URU",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Junnosuke Suzuki",
+      "team": "Japan",
+      "teamTla": "JPN",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
