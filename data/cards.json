@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-29T18:49:26Z",
+  "lastUpdated": "2026-06-29T21:59:23Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -269,6 +269,14 @@
       "player": "Andr\u00e9s Andrade",
       "team": "Panama",
       "teamTla": "PAN",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Andr\u00e9s Cubas",
+      "team": "Paraguay",
+      "teamTla": "PAR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
