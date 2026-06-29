@@ -205,6 +205,15 @@ WC.KNOCKOUT = {
   final:      { id: 'M104', no: 104, round: 'final', date: '2026-07-19', utc: '19:00', venue: 'MetLife Stadium',        city: 'East Rutherford', team1Label: 'W-101',       team2Label: 'W-102',       team1: null, team2: null, score1: null, score2: null, winner: null, feedsMatch: null, est: false },
 };
 
+// Allocation of the eight best third-placed teams to their Round-of-32 matches.
+// Key   = the eight groups (sorted) whose third-placed team qualified.
+// Value = { matchId: groupLetter } — which group's third plays in each "best 3rd" slot,
+//         per FIFA's published Annex C combination table.
+WC.THIRD_PLACE_ALLOCATION = {
+  // Group stage outcome: thirds from B, D, E, F, I, J, K, L advanced.
+  'BDEFIJKL': { M74: 'D', M77: 'F', M79: 'E', M80: 'K', M81: 'B', M82: 'I', M85: 'J', M87: 'L' }
+};
+
 WC.TIMEZONES = [
   // Europe
   { region: 'Europe', name: 'Ireland',        tz: 'Europe/Dublin',                    flag: '🇮🇪', default: true },

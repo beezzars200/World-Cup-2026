@@ -157,6 +157,7 @@
     Object.keys(WC.GROUPS).forEach(function (g) {
       state.standings[g] = computeStandings(g);
     });
+    resolveKnockoutTeams();
   }
 
   function computeStandings(groupLetter) {
@@ -186,6 +187,73 @@
       return a.team.name.localeCompare(b.team.name);
     });
     return { rows: rows, complete: playedCount === 6, playedCount: playedCount };
+  }
+
+  // ── KNOCKOUT TEAM RESOLUTION ──────────────────────────────────────────────
+  // Fills in the actual teams behind the placeholder labels: the eight best
+  // third-placed teams ("best 3rd"), and the winners/losers that carry forward
+  // through the bracket (W-NN / L-NN). Runs each cycle after standings.
+  function resolveKnockoutTeams() {
+    var ko = getKnockoutArray();
+    var byId = {};
+    ko.forEach(function (m) { byId[m.id] = m; });
+
+    // Map each "best 3rd" R32 match to the group whose third-placed team plays
+    // there, using the official allocation table for the qualifying combination.
+    var combo = qualifyingThirdsCombo();
+    var alloc = combo ? WC.THIRD_PLACE_ALLOCATION[combo] : null;
+
+    function thirdTeamForGroup(g) {
+      var st = state.standings[g];
+      return (st && st.complete && st.rows.length >= 3) ? st.rows[2].team : null;
+    }
+
+    function koWinnerLoser(m, wantWinner) {
+      if (m.score1 === null || m.score2 === null || m.score1 === m.score2) return null;
+      var t1 = koTeamFor(m, 'team1'), t2 = koTeamFor(m, 'team2');
+      var homeWon = m.score1 > m.score2;
+      if (wantWinner) return homeWon ? t1 : t2;
+      return homeWon ? t2 : t1;
+    }
+
+    function koTeamFor(m, slot) {
+      if (m[slot] && m[slot].code) return m[slot];
+      var label = m[slot + 'Label'];
+      if (label === 'best 3rd') return alloc ? thirdTeamForGroup(alloc[m.id]) : null;
+      var posTeam = resolveKoTeam(null, label);
+      if (posTeam) return posTeam;
+      var win = label && label.match(/^W-(\d+)$/);
+      if (win && byId['M' + win[1]]) return koWinnerLoser(byId['M' + win[1]], true);
+      var los = label && label.match(/^L-(\d+)$/);
+      if (los && byId['M' + los[1]]) return koWinnerLoser(byId['M' + los[1]], false);
+      return null;
+    }
+
+    // Resolve in match-number order so each round's sources are settled first.
+    ko.slice().sort(function (a, b) { return a.no - b.no; }).forEach(function (m) {
+      m.team1 = koTeamFor(m, 'team1');
+      m.team2 = koTeamFor(m, 'team2');
+    });
+  }
+
+  // Sorted string of the eight group letters whose third-placed team qualifies,
+  // or null until all twelve groups have finished.
+  function qualifyingThirdsCombo() {
+    var thirds = [];
+    var groups = Object.keys(WC.GROUPS);
+    for (var i = 0; i < groups.length; i++) {
+      var st = state.standings[groups[i]];
+      if (!st || !st.complete || st.rows.length < 3) return null;
+      var r = st.rows[2];
+      thirds.push({ g: groups[i], pts: r.pts, gd: r.gd, gf: r.gf, name: r.team.name });
+    }
+    thirds.sort(function (a, b) {
+      if (b.pts !== a.pts) return b.pts - a.pts;
+      if (b.gd  !== a.gd)  return b.gd  - a.gd;
+      if (b.gf  !== a.gf)  return b.gf  - a.gf;
+      return a.name.localeCompare(b.name);
+    });
+    return thirds.slice(0, 8).map(function (x) { return x.g; }).sort().join('');
   }
 
   // ── TIME FORMATTING ───────────────────────────────────────────────────────
