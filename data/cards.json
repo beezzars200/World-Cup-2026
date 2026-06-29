@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-29T17:49:28Z",
+  "lastUpdated": "2026-06-29T18:14:28Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -107,6 +107,14 @@
     },
     {
       "player": "Casemiro",
+      "team": "Brazil",
+      "teamTla": "BRA",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Danilo",
       "team": "Brazil",
       "teamTla": "BRA",
       "yellow": 2,
@@ -405,14 +413,6 @@
       "player": "Daichi Kamada",
       "team": "Japan",
       "teamTla": "JPN",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Danilo",
-      "team": "Brazil",
-      "teamTla": "BRA",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
