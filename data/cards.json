@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-29T12:19:28Z",
+  "lastUpdated": "2026-06-29T17:14:28Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -829,6 +829,14 @@
       "player": "J\u00fanior Alonso",
       "team": "Paraguay",
       "teamTla": "PAR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Kaishu Sano",
+      "team": "Japan",
+      "teamTla": "JPN",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
