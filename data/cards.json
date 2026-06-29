@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-29T17:20:54Z",
+  "lastUpdated": "2026-06-29T17:49:28Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -397,6 +397,14 @@
       "player": "C\u00e9sar Blackman",
       "team": "Panama",
       "teamTla": "PAN",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Daichi Kamada",
+      "team": "Japan",
+      "teamTla": "JPN",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
