@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-30T03:54:54Z",
+  "lastUpdated": "2026-06-30T08:15:33Z",
   "matches": {
     "GA-MD1a": {
       "score1": 2,
@@ -254,17 +254,24 @@
     "M76": {
       "score1": 2,
       "score2": 1,
-      "status": "finished"
+      "status": "finished",
+      "winner": "BRA"
     },
     "M74": {
       "score1": 1,
       "score2": 1,
-      "status": "finished"
+      "status": "finished",
+      "winner": "PAR",
+      "pens1": 3,
+      "pens2": 4
     },
     "M75": {
       "score1": 1,
       "score2": 1,
-      "status": "finished"
+      "status": "finished",
+      "winner": "MAR",
+      "pens1": 2,
+      "pens2": 3
     },
     "M78": {
       "score1": null,
