@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-30T16:11:16Z",
+  "lastUpdated": "2026-06-30T18:54:29Z",
   "scorers": [
     {
       "player": "Lionel Messi",
@@ -8,6 +8,16 @@
       "teamTla": "ARG",
       "playedMatches": 3,
       "goals": 6,
+      "assists": 0,
+      "penalties": 0
+    },
+    {
+      "player": "Erling Haaland",
+      "nationality": "Norway",
+      "team": "Norway",
+      "teamTla": "NOR",
+      "playedMatches": 4,
+      "goals": 5,
       "assists": 0,
       "penalties": 0
     },
@@ -29,16 +39,6 @@
       "playedMatches": 3,
       "goals": 4,
       "assists": 2,
-      "penalties": 0
-    },
-    {
-      "player": "Erling Haaland",
-      "nationality": "Norway",
-      "team": "Norway",
-      "teamTla": "NOR",
-      "playedMatches": 4,
-      "goals": 4,
-      "assists": 0,
       "penalties": 0
     },
     {
