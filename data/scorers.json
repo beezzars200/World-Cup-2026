@@ -1,6 +1,16 @@
 {
-  "lastUpdated": "2026-06-30T22:59:21Z",
+  "lastUpdated": "2026-06-30T23:04:41Z",
   "scorers": [
+    {
+      "player": "Kylian Mbapp\u00e9",
+      "nationality": "France",
+      "team": "France",
+      "teamTla": "FRA",
+      "playedMatches": 4,
+      "goals": 6,
+      "assists": 2,
+      "penalties": 0
+    },
     {
       "player": "Lionel Messi",
       "nationality": "Argentina",
@@ -8,6 +18,16 @@
       "teamTla": "ARG",
       "playedMatches": 3,
       "goals": 6,
+      "assists": 0,
+      "penalties": 0
+    },
+    {
+      "player": "Erling Haaland",
+      "nationality": "Norway",
+      "team": "Norway",
+      "teamTla": "NOR",
+      "playedMatches": 4,
+      "goals": 5,
       "assists": 0,
       "penalties": 0
     },
@@ -22,33 +42,13 @@
       "penalties": 0
     },
     {
-      "player": "Kylian Mbapp\u00e9",
-      "nationality": "France",
-      "team": "France",
-      "teamTla": "FRA",
-      "playedMatches": 3,
-      "goals": 4,
-      "assists": 2,
-      "penalties": 0
-    },
-    {
-      "player": "Erling Haaland",
-      "nationality": "Norway",
-      "team": "Norway",
-      "teamTla": "NOR",
-      "playedMatches": 3,
-      "goals": 4,
-      "assists": 0,
-      "penalties": 0
-    },
-    {
       "player": "Ousmane Demb\u00e9l\u00e9",
       "nationality": "France",
       "team": "France",
       "teamTla": "FRA",
-      "playedMatches": 3,
+      "playedMatches": 4,
       "goals": 4,
-      "assists": 1,
+      "assists": 2,
       "penalties": 0
     },
     {
