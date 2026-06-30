@@ -114,6 +114,8 @@
             m.score2 = r.score2 !== undefined ? r.score2 : m.score2;
             m.status = r.status || m.status;
             m.winner = r.winner || m.winner;
+            m.pens1 = r.pens1 !== undefined ? r.pens1 : null;
+            m.pens2 = r.pens2 !== undefined ? r.pens2 : null;
           }
         });
       })
@@ -209,8 +211,14 @@
     }
 
     function koWinnerLoser(m, wantWinner) {
-      if (m.score1 === null || m.score2 === null || m.score1 === m.score2) return null;
       var t1 = koTeamFor(m, 'team1'), t2 = koTeamFor(m, 'team2');
+      // Explicit winner code (set when a tie is decided on penalties, but also
+      // present for normal results) takes precedence over the scoreline.
+      if (m.winner && t1 && t2) {
+        if (m.winner === t1.code) return wantWinner ? t1 : t2;
+        if (m.winner === t2.code) return wantWinner ? t2 : t1;
+      }
+      if (m.score1 === null || m.score2 === null || m.score1 === m.score2) return null;
       var homeWon = m.score1 > m.score2;
       if (wantWinner) return homeWon ? t1 : t2;
       return homeWon ? t2 : t1;
@@ -889,8 +897,8 @@
     var t2win = m.score1 !== null && m.score2 !== null && m.score2 > m.score1;
     if (m.winner) { t1win = (m.winner === (t1info && t1info.code)); t2win = (m.winner === (t2info && t2info.code)); }
 
-    card.appendChild(buildCardTeamRow(t1info, m.team1Label, m.score1, t1win));
-    card.appendChild(buildCardTeamRow(t2info, m.team2Label, m.score2, t2win));
+    card.appendChild(buildCardTeamRow(t1info, m.team1Label, m.score1, t1win, m.pens1));
+    card.appendChild(buildCardTeamRow(t2info, m.team2Label, m.score2, t2win, m.pens2));
 
     var footer = el('div', 'match-card-footer');
     var noEl = el('span', 'match-card-no'); noEl.textContent = 'M' + m.no;
@@ -905,14 +913,21 @@
     return card;
   }
 
-  function buildCardTeamRow(teamInfo, label, score, isWinner) {
+  function buildCardTeamRow(teamInfo, label, score, isWinner, pens) {
     var row = el('div', 'match-card-team');
     if (isWinner) row.classList.add('winner');
     var flagEl = el('span', 'flag'); flagEl.textContent = teamInfo ? teamInfo.flag : '';
     var nameEl = el('span', 'cname');
     if (teamInfo) { nameEl.textContent = teamInfo.name; nameEl.classList.add('known'); }
     else { nameEl.textContent = formatLabel(label); }
-    var scoreEl = el('span', 'cscore'); scoreEl.textContent = score !== null ? score : '';
+    var scoreEl = el('span', 'cscore');
+    if (score !== null) {
+      scoreEl.textContent = score;
+      if (pens !== null && pens !== undefined) {
+        var penEl = el('span', 'cpens'); penEl.textContent = '(' + pens + ')';
+        scoreEl.appendChild(penEl);
+      }
+    }
     row.appendChild(flagEl); row.appendChild(nameEl); row.appendChild(scoreEl);
     return row;
   }
@@ -1038,11 +1053,18 @@
     }
     var t1win = s1 !== null && s2 !== null && s1 > s2;
     var t2win = s1 !== null && s2 !== null && s2 > s1;
+    if (m.roundType !== 'group' && m.winner) {
+      t1win = (m.winner === (t1 && t1.code));
+      t2win = (m.winner === (t2 && t2.code));
+    }
+    var pensSuffix = function (p) {
+      return (m.roundType !== 'group' && p !== null && p !== undefined) ? ' (' + p + ')' : '';
+    };
 
     var t1row = el('div', 'match-item-team' + (t1win ? ' winner' : ''));
     var f1 = el('span', 'flag'); f1.textContent = t1 ? t1.flag : '';
     var n1 = el('span', 'tname'); n1.textContent = t1 ? t1.name : (m.team1Label || '?');
-    var sc1 = el('span', 'tscore'); sc1.textContent = s1 !== null ? s1 : '';
+    var sc1 = el('span', 'tscore'); sc1.textContent = s1 !== null ? s1 + pensSuffix(m.pens1) : '';
     t1row.appendChild(f1); t1row.appendChild(n1); t1row.appendChild(sc1);
 
     var sep = el('div', 'match-item-sep'); sep.textContent = '—';
@@ -1050,7 +1072,7 @@
     var t2row = el('div', 'match-item-team' + (t2win ? ' winner' : ''));
     var f2 = el('span', 'flag'); f2.textContent = t2 ? t2.flag : '';
     var n2 = el('span', 'tname'); n2.textContent = t2 ? t2.name : (m.team2Label || '?');
-    var sc2 = el('span', 'tscore'); sc2.textContent = s2 !== null ? s2 : '';
+    var sc2 = el('span', 'tscore'); sc2.textContent = s2 !== null ? s2 + pensSuffix(m.pens2) : '';
     t2row.appendChild(f2); t2row.appendChild(n2); t2row.appendChild(sc2);
 
     teamsCol.appendChild(t1row); teamsCol.appendChild(sep); teamsCol.appendChild(t2row);

@@ -596,8 +596,15 @@ body {
   text-align: right;
 }
 
+.match-card-team .cscore .cpens {
+  font-weight: 700;
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-left: 3px;
+}
 .match-card-team.winner .cname { color: var(--gold); font-weight: 700; }
 .match-card-team.winner .cscore { color: var(--gold-light); }
+.match-card-team.winner .cscore .cpens { color: var(--gold); }
 
 .match-card-footer {
   padding: 4px 10px;

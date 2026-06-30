@@ -263,6 +263,13 @@ jobs:
                           home_score = parse_score(home_c.get('score'))
                           away_score = parse_score(away_c.get('score'))
 
+                      # Penalty shootout (knockout ties level after extra time).
+                      # ESPN exposes shootoutScore + a winner flag per competitor.
+                      home_pens = parse_score(home_c.get('shootoutScore'))
+                      away_pens = parse_score(away_c.get('shootoutScore'))
+                      home_won = bool(home_c.get('winner'))
+                      away_won = bool(away_c.get('winner'))
+
                       if event_date == today_str:
                           print(f'TODAY {home_tla_raw} vs {away_tla_raw} | state={api_state} name={status_name} | {home_score}-{away_score}')
 
@@ -270,6 +277,7 @@ jobs:
                       group_result = (TEAM_DATE_LOOKUP.get((event_date, home_tla))
                                       or TEAM_DATE_LOOKUP.get((event_date, away_tla)))
 
+                      is_ko = False
                       if group_result:
                           internal_id, team1_tla = group_result
                           if home_tla == team1_tla:
@@ -279,6 +287,7 @@ jobs:
                       else:
                           internal_id = KO_LOOKUP.get((event_date, event_time))
                           if internal_id:
+                              is_ko = True
                               s1, s2 = home_score, away_score
                           else:
                               unmatched.append(
@@ -287,6 +296,26 @@ jobs:
                               continue
 
                       new_entry = {'score1': s1, 'score2': s2, 'status': our_status}
+
+                      # For knockout matches, record who advanced (so penalty
+                      # shootout winners propagate) and any shootout scoreline.
+                      if is_ko and our_status == 'finished':
+                          winner_tla = None
+                          if home_won and not away_won:
+                              winner_tla = home_tla
+                          elif away_won and not home_won:
+                              winner_tla = away_tla
+                          elif home_pens is not None and away_pens is not None and home_pens != away_pens:
+                              # Fall back to the shootout scoreline if no flag.
+                              winner_tla = home_tla if home_pens > away_pens else away_tla
+                          if winner_tla:
+                              new_entry['winner'] = winner_tla
+                          if home_pens is not None and away_pens is not None and (home_pens or away_pens):
+                              new_entry['pens1'] = home_pens
+                              new_entry['pens2'] = away_pens
+                          print(f'KO {internal_id}: {home_tla} {s1}-{s2} {away_tla} '
+                                f'pens={home_pens}-{away_pens} winner={new_entry.get("winner")}')
+
                       if data['matches'].get(internal_id) != new_entry:
                           data['matches'][internal_id] = new_entry
                           updated = True
