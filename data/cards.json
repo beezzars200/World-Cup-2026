@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-29T23:09:23Z",
+  "lastUpdated": "2026-06-30T02:14:31Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -133,6 +133,14 @@
       "player": "Gervane Kastaneer",
       "team": "Cura\u00e7ao",
       "teamTla": "CUW",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Issa Diop",
+      "team": "Morocco",
+      "teamTla": "MAR",
       "yellow": 2,
       "yellowRed": 0,
       "red": 0
@@ -677,14 +685,6 @@
       "player": "Isak Hien",
       "team": "Sweden",
       "teamTla": "SWE",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Issa Diop",
-      "team": "Morocco",
-      "teamTla": "MAR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
