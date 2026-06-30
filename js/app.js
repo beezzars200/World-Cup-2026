@@ -827,11 +827,30 @@
   function gd(row) { return row.gd > 0 ? '+' + row.gd : row.gd; }
 
   // ── BRACKET TAB ───────────────────────────────────────────────────────────
+  function updateBracketBanner() {
+    var banner = document.getElementById('bracketBanner');
+    if (!banner) return;
+    var groups = Object.keys(WC.GROUPS);
+    var allComplete = groups.every(function (g) {
+      var st = state.standings[g];
+      return st && st.complete;
+    });
+    if (allComplete) {
+      banner.classList.add('complete');
+      banner.textContent = '✅ Group stage complete — all 32 knockout teams confirmed. 🎟️ shows who drew each team in the Buster.';
+    } else {
+      banner.classList.remove('complete');
+      banner.textContent = '📡 Live data for all games will be available once the tournament starts.';
+    }
+  }
+
   function renderBracket() {
     var root = document.getElementById('bracketRoot');
     root.innerHTML = '';
     var koMap = {};
     getKnockoutArray().forEach(function (m) { koMap[m.id] = m; });
+
+    updateBracketBanner();
 
     var leftR32  = [['M74','M77'],['M73','M75'],['M83','M84'],['M81','M82']];
     var leftR16  = [['M89','M90'],['M93','M94']];
@@ -917,9 +936,18 @@
     var row = el('div', 'match-card-team');
     if (isWinner) row.classList.add('winner');
     var flagEl = el('span', 'flag'); flagEl.textContent = teamInfo ? teamInfo.flag : '';
+
+    var info = el('div', 'cinfo');
     var nameEl = el('span', 'cname');
     if (teamInfo) { nameEl.textContent = teamInfo.name; nameEl.classList.add('known'); }
     else { nameEl.textContent = formatLabel(label); }
+    info.appendChild(nameEl);
+    var buster = teamInfo ? busterNameForTeam(teamInfo.code) : null;
+    if (buster) {
+      var busterEl = el('span', 'cbuster'); busterEl.textContent = '🎟️ ' + buster;
+      info.appendChild(busterEl);
+    }
+
     var scoreEl = el('span', 'cscore');
     if (score !== null) {
       scoreEl.textContent = score;
@@ -928,8 +956,19 @@
         scoreEl.appendChild(penEl);
       }
     }
-    row.appendChild(flagEl); row.appendChild(nameEl); row.appendChild(scoreEl);
+    row.appendChild(flagEl); row.appendChild(info); row.appendChild(scoreEl);
     return row;
+  }
+
+  // Maps a team code to the buster entrant who drew it (1:1 across 48 entries).
+  var _busterByTeam = null;
+  function busterNameForTeam(code) {
+    if (!code) return null;
+    if (!_busterByTeam) {
+      _busterByTeam = {};
+      (WC.DRAW || []).forEach(function (e) { if (e.team) _busterByTeam[e.team] = e.name; });
+    }
+    return _busterByTeam[code] || null;
   }
 
   function formatLabel(label) {

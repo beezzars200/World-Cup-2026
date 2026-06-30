@@ -586,8 +586,11 @@ body {
 }
 
 .match-card-team .flag { font-size: 1rem; flex-shrink: 0; }
-.match-card-team .cname { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted); }
+.match-card-team .cinfo { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; line-height: 1.15; }
+.match-card-team .cname { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted); }
 .match-card-team .cname.known { color: var(--text); }
+.match-card-team .cbuster { font-size: 0.6rem; font-weight: 600; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; opacity: 0.85; }
+.match-card-team.winner .cbuster { color: var(--gold); opacity: 1; }
 .match-card-team .cscore {
   font-weight: 800;
   font-size: 0.95rem;
@@ -1369,6 +1372,12 @@ body {
   padding: 8px 14px;
   margin-bottom: 14px;
   text-align: center;
+}
+.info-banner.complete {
+  color: var(--gold-light);
+  background: rgba(245,158,11,0.10);
+  border-color: rgba(245,158,11,0.45);
+  font-weight: 600;
 }
 
 /* ── BUSTER CTA BANNER ── */
