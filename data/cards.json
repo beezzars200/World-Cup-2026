@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-01T16:33:06Z",
+  "lastUpdated": "2026-07-01T21:29:25Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -357,6 +357,14 @@
       "player": "Bernardo Silva",
       "team": "Portugal",
       "teamTla": "POR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Brandon Mechele",
+      "team": "Belgium",
+      "teamTla": "BEL",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
