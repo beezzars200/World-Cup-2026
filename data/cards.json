@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-01T21:29:25Z",
+  "lastUpdated": "2026-07-01T21:34:42Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -965,6 +965,14 @@
       "player": "Ladislav Krejc\u00ed",
       "team": "Czechia",
       "teamTla": "CZE",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Lamine Camara",
+      "team": "Senegal",
+      "teamTla": "SEN",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
