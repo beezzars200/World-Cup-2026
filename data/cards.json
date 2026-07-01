@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-30T17:46:32Z",
+  "lastUpdated": "2026-07-01T02:49:26Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -93,6 +93,14 @@
       "player": "Ahmed Fathy",
       "team": "Qatar",
       "teamTla": "QAT",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Alan Franco",
+      "team": "Ecuador",
+      "teamTla": "ECU",
       "yellow": 2,
       "yellowRed": 0,
       "red": 0
@@ -221,14 +229,6 @@
       "player": "Ahmed Fatouh",
       "team": "Egypt",
       "teamTla": "EGY",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Alan Franco",
-      "team": "Ecuador",
-      "teamTla": "ECU",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
