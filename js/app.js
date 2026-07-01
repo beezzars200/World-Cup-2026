@@ -929,7 +929,103 @@
     if (status === 'live') { var dot = el('span', 'card-live-dot'); footer.appendChild(dot); }
     footer.appendChild(timeEl); footer.appendChild(venueEl);
     card.appendChild(footer);
+
+    card.classList.add('clickable');
+    card.addEventListener('click', function () { openMatchModal(m); });
     return card;
+  }
+
+  // ── MATCH DETAIL MODAL ────────────────────────────────────────────────────
+  function openMatchModal(m) {
+    closeMatchModal();
+
+    var status = m.status || (m.score1 !== null && m.score2 !== null ? 'finished' : 'upcoming');
+    var t1 = resolveKoTeam(m.team1, m.team1Label);
+    var t2 = resolveKoTeam(m.team2, m.team2Label);
+    var t1win = m.score1 !== null && m.score2 !== null && m.score1 > m.score2;
+    var t2win = m.score1 !== null && m.score2 !== null && m.score2 > m.score1;
+    if (m.winner) { t1win = (m.winner === (t1 && t1.code)); t2win = (m.winner === (t2 && t2.code)); }
+
+    var overlay = el('div', 'match-modal-overlay'); overlay.id = 'matchModalOverlay';
+    var modal = el('div', 'match-modal');
+
+    var closeBtn = el('button', 'mm-close'); closeBtn.textContent = '✕';
+    closeBtn.setAttribute('aria-label', 'Close');
+    closeBtn.addEventListener('click', closeMatchModal);
+    modal.appendChild(closeBtn);
+
+    var roundLbls = { r32: 'Round of 32', r16: 'Round of 16', qf: 'Quarter-final', sf: 'Semi-final', '3rd': 'Third-place Play-off', final: 'Final' };
+    var head = el('div', 'mm-head');
+    var rEl = el('div', 'mm-round'); rEl.textContent = (roundLbls[m.round] || 'Knockout') + ' · M' + m.no;
+    var sEl = el('span', 'mm-status mm-status-' + status);
+    sEl.textContent = status === 'live' ? 'LIVE' : (status === 'finished' ? 'Full time' : 'Upcoming');
+    head.appendChild(rEl); head.appendChild(sEl);
+    modal.appendChild(head);
+
+    modal.appendChild(buildModalTeam(t1, m.team1Label, m.score1, m.pens1, t1win));
+    var vs = el('div', 'mm-vs'); vs.textContent = 'v'; modal.appendChild(vs);
+    modal.appendChild(buildModalTeam(t2, m.team2Label, m.score2, m.pens2, t2win));
+
+    if ((m.pens1 !== null && m.pens1 !== undefined) || (m.pens2 !== null && m.pens2 !== undefined)) {
+      var pensNote = el('div', 'mm-pens-note');
+      var w = t1win ? t1 : (t2win ? t2 : null);
+      var wp = t1win ? m.pens1 : m.pens2;
+      var lp = t1win ? m.pens2 : m.pens1;
+      pensNote.textContent = 'Decided on penalties' + (w ? ' — ' + w.name + ' win ' + (wp || 0) + '–' + (lp || 0) : '');
+      modal.appendChild(pensNote);
+    }
+
+    var meta = el('div', 'mm-meta');
+    var when = el('div', 'mm-meta-row'); when.textContent = '🕒 ' + formatMatchTime(m.date, m.utc, state.tz, m.est);
+    meta.appendChild(when);
+    if (m.venue) {
+      var where = el('div', 'mm-meta-row');
+      where.textContent = '📍 ' + m.venue + (m.city && m.city !== 'TBD' ? ', ' + m.city : '');
+      meta.appendChild(where);
+    }
+    modal.appendChild(meta);
+
+    overlay.appendChild(modal);
+    overlay.addEventListener('click', function (ev) { if (ev.target === overlay) closeMatchModal(); });
+    document.body.appendChild(overlay);
+    document.addEventListener('keydown', modalEscHandler);
+  }
+
+  function buildModalTeam(teamInfo, label, score, pens, isWinner) {
+    var row = el('div', 'mm-team' + (isWinner ? ' winner' : ''));
+
+    var flag = el('span', 'mm-flag'); flag.textContent = teamInfo ? teamInfo.flag : '🏳️';
+    row.appendChild(flag);
+
+    var info = el('div', 'mm-team-info');
+    var name = el('div', 'mm-team-name');
+    name.textContent = teamInfo ? teamInfo.name : formatLabel(label);
+    info.appendChild(name);
+    var buster = teamInfo ? busterNameForTeam(teamInfo.code) : null;
+    if (buster) { var b = el('div', 'mm-team-buster'); b.textContent = '🎟️ ' + buster; info.appendChild(b); }
+    row.appendChild(info);
+
+    if (isWinner) { var tick = el('span', 'mm-win-tick'); tick.textContent = '✓'; row.appendChild(tick); }
+
+    var sc = el('span', 'mm-score');
+    if (score !== null && score !== undefined) {
+      sc.textContent = score;
+      if (pens !== null && pens !== undefined) {
+        var p = el('span', 'mm-pens'); p.textContent = '(' + pens + ')'; sc.appendChild(p);
+      }
+    } else {
+      sc.textContent = '–';
+    }
+    row.appendChild(sc);
+    return row;
+  }
+
+  function modalEscHandler(ev) { if (ev.key === 'Escape') closeMatchModal(); }
+
+  function closeMatchModal() {
+    var existing = document.getElementById('matchModalOverlay');
+    if (existing) existing.parentNode.removeChild(existing);
+    document.removeEventListener('keydown', modalEscHandler);
   }
 
   function buildCardTeamRow(teamInfo, label, score, isWinner, pens) {
