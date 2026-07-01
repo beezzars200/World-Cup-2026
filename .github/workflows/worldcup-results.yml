@@ -286,6 +286,27 @@ jobs:
                               s1, s2 = away_score, home_score
                       else:
                           internal_id = KO_LOOKUP.get((event_date, event_time))
+                          if not internal_id and event_date and event_time:
+                              # ESPN's listed kickoff can differ from our fixture by
+                              # an hour or two (e.g. MEX v ECU at 02:00 vs our 01:00).
+                              # Knockout matches are hours apart, so fall back to the
+                              # nearest one on the timeline within a safe window.
+                              try:
+                                  ev_dt = datetime.strptime(event_date + ' ' + event_time, '%Y-%m-%d %H:%M')
+                              except ValueError:
+                                  ev_dt = None
+                              if ev_dt is not None:
+                                  best_id, best_diff = None, None
+                                  for (kd, kt), kid in KO_LOOKUP.items():
+                                      try:
+                                          k_dt = datetime.strptime(kd + ' ' + kt, '%Y-%m-%d %H:%M')
+                                      except ValueError:
+                                          continue
+                                      diff = abs((k_dt - ev_dt).total_seconds())
+                                      if best_diff is None or diff < best_diff:
+                                          best_diff, best_id = diff, kid
+                                  if best_id is not None and best_diff <= 150 * 60:
+                                      internal_id = best_id
                           if internal_id:
                               is_ko = True
                               s1, s2 = home_score, away_score
