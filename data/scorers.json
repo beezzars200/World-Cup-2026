@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-01T06:09:23Z",
+  "lastUpdated": "2026-07-01T17:38:24Z",
   "scorers": [
     {
       "player": "Kylian Mbapp\u00e9",
@@ -40,6 +40,16 @@
       "goals": 4,
       "assists": 1,
       "penalties": 0
+    },
+    {
+      "player": "Harry Kane",
+      "nationality": "England",
+      "team": "England",
+      "teamTla": "ENG",
+      "playedMatches": 4,
+      "goals": 4,
+      "assists": 0,
+      "penalties": 1
     },
     {
       "player": "Ousmane Demb\u00e9l\u00e9",
@@ -89,16 +99,6 @@
       "playedMatches": 4,
       "goals": 3,
       "assists": 2,
-      "penalties": 0
-    },
-    {
-      "player": "Elijah Just",
-      "nationality": "New Zealand",
-      "team": "New Zealand",
-      "teamTla": "NZL",
-      "playedMatches": 3,
-      "goals": 3,
-      "assists": 0,
       "penalties": 0
     }
   ]
