@@ -1,10 +1,18 @@
 {
-  "lastUpdated": "2026-07-01T02:49:26Z",
+  "lastUpdated": "2026-07-01T03:59:21Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
       "team": "Paraguay",
       "teamTla": "PAR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 1
+    },
+    {
+      "player": "Piero Hincapi\u00e9",
+      "team": "Ecuador",
+      "teamTla": "ECU",
       "yellow": 1,
       "yellowRed": 0,
       "red": 1
@@ -898,6 +906,14 @@
       "red": 0
     },
     {
+      "player": "Kendry P\u00e1ez",
+      "team": "Ecuador",
+      "teamTla": "ECU",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
       "player": "Kenny McLean",
       "team": "Scotland",
       "teamTla": "SCO",
@@ -1237,14 +1253,6 @@
       "player": "Petar Sucic",
       "team": "Croatia",
       "teamTla": "CRO",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Piero Hincapi\u00e9",
-      "team": "Ecuador",
-      "teamTla": "ECU",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
