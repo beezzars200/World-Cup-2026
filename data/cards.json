@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-01T16:19:44Z",
+  "lastUpdated": "2026-07-01T16:33:06Z",
   "cards": [
     {
       "player": "Miguel Almir\u00f3n",
@@ -181,6 +181,14 @@
       "player": "Mohanad Lashin",
       "team": "Egypt",
       "teamTla": "EGY",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Noah Sadiki",
+      "team": "Congo DR",
+      "teamTla": "COD",
       "yellow": 2,
       "yellowRed": 0,
       "red": 0
@@ -1205,14 +1213,6 @@
       "player": "Nkosinathi Sibisi",
       "team": "South Africa",
       "teamTla": "RSA",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Noah Sadiki",
-      "team": "Congo DR",
-      "teamTla": "COD",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
