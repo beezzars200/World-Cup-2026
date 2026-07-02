@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-02T20:49:27Z",
+  "lastUpdated": "2026-07-02T23:19:26Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -1349,6 +1349,14 @@
       "player": "Ryan Christie",
       "team": "Scotland",
       "teamTla": "SCO",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "R\u00faben Dias",
+      "team": "Portugal",
+      "teamTla": "POR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
