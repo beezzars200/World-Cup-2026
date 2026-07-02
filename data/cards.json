@@ -1,6 +1,14 @@
 {
-  "lastUpdated": "2026-07-01T21:34:42Z",
+  "lastUpdated": "2026-07-02T01:34:41Z",
   "cards": [
+    {
+      "player": "Folarin Balogun",
+      "team": "United States",
+      "teamTla": "USA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 1
+    },
     {
       "player": "Miguel Almir\u00f3n",
       "team": "Paraguay",
@@ -613,14 +621,6 @@
       "player": "Findlay Curtis",
       "team": "Scotland",
       "teamTla": "SCO",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Folarin Balogun",
-      "team": "United States",
-      "teamTla": "USA",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
