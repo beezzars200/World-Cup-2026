@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-02T01:48:24Z",
+  "lastUpdated": "2026-07-02T02:06:49Z",
   "matches": {
     "GA-MD1a": {
       "score1": 2,
@@ -306,7 +306,8 @@
     "M81": {
       "score1": 2,
       "score2": 0,
-      "status": "live"
+      "status": "finished",
+      "winner": "USA"
     },
     "M84": {
       "score1": null,
