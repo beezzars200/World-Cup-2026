@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-01T21:19:27Z",
+  "lastUpdated": "2026-07-02T00:54:28Z",
   "scorers": [
     {
       "player": "Kylian Mbapp\u00e9",
@@ -82,6 +82,16 @@
       "penalties": 0
     },
     {
+      "player": "Folarin Balogun",
+      "nationality": "USA",
+      "team": "United States",
+      "teamTla": "USA",
+      "playedMatches": 4,
+      "goals": 3,
+      "assists": 0,
+      "penalties": 0
+    },
+    {
       "player": "Ismael Saibari",
       "nationality": "Morocco",
       "team": "Morocco",
@@ -90,16 +100,6 @@
       "goals": 3,
       "assists": 0,
       "penalties": 0
-    },
-    {
-      "player": "Kai Havertz",
-      "nationality": "Germany",
-      "team": "Germany",
-      "teamTla": "GER",
-      "playedMatches": 4,
-      "goals": 3,
-      "assists": 0,
-      "penalties": 1
     }
   ]
 }
