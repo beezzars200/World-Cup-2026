@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-02T01:48:25Z",
+  "lastUpdated": "2026-07-02T20:49:27Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -213,6 +213,14 @@
       "player": "Sidny Lopes Cabral",
       "team": "Cape Verde",
       "teamTla": "CPV",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Stefan Posch",
+      "team": "Austria",
+      "teamTla": "AUT",
       "yellow": 2,
       "yellowRed": 0,
       "red": 0
@@ -1413,14 +1421,6 @@
       "player": "Shoja Khalilzadeh",
       "team": "Iran",
       "teamTla": "IRN",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Stefan Posch",
-      "team": "Austria",
-      "teamTla": "AUT",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
