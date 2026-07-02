@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-02T02:06:49Z",
+  "lastUpdated": "2026-07-02T06:30:39Z",
   "matches": {
     "GA-MD1a": {
       "score1": 2,
@@ -295,34 +295,40 @@
       "score1": 2,
       "score2": 1,
       "status": "finished",
+      "home": "ENG",
       "winner": "ENG"
     },
     "M82": {
       "score1": 3,
       "score2": 2,
       "status": "finished",
+      "home": "BEL",
       "winner": "BEL"
     },
     "M81": {
       "score1": 2,
       "score2": 0,
       "status": "finished",
+      "home": "USA",
       "winner": "USA"
     },
     "M84": {
       "score1": null,
       "score2": null,
-      "status": "upcoming"
+      "status": "upcoming",
+      "home": "ESP"
     },
     "M83": {
       "score1": null,
       "score2": null,
-      "status": "upcoming"
+      "status": "upcoming",
+      "home": "POR"
     },
     "M85": {
       "score1": null,
       "score2": null,
-      "status": "upcoming"
+      "status": "upcoming",
+      "home": "SUI"
     },
     "M88": {
       "score1": null,
