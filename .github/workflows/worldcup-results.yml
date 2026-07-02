@@ -318,6 +318,12 @@ jobs:
 
                       new_entry = {'score1': s1, 'score2': s2, 'status': our_status}
 
+                      # Knockout scores are stored in ESPN home/away order; record
+                      # which side was home so the frontend can orient them to its
+                      # own bracket slots.
+                      if is_ko:
+                          new_entry['home'] = home_tla
+
                       # For knockout matches, record who advanced (so penalty
                       # shootout winners propagate) and any shootout scoreline.
                       if is_ko and our_status == 'finished':

@@ -13,8 +13,6 @@
     tz: 'Europe/Dublin',
     tab: 'live',
     liveSubTab: 'groups',
-    statusFilter: 'all',
-    groupFilter: 'all',
     standings: {},
     lastUpdated: null,
     sweepTeam: null,
@@ -36,7 +34,6 @@
     bindTabButtons();
     bindSubTabButtons();
     bindGroupFilters();
-    bindScheduleFilters();
     bindBusterCtas();
     bindDrawSearch();
     renderCeremonies();
@@ -51,6 +48,7 @@
           renderLiveNow();
           renderCeremonies();
           renderCurrentTab();
+          refreshOpenMatchModal();
         });
       }, 60000);
     });
@@ -110,12 +108,12 @@
         getKnockoutArray().forEach(function (m) {
           if (matches[m.id]) {
             var r = matches[m.id];
-            m.score1 = r.score1 !== undefined ? r.score1 : m.score1;
-            m.score2 = r.score2 !== undefined ? r.score2 : m.score2;
+            // Keep the raw entry: scores are in ESPN home/away order and get
+            // oriented to our bracket slots in resolveKnockoutTeams, once the
+            // teams are known.
+            m.raw = r;
             m.status = r.status || m.status;
-            m.winner = r.winner || m.winner;
-            m.pens1 = r.pens1 !== undefined ? r.pens1 : null;
-            m.pens2 = r.pens2 !== undefined ? r.pens2 : null;
+            m.winner = r.winner || null;
           }
         });
       })
@@ -237,10 +235,27 @@
       return null;
     }
 
-    // Resolve in match-number order so each round's sources are settled first.
+    function valOrNull(v) { return v === undefined ? null : v; }
+
+    // Copy scores from the raw results entry onto the match, flipping them when
+    // ESPN's home side is our team2 (data is stored in home/away order).
+    function applyScores(m) {
+      var r = m.raw;
+      if (!r) return;
+      var flip = !!(r.home && m.team1 && m.team2 &&
+                    m.team1.code !== r.home && m.team2.code === r.home);
+      m.score1 = valOrNull(flip ? r.score2 : r.score1);
+      m.score2 = valOrNull(flip ? r.score1 : r.score2);
+      m.pens1  = valOrNull(flip ? r.pens2  : r.pens1);
+      m.pens2  = valOrNull(flip ? r.pens1  : r.pens2);
+    }
+
+    // Resolve in match-number order so each round's sources (teams AND oriented
+    // scores) are settled before later rounds consult them.
     ko.slice().sort(function (a, b) { return a.no - b.no; }).forEach(function (m) {
       m.team1 = koTeamFor(m, 'team1');
       m.team2 = koTeamFor(m, 'team2');
+      applyScores(m);
     });
   }
 
@@ -282,36 +297,6 @@
     try {
       return new Intl.DateTimeFormat('en-IE', { timeZone: state.tz, dateStyle: 'medium', timeStyle: 'short' }).format(d);
     } catch (e) { return d.toISOString(); }
-  }
-
-  function getMatchDateInTz(dateStr, utcTime, tz) {
-    try {
-      var parts = new Intl.DateTimeFormat('en-CA', {
-        timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit'
-      }).formatToParts(new Date(dateStr + 'T' + utcTime + ':00Z'));
-      var y = '', mo = '', dy = '';
-      parts.forEach(function (p) {
-        if (p.type === 'year') y = p.value;
-        if (p.type === 'month') mo = p.value;
-        if (p.type === 'day') dy = p.value;
-      });
-      return y + '-' + mo + '-' + dy;
-    } catch (e) { return dateStr; }
-  }
-
-  function todayInTz(tz) {
-    try {
-      var parts = new Intl.DateTimeFormat('en-CA', {
-        timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit'
-      }).formatToParts(new Date());
-      var y = '', mo = '', dy = '';
-      parts.forEach(function (p) {
-        if (p.type === 'year') y = p.value;
-        if (p.type === 'month') mo = p.value;
-        if (p.type === 'day') dy = p.value;
-      });
-      return y + '-' + mo + '-' + dy;
-    } catch (e) { return new Date().toISOString().slice(0, 10); }
   }
 
   // ── COUNTDOWNS ────────────────────────────────────────────────────────────
@@ -905,6 +890,18 @@
     return roundEl;
   }
 
+  // Which side of a knockout match won — from the explicit winner code when
+  // present (covers penalty shootouts), otherwise from the scoreline.
+  function koWinFlags(m, t1, t2) {
+    var w1 = m.score1 !== null && m.score2 !== null && m.score1 > m.score2;
+    var w2 = m.score1 !== null && m.score2 !== null && m.score2 > m.score1;
+    if (m.winner) {
+      w1 = m.winner === (t1 && t1.code);
+      w2 = m.winner === (t2 && t2.code);
+    }
+    return { t1: w1, t2: w2 };
+  }
+
   function buildMatchCard(m, type) {
     var card = el('div', 'match-card');
     var status = m.status || (m.score1 !== null && m.score2 !== null ? 'finished' : 'upcoming');
@@ -912,12 +909,10 @@
 
     var t1info = resolveKoTeam(m.team1, m.team1Label);
     var t2info = resolveKoTeam(m.team2, m.team2Label);
-    var t1win = m.score1 !== null && m.score2 !== null && m.score1 > m.score2;
-    var t2win = m.score1 !== null && m.score2 !== null && m.score2 > m.score1;
-    if (m.winner) { t1win = (m.winner === (t1info && t1info.code)); t2win = (m.winner === (t2info && t2info.code)); }
+    var win = koWinFlags(m, t1info, t2info);
 
-    card.appendChild(buildCardTeamRow(t1info, m.team1Label, m.score1, t1win, m.pens1));
-    card.appendChild(buildCardTeamRow(t2info, m.team2Label, m.score2, t2win, m.pens2));
+    card.appendChild(buildCardTeamRow(t1info, m.team1Label, m.score1, win.t1, m.pens1));
+    card.appendChild(buildCardTeamRow(t2info, m.team2Label, m.score2, win.t2, m.pens2));
 
     var footer = el('div', 'match-card-footer');
     var noEl = el('span', 'match-card-no'); noEl.textContent = 'M' + m.no;
@@ -936,15 +931,25 @@
   }
 
   // ── MATCH DETAIL MODAL ────────────────────────────────────────────────────
+  var openModalMatchId = null;
+
+  // Rebuild the open modal after each data poll so live scores stay current.
+  function refreshOpenMatchModal() {
+    if (!openModalMatchId) return;
+    var match = null;
+    getKnockoutArray().forEach(function (k) { if (k.id === openModalMatchId) match = k; });
+    if (match) openMatchModal(match);
+  }
+
   function openMatchModal(m) {
     closeMatchModal();
+    openModalMatchId = m.id;
 
     var status = m.status || (m.score1 !== null && m.score2 !== null ? 'finished' : 'upcoming');
     var t1 = resolveKoTeam(m.team1, m.team1Label);
     var t2 = resolveKoTeam(m.team2, m.team2Label);
-    var t1win = m.score1 !== null && m.score2 !== null && m.score1 > m.score2;
-    var t2win = m.score1 !== null && m.score2 !== null && m.score2 > m.score1;
-    if (m.winner) { t1win = (m.winner === (t1 && t1.code)); t2win = (m.winner === (t2 && t2.code)); }
+    var winFlags = koWinFlags(m, t1, t2);
+    var t1win = winFlags.t1, t2win = winFlags.t2;
 
     var overlay = el('div', 'match-modal-overlay'); overlay.id = 'matchModalOverlay';
     var modal = el('div', 'match-modal');
@@ -1023,6 +1028,7 @@
   function modalEscHandler(ev) { if (ev.key === 'Escape') closeMatchModal(); }
 
   function closeMatchModal() {
+    openModalMatchId = null;
     var existing = document.getElementById('matchModalOverlay');
     if (existing) existing.parentNode.removeChild(existing);
     document.removeEventListener('keydown', modalEscHandler);
@@ -1092,153 +1098,6 @@
     return null;
   }
 
-  // ── SCHEDULE TAB ─────────────────────────────────────────────────────────
-  function bindScheduleFilters() {
-    document.querySelectorAll('.filter-btn[data-status]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        state.statusFilter = btn.dataset.status;
-        document.querySelectorAll('.filter-btn[data-status]').forEach(function (b) {
-          b.classList.toggle('active', b === btn);
-        });
-        renderSchedule();
-      });
-    });
-    var gSel = document.getElementById('groupFilterSelect');
-    if (gSel) { gSel.addEventListener('change', function () { state.groupFilter = gSel.value; renderSchedule(); }); }
-  }
-
-  function renderSchedule() {
-    var body = document.getElementById('scheduleBody');
-    body.innerHTML = '';
-    var allMatches = buildAllMatchesForSchedule();
-    var today = todayInTz(state.tz);
-
-    allMatches = allMatches.filter(function (m) {
-      if (state.groupFilter !== 'all') {
-        if (state.groupFilter === 'ko') { if (m.group) return false; }
-        else { if (m.group !== state.groupFilter) return false; }
-      }
-      if (state.statusFilter === 'upcoming') {
-        return getMatchDateInTz(m.date, m.utc, state.tz) >= today && (m.score1 === null || m.score2 === null);
-      }
-      if (state.statusFilter === 'today') {
-        return getMatchDateInTz(m.date, m.utc, state.tz) === today;
-      }
-      return true;
-    });
-
-    if (!allMatches.length) {
-      var none = el('div', 'no-matches'); none.textContent = 'No matches match the selected filters.';
-      body.appendChild(none); return;
-    }
-
-    var byDate = {}, dateOrder = [];
-    allMatches.forEach(function (m) {
-      var d = getMatchDateInTz(m.date, m.utc, state.tz);
-      if (!byDate[d]) { byDate[d] = []; dateOrder.push(d); }
-      byDate[d].push(m);
-    });
-    dateOrder.forEach(function (d) {
-      var group = el('div', 'date-group');
-      var hdr = el('div', 'date-header'); hdr.textContent = formatDateHeader(d, state.tz);
-      group.appendChild(hdr);
-      byDate[d].forEach(function (m) { group.appendChild(buildScheduleItem(m)); });
-      body.appendChild(group);
-    });
-  }
-
-  function formatDateHeader(dateStr, tz) {
-    try {
-      return new Intl.DateTimeFormat('en-IE', {
-        timeZone: tz, weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
-      }).format(new Date(dateStr + 'T12:00:00'));
-    } catch (e) { return dateStr; }
-  }
-
-  function buildAllMatchesForSchedule() {
-    var gm = WC.GROUP_MATCHES.map(function (m) { return Object.assign({}, m, { roundType: 'group' }); });
-    var km = getKnockoutArray().map(function (m) { return Object.assign({}, m, { group: null, roundType: 'ko' }); });
-    return gm.concat(km).sort(function (a, b) {
-      var da = a.date + 'T' + a.utc + ':00Z', db = b.date + 'T' + b.utc + ':00Z';
-      return da < db ? -1 : da > db ? 1 : 0;
-    });
-  }
-
-  function buildScheduleItem(m) {
-    var item = el('div', 'match-item');
-
-    var badgeCol = el('div', 'match-item-badge');
-    var badge = el('div', 'round-badge');
-    if (m.roundType === 'group') { badge.textContent = 'Group ' + m.group; badge.classList.add('group'); }
-    else {
-      var rLabel = { r32: 'R32', r16: 'R16', qf: 'QF', sf: 'SF', '3rd': '3rd Place', final: 'Final' }[m.round] || 'KO';
-      badge.textContent = rLabel; badge.classList.add(m.round === 'final' ? 'final' : 'ko');
-    }
-    var numEl = el('div', 'match-num'); numEl.textContent = m.id || ('M' + m.no);
-    badgeCol.appendChild(badge); badgeCol.appendChild(numEl);
-    item.appendChild(badgeCol);
-
-    var teamsCol = el('div', 'match-item-teams');
-    var t1, t2, s1, s2;
-    if (m.roundType === 'group') { t1 = m.team1; t2 = m.team2; s1 = m.score1; s2 = m.score2; }
-    else {
-      t1 = resolveKoTeam(m.team1, m.team1Label) || { flag: '', name: formatLabel(m.team1Label), code: null };
-      t2 = resolveKoTeam(m.team2, m.team2Label) || { flag: '', name: formatLabel(m.team2Label), code: null };
-      s1 = m.score1; s2 = m.score2;
-    }
-    var t1win = s1 !== null && s2 !== null && s1 > s2;
-    var t2win = s1 !== null && s2 !== null && s2 > s1;
-    if (m.roundType !== 'group' && m.winner) {
-      t1win = (m.winner === (t1 && t1.code));
-      t2win = (m.winner === (t2 && t2.code));
-    }
-    var pensSuffix = function (p) {
-      return (m.roundType !== 'group' && p !== null && p !== undefined) ? ' (' + p + ')' : '';
-    };
-
-    var t1row = el('div', 'match-item-team' + (t1win ? ' winner' : ''));
-    var f1 = el('span', 'flag'); f1.textContent = t1 ? t1.flag : '';
-    var n1 = el('span', 'tname'); n1.textContent = t1 ? t1.name : (m.team1Label || '?');
-    var sc1 = el('span', 'tscore'); sc1.textContent = s1 !== null ? s1 + pensSuffix(m.pens1) : '';
-    t1row.appendChild(f1); t1row.appendChild(n1); t1row.appendChild(sc1);
-
-    var sep = el('div', 'match-item-sep'); sep.textContent = '—';
-
-    var t2row = el('div', 'match-item-team' + (t2win ? ' winner' : ''));
-    var f2 = el('span', 'flag'); f2.textContent = t2 ? t2.flag : '';
-    var n2 = el('span', 'tname'); n2.textContent = t2 ? t2.name : (m.team2Label || '?');
-    var sc2 = el('span', 'tscore'); sc2.textContent = s2 !== null ? s2 + pensSuffix(m.pens2) : '';
-    t2row.appendChild(f2); t2row.appendChild(n2); t2row.appendChild(sc2);
-
-    teamsCol.appendChild(t1row); teamsCol.appendChild(sep); teamsCol.appendChild(t2row);
-    item.appendChild(teamsCol);
-
-    var metaCol = el('div', 'match-item-meta');
-    var timeEl = el('div', 'match-item-time' + (m.est ? ' est' : ''));
-    timeEl.textContent = formatMatchTime(m.date, m.utc, state.tz, m.est);
-    var venueEl = el('div', 'match-item-venue');
-    venueEl.textContent = m.venue && m.venue !== 'TBD' ? m.venue : '';
-    var cityEl = el('div', 'match-item-city');
-    cityEl.textContent = m.city && m.city !== 'TBD' ? m.city : '';
-    metaCol.appendChild(timeEl);
-    if (m.est) { var estBadge = el('span', 'est-badge'); estBadge.textContent = 'est.'; metaCol.appendChild(estBadge); }
-
-    var notStarted = m.status !== 'live' && m.status !== 'finished' && (s1 === null || s2 === null);
-    if (notStarted) {
-      var kickoffIso = m.date + 'T' + m.utc + ':00Z';
-      if (Date.parse(kickoffIso) > Date.now()) {
-        var cd = el('div', 'match-item-countdown');
-        cd.dataset.kickoff = kickoffIso;
-        cd.dataset.doneText = '⚽ Kick-off!';
-        metaCol.appendChild(cd);
-      }
-    }
-
-    metaCol.appendChild(venueEl); metaCol.appendChild(cityEl);
-    item.appendChild(metaCol);
-    return item;
-  }
-
   // ── DRAW RESULTS TAB ──────────────────────────────────────────────────────
   function bindDrawSearch() {
     var input = document.getElementById('drawSearch');
@@ -1293,8 +1152,17 @@
   function matchPerspective(m, code) {
     var t1 = (m.team1 && m.team1.code) ? m.team1 : resolveKoTeam(m.team1, m.team1Label);
     var t2 = (m.team2 && m.team2.code) ? m.team2 : resolveKoTeam(m.team2, m.team2Label);
-    if (t1 && t1.code === code) return { us: t1, them: t2, ours: m.score1, theirs: m.score2 };
-    return { us: t2, them: t1, ours: m.score2, theirs: m.score1 };
+    if (t1 && t1.code === code) {
+      return { us: t1, them: t2, ours: m.score1, theirs: m.score2, ourPens: m.pens1, theirPens: m.pens2 };
+    }
+    return { us: t2, them: t1, ours: m.score2, theirs: m.score1, ourPens: m.pens2, theirPens: m.pens1 };
+  }
+
+  // W/L/D from a team's perspective — respects penalty-shootout winners, where
+  // the scoreline alone would read as a draw.
+  function resultLetterFor(m, code, p) {
+    if (m.winner) return m.winner === code ? 'W' : 'L';
+    return p.ours > p.theirs ? 'W' : (p.ours < p.theirs ? 'L' : 'D');
   }
 
   function getFinishedMatchesForTeam(code) {
@@ -1408,8 +1276,9 @@
         var lastM = finished[finished.length - 1];
         var p = matchPerspective(lastM, e.team);
         var lastEl = el('span', 'draw-quick-item');
-        var res = p.ours > p.theirs ? 'W' : (p.ours < p.theirs ? 'L' : 'D');
-        lastEl.textContent = '📊 Last: ' + res + ' ' + p.ours + '–' + p.theirs + (p.them ? ' v ' + p.them.flag : '');
+        var res = resultLetterFor(lastM, e.team, p);
+        var pensTxt = p.ourPens !== null && p.ourPens !== undefined ? ' (' + p.ourPens + '–' + p.theirPens + ' pens)' : '';
+        lastEl.textContent = '📊 Last: ' + res + ' ' + p.ours + '–' + p.theirs + pensTxt + (p.them ? ' v ' + p.them.flag : '');
         lastEl.classList.add('draw-res-' + res.toLowerCase());
         quick.appendChild(lastEl);
       }
@@ -1482,8 +1351,9 @@
       finished.forEach(function (fm) {
         var p = matchPerspective(fm, e.team);
         var line = el('div', 'draw-detail-result');
-        var res = p.ours > p.theirs ? 'W' : (p.ours < p.theirs ? 'L' : 'D');
-        line.textContent = (p.us ? p.us.flag + ' ' + p.us.name : '?') + '  ' + p.ours + ' – ' + p.theirs + '  ' +
+        var res = resultLetterFor(fm, e.team, p);
+        var pd = p.ourPens !== null && p.ourPens !== undefined ? ' (' + p.ourPens + '–' + p.theirPens + ' pens)' : '';
+        line.textContent = (p.us ? p.us.flag + ' ' + p.us.name : '?') + '  ' + p.ours + ' – ' + p.theirs + pd + '  ' +
           (p.them ? p.them.flag + ' ' + p.them.name : '?');
         var badge = el('span', 'draw-result-badge draw-res-' + res.toLowerCase());
         badge.textContent = res;
