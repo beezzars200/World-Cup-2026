@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-02T01:34:41Z",
+  "lastUpdated": "2026-07-02T01:48:25Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -1421,6 +1421,14 @@
       "player": "Stefan Posch",
       "team": "Austria",
       "teamTla": "AUT",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Stjepan Radeljic",
+      "team": "Bosnia-Herzegovina",
+      "teamTla": "BIH",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
