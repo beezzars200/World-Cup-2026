@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-03T04:34:45Z",
+  "lastUpdated": "2026-07-03T20:19:28Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -709,6 +709,14 @@
       "player": "Gustavo Puerta",
       "team": "Colombia",
       "teamTla": "COL",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Haissem Hassan",
+      "team": "Egypt",
+      "teamTla": "EGY",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
