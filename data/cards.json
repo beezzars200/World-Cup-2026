@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-03T20:19:28Z",
+  "lastUpdated": "2026-07-03T20:39:25Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -237,6 +237,14 @@
       "player": "Teboho Mokoena",
       "team": "South Africa",
       "teamTla": "RSA",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Yasser Ibrahim",
+      "team": "Egypt",
+      "teamTla": "EGY",
       "yellow": 2,
       "yellowRed": 0,
       "red": 0
@@ -1525,14 +1533,6 @@
       "player": "Yasin Ayari",
       "team": "Sweden",
       "teamTla": "SWE",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Yasser Ibrahim",
-      "team": "Egypt",
-      "teamTla": "EGY",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
