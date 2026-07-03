@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-02T23:19:26Z",
+  "lastUpdated": "2026-07-03T00:19:29Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -1045,6 +1045,14 @@
       "player": "Lucas Bergvall",
       "team": "Sweden",
       "teamTla": "SWE",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Luka Modric",
+      "team": "Croatia",
+      "teamTla": "CRO",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
