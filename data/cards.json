@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-03T20:39:25Z",
+  "lastUpdated": "2026-07-03T23:29:22Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -981,6 +981,14 @@
       "player": "Kenny McLean",
       "team": "Scotland",
       "teamTla": "SCO",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Kevin Pina",
+      "team": "Cape Verde",
+      "teamTla": "CPV",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
