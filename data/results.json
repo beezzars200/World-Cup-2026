@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-03T19:17:26Z",
+  "lastUpdated": "2026-07-03T20:56:42Z",
   "matches": {
     "GA-MD1a": {
       "score1": 2,
@@ -336,8 +336,11 @@
     "M88": {
       "score1": 1,
       "score2": 1,
-      "status": "live",
-      "home": "AUS"
+      "status": "finished",
+      "home": "AUS",
+      "winner": "EGY",
+      "pens1": 2,
+      "pens2": 4
     },
     "M86": {
       "score1": null,
