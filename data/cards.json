@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-03T00:59:24Z",
+  "lastUpdated": "2026-07-03T03:39:21Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -621,6 +621,14 @@
       "player": "Facundo Medina",
       "team": "Argentina",
       "teamTla": "ARG",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Far\u00e8s Cha\u00efbi",
+      "team": "Algeria",
+      "teamTla": "ALG",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
