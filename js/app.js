@@ -1433,6 +1433,17 @@
 
     var wrap = el('div', 'scorers-table-wrap');
 
+    // Map each API scorer to the buster entrant(s) whose top-scorer pick they
+    // are, using the same matcher the draw cards use.
+    var pickedBy = {};
+    (WC.DRAW || []).forEach(function (e) {
+      var match = findScorerStats(e.scorer, e.scorerCountry);
+      if (match) {
+        var key = match.player + '|' + match.teamTla;
+        (pickedBy[key] = pickedBy[key] || []).push(e.name);
+      }
+    });
+
     var hdr = el('div', 'scorers-header');
     var title = el('span', 'scorers-title'); title.textContent = '⚽ Top Goalscorers';
     hdr.appendChild(title);
@@ -1470,6 +1481,12 @@
       teamEl.textContent = teamInfo ? (teamInfo.flag + ' ' + teamInfo.name) : s.team;
       tdPlayer.appendChild(nameEl);
       tdPlayer.appendChild(teamEl);
+      var owners = pickedBy[s.player + '|' + s.teamTla];
+      if (owners) {
+        var ownerEl = el('div', 'scorer-buster');
+        ownerEl.textContent = '🎟️ ' + owners.join(', ');
+        tdPlayer.appendChild(ownerEl);
+      }
       tr.appendChild(tdPlayer);
 
       var tdGoals = el('td', 'scorer-goals'); tdGoals.textContent = s.goals; tr.appendChild(tdGoals);
