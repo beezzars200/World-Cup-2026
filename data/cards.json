@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-04T03:04:47Z",
+  "lastUpdated": "2026-07-04T03:14:31Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -317,6 +317,14 @@
       "player": "Ali Nemati",
       "team": "Iran",
       "teamTla": "IRN",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Alidu Seidu",
+      "team": "Ghana",
+      "teamTla": "GHA",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
@@ -1389,6 +1397,14 @@
       "player": "Renato Veiga",
       "team": "Portugal",
       "teamTla": "POR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Richard R\u00edos",
+      "team": "Colombia",
+      "teamTla": "COL",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
