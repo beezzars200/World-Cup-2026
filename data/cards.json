@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-03T23:29:22Z",
+  "lastUpdated": "2026-07-04T00:39:23Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -677,6 +677,14 @@
       "player": "Gabriel Gudmundsson",
       "team": "Sweden",
       "teamTla": "SWE",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Gonzalo Montiel",
+      "team": "Argentina",
+      "teamTla": "ARG",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
