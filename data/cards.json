@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-04T03:14:31Z",
+  "lastUpdated": "2026-07-04T17:23:53Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -1389,6 +1389,14 @@
       "player": "Rani Khedira",
       "team": "Tunisia",
       "teamTla": "TUN",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Redouane Halhal",
+      "team": "Morocco",
+      "teamTla": "MAR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
