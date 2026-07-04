@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-04T17:54:31Z",
+  "lastUpdated": "2026-07-04T18:14:03Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -189,6 +189,14 @@
       "player": "Juninho Bacuna",
       "team": "Cura\u00e7ao",
       "teamTla": "CUW",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Luc de Fougerolles",
+      "team": "Canada",
+      "teamTla": "CAN",
       "yellow": 2,
       "yellowRed": 0,
       "red": 0
@@ -1133,14 +1141,6 @@
       "player": "Livano Comenencia",
       "team": "Cura\u00e7ao",
       "teamTla": "CUW",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Luc de Fougerolles",
-      "team": "Canada",
-      "teamTla": "CAN",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
