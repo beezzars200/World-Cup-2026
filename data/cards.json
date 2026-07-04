@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-04T18:14:03Z",
+  "lastUpdated": "2026-07-04T18:33:31Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -141,6 +141,14 @@
       "player": "Casemiro",
       "team": "Brazil",
       "teamTla": "BRA",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Cyle Larin",
+      "team": "Canada",
+      "teamTla": "CAN",
       "yellow": 2,
       "yellowRed": 0,
       "red": 0
@@ -517,14 +525,6 @@
       "player": "Crysencio Summerville",
       "team": "Netherlands",
       "teamTla": "NED",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Cyle Larin",
-      "team": "Canada",
-      "teamTla": "CAN",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
