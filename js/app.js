@@ -12,7 +12,7 @@
   var state = {
     tz: 'Europe/Dublin',
     tab: 'live',
-    liveSubTab: 'groups',
+    liveSubTab: 'bracket',
     standings: {},
     lastUpdated: null,
     sweepTeam: null,
