@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-04T17:49:37Z",
+  "lastUpdated": "2026-07-04T17:54:31Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -421,6 +421,14 @@
       "player": "Bernardo Silva",
       "team": "Portugal",
       "teamTla": "POR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Bilal El Khannouss",
+      "team": "Morocco",
+      "teamTla": "MAR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
