@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-04T18:33:31Z",
+  "lastUpdated": "2026-07-04T21:24:36Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -445,6 +445,14 @@
       "player": "Bilal El Khannouss",
       "team": "Morocco",
       "teamTla": "MAR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Bradley Barcola",
+      "team": "France",
+      "teamTla": "FRA",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
