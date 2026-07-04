@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-04T22:48:05Z",
+  "lastUpdated": "2026-07-04T23:05:13Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -1253,6 +1253,14 @@
       "player": "Merchas Doski",
       "team": "Iraq",
       "teamTla": "IRQ",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Michael Olise",
+      "team": "France",
+      "teamTla": "FRA",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
