@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-04T18:55:21Z",
+  "lastUpdated": "2026-07-04T19:02:45Z",
   "matches": {
     "GA-MD1a": {
       "score1": 2,
@@ -358,7 +358,7 @@
     },
     "M90": {
       "score1": 0,
-      "score2": 2,
+      "score2": 3,
       "status": "live",
       "home": "CAN"
     },
