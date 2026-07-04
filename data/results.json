@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-04T00:33:08Z",
+  "lastUpdated": "2026-07-04T00:45:24Z",
   "matches": {
     "GA-MD1a": {
       "score1": 2,
@@ -345,8 +345,9 @@
     "M86": {
       "score1": 3,
       "score2": 2,
-      "status": "live",
-      "home": "ARG"
+      "status": "finished",
+      "home": "ARG",
+      "winner": "ARG"
     },
     "M87": {
       "score1": null,
