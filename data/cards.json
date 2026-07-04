@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-04T00:39:23Z",
+  "lastUpdated": "2026-07-04T01:44:33Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -843,6 +843,14 @@
     },
     {
       "player": "Jefferson Lerma",
+      "team": "Colombia",
+      "teamTla": "COL",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Jhon Arias",
       "team": "Colombia",
       "teamTla": "COL",
       "yellow": 1,
