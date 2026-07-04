@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-04T17:23:53Z",
+  "lastUpdated": "2026-07-04T17:45:11Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -277,6 +277,14 @@
       "player": "Abdulelah Al-Amri",
       "team": "Saudi Arabia",
       "teamTla": "KSA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Achraf Hakimi",
+      "team": "Morocco",
+      "teamTla": "MAR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
@@ -898,6 +906,14 @@
       "red": 0
     },
     {
+      "player": "Jonathan David",
+      "team": "Canada",
+      "teamTla": "CAN",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
       "player": "Jordan Bos",
       "team": "Australia",
       "teamTla": "AUS",
@@ -1413,6 +1429,14 @@
       "player": "Richard R\u00edos",
       "team": "Colombia",
       "teamTla": "COL",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Richie Laryea",
+      "team": "Canada",
+      "teamTla": "CAN",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
