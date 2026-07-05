@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-04T23:05:13Z",
+  "lastUpdated": "2026-07-05T21:59:25Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -1325,6 +1325,14 @@
       "player": "Nathana\u00ebl Mbuku",
       "team": "Congo DR",
       "teamTla": "COD",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Neymar",
+      "team": "Brazil",
+      "teamTla": "BRA",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
