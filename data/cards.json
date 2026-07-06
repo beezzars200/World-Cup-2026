@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-06T20:53:38Z",
+  "lastUpdated": "2026-07-06T20:59:26Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -253,6 +253,14 @@
       "player": "Noah Sadiki",
       "team": "Congo DR",
       "teamTla": "COD",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Renato Veiga",
+      "team": "Portugal",
+      "teamTla": "POR",
       "yellow": 2,
       "yellowRed": 0,
       "red": 0
@@ -1501,14 +1509,6 @@
       "player": "Redouane Halhal",
       "team": "Morocco",
       "teamTla": "MAR",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Renato Veiga",
-      "team": "Portugal",
-      "teamTla": "POR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
