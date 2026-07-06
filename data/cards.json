@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-06T02:32:08Z",
+  "lastUpdated": "2026-07-06T02:39:25Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -962,6 +962,14 @@
       "red": 0
     },
     {
+      "player": "Jorge S\u00e1nchez",
+      "team": "Mexico",
+      "teamTla": "MEX",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
       "player": "Josu\u00e9 Casimir",
       "team": "Haiti",
       "teamTla": "HAI",
@@ -1349,6 +1357,14 @@
       "player": "Nico Elvedi",
       "team": "Switzerland",
       "teamTla": "SUI",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Nico O'Reilly",
+      "team": "England",
+      "teamTla": "ENG",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
