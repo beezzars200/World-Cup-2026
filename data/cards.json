@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-06T02:39:25Z",
+  "lastUpdated": "2026-07-06T03:04:43Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -930,6 +930,14 @@
       "red": 0
     },
     {
+      "player": "Johan V\u00e1squez",
+      "team": "Mexico",
+      "teamTla": "MEX",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
       "player": "Johny Placide",
       "team": "Haiti",
       "teamTla": "HAI",
@@ -949,6 +957,14 @@
       "player": "Jordan Bos",
       "team": "Australia",
       "teamTla": "AUS",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Jordan Henderson",
+      "team": "England",
+      "teamTla": "ENG",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
