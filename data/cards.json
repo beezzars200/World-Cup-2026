@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-05T21:59:25Z",
+  "lastUpdated": "2026-07-06T01:09:24Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -157,6 +157,14 @@
       "player": "Danilo",
       "team": "Brazil",
       "teamTla": "BRA",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Declan Rice",
+      "team": "England",
+      "teamTla": "ENG",
       "yellow": 2,
       "yellowRed": 0,
       "red": 0
@@ -557,14 +565,6 @@
       "player": "Danley Jean Jacques",
       "team": "Haiti",
       "teamTla": "HAI",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Declan Rice",
-      "team": "England",
-      "teamTla": "ENG",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
