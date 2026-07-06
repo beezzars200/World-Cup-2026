@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-06T02:22:58Z",
+  "lastUpdated": "2026-07-06T02:32:07Z",
   "matches": {
     "GA-MD1a": {
       "score1": 2,
@@ -378,7 +378,7 @@
       "winner": "NOR"
     },
     "M92": {
-      "score1": 1,
+      "score1": 2,
       "score2": 3,
       "status": "live",
       "home": "MEX"

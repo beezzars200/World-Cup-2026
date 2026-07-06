@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-06T02:19:28Z",
+  "lastUpdated": "2026-07-06T02:32:08Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -1197,6 +1197,14 @@
       "player": "Marawan Attia",
       "team": "Egypt",
       "teamTla": "EGY",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Marc Gu\u00e9hi",
+      "team": "England",
+      "teamTla": "ENG",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
