@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-06T03:04:43Z",
+  "lastUpdated": "2026-07-06T20:53:38Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -133,6 +133,14 @@
       "player": "Amir Al-Ammari",
       "team": "Iraq",
       "teamTla": "IRQ",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Bernardo Silva",
+      "team": "Portugal",
+      "teamTla": "POR",
       "yellow": 2,
       "yellowRed": 0,
       "red": 0
@@ -445,14 +453,6 @@
       "player": "Azzedine Ounahi",
       "team": "Morocco",
       "teamTla": "MAR",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Bernardo Silva",
-      "team": "Portugal",
-      "teamTla": "POR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
