@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-06T20:59:26Z",
+  "lastUpdated": "2026-07-06T21:02:42Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -717,6 +717,14 @@
       "player": "Feras Al-Brikan",
       "team": "Saudi Arabia",
       "teamTla": "KSA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Ferran Torres",
+      "team": "Spain",
+      "teamTla": "ESP",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
