@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-07T22:04:52Z",
+  "lastUpdated": "2026-07-07T22:19:32Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -1349,6 +1349,14 @@
       "player": "Micky van de Ven",
       "team": "Netherlands",
       "teamTla": "NED",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Miro Muheim",
+      "team": "Switzerland",
+      "teamTla": "SUI",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
