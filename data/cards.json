@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-07T21:24:36Z",
+  "lastUpdated": "2026-07-07T22:04:52Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -613,6 +613,14 @@
       "player": "Danley Jean Jacques",
       "team": "Haiti",
       "teamTla": "HAI",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Davinson S\u00e1nchez",
+      "team": "Colombia",
+      "teamTla": "COL",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
