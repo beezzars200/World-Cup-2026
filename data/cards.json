@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-07T00:35:23Z",
+  "lastUpdated": "2026-07-07T01:34:48Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -1221,6 +1221,14 @@
       "player": "Mahmoud Saber",
       "team": "Egypt",
       "teamTla": "EGY",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Malik Tillman",
+      "team": "United States",
+      "teamTla": "USA",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
