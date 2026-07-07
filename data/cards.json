@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-06T21:02:42Z",
+  "lastUpdated": "2026-07-07T00:35:23Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -1701,6 +1701,14 @@
       "player": "Wagner Pina",
       "team": "Cape Verde",
       "teamTla": "CPV",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Weston McKennie",
+      "team": "United States",
+      "teamTla": "USA",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
