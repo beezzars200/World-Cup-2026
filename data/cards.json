@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-07T18:10:59Z",
+  "lastUpdated": "2026-07-07T21:14:37Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -197,6 +197,14 @@
       "player": "Gervane Kastaneer",
       "team": "Cura\u00e7ao",
       "teamTla": "CUW",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Granit Xhaka",
+      "team": "Switzerland",
+      "teamTla": "SUI",
       "yellow": 2,
       "yellowRed": 0,
       "red": 0
@@ -789,14 +797,6 @@
       "player": "Gonzalo Plata",
       "team": "Ecuador",
       "teamTla": "ECU",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Granit Xhaka",
-      "team": "Switzerland",
-      "teamTla": "SUI",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
