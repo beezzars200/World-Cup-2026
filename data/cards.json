@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-07T17:39:25Z",
+  "lastUpdated": "2026-07-07T18:04:49Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -229,6 +229,14 @@
       "player": "Luc de Fougerolles",
       "team": "Canada",
       "teamTla": "CAN",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Marawan Attia",
+      "team": "Egypt",
+      "teamTla": "EGY",
       "yellow": 2,
       "yellowRed": 0,
       "red": 0
@@ -818,6 +826,14 @@
       "red": 0
     },
     {
+      "player": "Hamdy Fathy",
+      "team": "Egypt",
+      "teamTla": "EGY",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
       "player": "Harry Souttar",
       "team": "Australia",
       "teamTla": "AUS",
@@ -1242,14 +1258,6 @@
       "red": 0
     },
     {
-      "player": "Marawan Attia",
-      "team": "Egypt",
-      "teamTla": "EGY",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
       "player": "Marc Gu\u00e9hi",
       "team": "England",
       "teamTla": "ENG",
@@ -1357,6 +1365,14 @@
       "player": "Mois\u00e9s Caicedo",
       "team": "Ecuador",
       "teamTla": "ECU",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Mostafa Shoubir",
+      "team": "Egypt",
+      "teamTla": "EGY",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
