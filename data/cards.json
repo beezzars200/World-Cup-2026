@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-07T18:04:49Z",
+  "lastUpdated": "2026-07-07T18:10:59Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -197,6 +197,14 @@
       "player": "Gervane Kastaneer",
       "team": "Cura\u00e7ao",
       "teamTla": "CUW",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Haissem Hassan",
+      "team": "Egypt",
+      "teamTla": "EGY",
       "yellow": 2,
       "yellowRed": 0,
       "red": 0
@@ -813,14 +821,6 @@
       "player": "Gustavo Puerta",
       "team": "Colombia",
       "teamTla": "COL",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Haissem Hassan",
-      "team": "Egypt",
-      "teamTla": "EGY",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
