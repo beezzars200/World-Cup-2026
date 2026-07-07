@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-07T21:14:37Z",
+  "lastUpdated": "2026-07-07T21:24:36Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -181,6 +181,14 @@
       "player": "Declan Rice",
       "team": "England",
       "teamTla": "ENG",
+      "yellow": 2,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Denis Zakaria",
+      "team": "Switzerland",
+      "teamTla": "SUI",
       "yellow": 2,
       "yellowRed": 0,
       "red": 0
@@ -605,14 +613,6 @@
       "player": "Danley Jean Jacques",
       "team": "Haiti",
       "teamTla": "HAI",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Denis Zakaria",
-      "team": "Switzerland",
-      "teamTla": "SUI",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
@@ -1213,6 +1213,14 @@
       "player": "Lucas Bergvall",
       "team": "Sweden",
       "teamTla": "SWE",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Luis Su\u00e1rez",
+      "team": "Colombia",
+      "teamTla": "COL",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
