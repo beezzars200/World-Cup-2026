@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-07T17:54:33Z",
+  "lastUpdated": "2026-07-09T19:04:53Z",
   "scorers": [
     {
       "player": "Lionel Messi",
@@ -16,7 +16,7 @@
       "nationality": "France",
       "team": "France",
       "teamTla": "FRA",
-      "playedMatches": 5,
+      "playedMatches": 6,
       "goals": 7,
       "assists": 2,
       "penalties": 1
@@ -86,7 +86,7 @@
       "nationality": "France",
       "team": "France",
       "teamTla": "FRA",
-      "playedMatches": 5,
+      "playedMatches": 6,
       "goals": 4,
       "assists": 2,
       "penalties": 0
