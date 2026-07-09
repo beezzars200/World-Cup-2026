@@ -1,6 +1,16 @@
 {
-  "lastUpdated": "2026-07-09T19:04:53Z",
+  "lastUpdated": "2026-07-09T21:29:24Z",
   "scorers": [
+    {
+      "player": "Kylian Mbapp\u00e9",
+      "nationality": "France",
+      "team": "France",
+      "teamTla": "FRA",
+      "playedMatches": 6,
+      "goals": 8,
+      "assists": 2,
+      "penalties": 1
+    },
     {
       "player": "Lionel Messi",
       "nationality": "Argentina",
@@ -10,16 +20,6 @@
       "goals": 8,
       "assists": 1,
       "penalties": 0
-    },
-    {
-      "player": "Kylian Mbapp\u00e9",
-      "nationality": "France",
-      "team": "France",
-      "teamTla": "FRA",
-      "playedMatches": 6,
-      "goals": 7,
-      "assists": 2,
-      "penalties": 1
     },
     {
       "player": "Erling Haaland",

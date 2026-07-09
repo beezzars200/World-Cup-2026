@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-07T22:19:32Z",
+  "lastUpdated": "2026-07-09T21:29:24Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -104,6 +104,14 @@
       "yellow": 0,
       "yellowRed": 0,
       "red": 1
+    },
+    {
+      "player": "Issa Diop",
+      "team": "Morocco",
+      "teamTla": "MAR",
+      "yellow": 3,
+      "yellowRed": 0,
+      "red": 0
     },
     {
       "player": "Abdukodir Khusanov",
@@ -221,14 +229,6 @@
       "player": "Haissem Hassan",
       "team": "Egypt",
       "teamTla": "EGY",
-      "yellow": 2,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Issa Diop",
-      "team": "Morocco",
-      "teamTla": "MAR",
       "yellow": 2,
       "yellowRed": 0,
       "red": 0
