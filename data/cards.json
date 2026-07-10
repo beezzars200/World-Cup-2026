@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-09T21:29:24Z",
+  "lastUpdated": "2026-07-10T19:49:34Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -1525,6 +1525,14 @@
       "player": "Patrick Berg",
       "team": "Norway",
       "teamTla": "NOR",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Pau Cubars\u00ed",
+      "team": "Spain",
+      "teamTla": "ESP",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
