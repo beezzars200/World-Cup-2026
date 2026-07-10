@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-10T19:31:14Z",
+  "lastUpdated": "2026-07-10T19:41:32Z",
   "matches": {
     "GA-MD1a": {
       "score1": 2,
@@ -423,7 +423,7 @@
     },
     "M98": {
       "score1": 1,
-      "score2": 0,
+      "score2": 1,
       "status": "live",
       "home": "ESP"
     },
