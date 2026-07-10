@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-10T20:47:50Z",
+  "lastUpdated": "2026-07-10T20:54:52Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -485,6 +485,14 @@
       "player": "Aur\u00e9lien Tchouam\u00e9ni",
       "team": "France",
       "teamTla": "FRA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Aymeric Laporte",
+      "team": "Spain",
+      "teamTla": "ESP",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
