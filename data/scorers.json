@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-11T20:09:25Z",
+  "lastUpdated": "2026-07-11T21:54:57Z",
   "scorers": [
     {
       "player": "Kylian Mbapp\u00e9",
@@ -42,6 +42,16 @@
       "penalties": 2
     },
     {
+      "player": "Jude Bellingham",
+      "nationality": "England",
+      "team": "England",
+      "teamTla": "ENG",
+      "playedMatches": 6,
+      "goals": 5,
+      "assists": 1,
+      "penalties": 0
+    },
+    {
       "player": "Ousmane Demb\u00e9l\u00e9",
       "nationality": "France",
       "team": "France",
@@ -67,16 +77,6 @@
       "team": "Brazil",
       "teamTla": "BRA",
       "playedMatches": 5,
-      "goals": 4,
-      "assists": 1,
-      "penalties": 0
-    },
-    {
-      "player": "Jude Bellingham",
-      "nationality": "England",
-      "team": "England",
-      "teamTla": "ENG",
-      "playedMatches": 6,
       "goals": 4,
       "assists": 1,
       "penalties": 0
