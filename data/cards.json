@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-10T20:59:26Z",
+  "lastUpdated": "2026-07-11T23:44:37Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -1173,6 +1173,14 @@
       "player": "Konrad Laimer",
       "team": "Austria",
       "teamTla": "AUT",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Kristoffer Ajer",
+      "team": "Norway",
+      "teamTla": "NOR",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
