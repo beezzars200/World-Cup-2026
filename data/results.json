@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-11T00:00:14Z",
+  "lastUpdated": "2026-07-11T21:02:22Z",
   "matches": {
     "GA-MD1a": {
       "score1": 2,
@@ -429,9 +429,9 @@
       "winner": "ESP"
     },
     "M99": {
-      "score1": null,
-      "score2": null,
-      "status": "upcoming",
+      "score1": 0,
+      "score2": 0,
+      "status": "live",
       "home": "NOR"
     },
     "M100": {
