@@ -1,6 +1,14 @@
 {
-  "lastUpdated": "2026-07-12T01:44:39Z",
+  "lastUpdated": "2026-07-12T02:34:48Z",
   "cards": [
+    {
+      "player": "Breel Embolo",
+      "team": "Switzerland",
+      "teamTla": "SUI",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 1
+    },
     {
       "player": "Folarin Balogun",
       "team": "United States",
@@ -533,14 +541,6 @@
       "player": "Brandon Mechele",
       "team": "Belgium",
       "teamTla": "BEL",
-      "yellow": 1,
-      "yellowRed": 0,
-      "red": 0
-    },
-    {
-      "player": "Breel Embolo",
-      "team": "Switzerland",
-      "teamTla": "SUI",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
