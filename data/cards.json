@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-12T02:34:48Z",
+  "lastUpdated": "2026-07-12T03:14:36Z",
   "cards": [
     {
       "player": "Breel Embolo",
@@ -1210,6 +1210,14 @@
       "red": 0
     },
     {
+      "player": "Lautaro Mart\u00ednez",
+      "team": "Argentina",
+      "teamTla": "ARG",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
       "player": "Leandro Bacuna",
       "team": "Cura\u00e7ao",
       "teamTla": "CUW",
@@ -1757,6 +1765,14 @@
       "player": "Thalente Mbatha",
       "team": "South Africa",
       "teamTla": "RSA",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Thiago Almada",
+      "team": "Argentina",
+      "teamTla": "ARG",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
