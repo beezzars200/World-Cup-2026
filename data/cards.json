@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-11T23:44:37Z",
+  "lastUpdated": "2026-07-12T01:44:39Z",
   "cards": [
     {
       "player": "Folarin Balogun",
@@ -533,6 +533,14 @@
       "player": "Brandon Mechele",
       "team": "Belgium",
       "teamTla": "BEL",
+      "yellow": 1,
+      "yellowRed": 0,
+      "red": 0
+    },
+    {
+      "player": "Breel Embolo",
+      "team": "Switzerland",
+      "teamTla": "SUI",
       "yellow": 1,
       "yellowRed": 0,
       "red": 0
