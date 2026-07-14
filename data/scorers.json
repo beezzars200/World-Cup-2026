@@ -1,12 +1,12 @@
 {
-  "lastUpdated": "2026-07-12T01:19:28Z",
+  "lastUpdated": "2026-07-14T18:07:50Z",
   "scorers": [
     {
       "player": "Kylian Mbapp\u00e9",
       "nationality": "France",
       "team": "France",
       "teamTla": "FRA",
-      "playedMatches": 6,
+      "playedMatches": 7,
       "goals": 8,
       "assists": 2,
       "penalties": 1
@@ -56,7 +56,7 @@
       "nationality": "France",
       "team": "France",
       "teamTla": "FRA",
-      "playedMatches": 6,
+      "playedMatches": 7,
       "goals": 5,
       "assists": 2,
       "penalties": 0
@@ -86,7 +86,7 @@
       "nationality": "Spain",
       "team": "Spain",
       "teamTla": "ESP",
-      "playedMatches": 6,
+      "playedMatches": 7,
       "goals": 4,
       "assists": 1,
       "penalties": 0
