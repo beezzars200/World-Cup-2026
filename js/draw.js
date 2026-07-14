@@ -19,7 +19,7 @@
     { no: 11, name: 'Richy O Hare',                team: 'QAT', scorer: 'Darwin Núñez',         scorerCountry: 'Uruguay' },
     { no: 12, name: 'Jimmy O Brien',               team: 'CUW', scorer: 'Jonathan David',       scorerCountry: 'Canada' },
     { no: 13, name: 'Johnny Scribbles',      team: 'SWE', scorer: 'Bruno Fernandes',      scorerCountry: 'Portugal' },
-    { no: 14, name: 'Bianca de Nicola',      team: 'ENG', scorer: 'Mikel Oyarzabal',      scorerCountry: 'Spain' },
+    { no: 14, name: 'Bianca De Nicola',      team: 'ENG', scorer: 'Mikel Oyarzabal',      scorerCountry: 'Spain' },
     { no: 15, name: 'Tony O Brien',                team: 'USA', scorer: 'Marcus Thuram',        scorerCountry: 'France' },
     { no: 16, name: 'Pa O Connor',                 team: 'ALG', scorer: 'Michael Olise',        scorerCountry: 'France' },
     { no: 17, name: 'Stevie Waters',               team: 'SEN', scorer: 'Matheus Cunha',        scorerCountry: 'Brazil' },
