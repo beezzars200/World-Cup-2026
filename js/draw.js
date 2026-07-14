@@ -9,7 +9,7 @@
     { no: 1,  name: 'Kim Moore',                   team: 'NOR', scorer: 'Eberechi Eze',         scorerCountry: 'England' },
     { no: 2,  name: 'Scott Moore',                 team: 'BRA', scorer: 'Cristiano Ronaldo',    scorerCountry: 'Portugal' },
     { no: 3,  name: 'Kian Kelleher',               team: 'COL', scorer: 'Lionel Messi',         scorerCountry: 'Argentina' },
-    { no: 4,  name: 'Bee O Sullivan',              team: 'ARG', scorer: 'Erling Haaland',       scorerCountry: 'Norway' },
+    { no: 4,  name: 'Brian Ó Súilleabháin',        team: 'ARG', scorer: 'Erling Haaland',       scorerCountry: 'Norway' },
     { no: 5,  name: 'Eugene Hennessy',             team: 'NZL', scorer: 'Désiré Doué',          scorerCountry: 'France' },
     { no: 6,  name: 'Nathan Hennessy',             team: 'SUI', scorer: 'Florian Wirtz',        scorerCountry: 'Germany' },
     { no: 7,  name: 'Adrian Duggan',               team: 'GER', scorer: 'Jérémy Doku',          scorerCountry: 'Belgium' },
