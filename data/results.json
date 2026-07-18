@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-18T22:59:24Z",
+  "lastUpdated": "2026-07-18T23:01:14Z",
   "matches": {
     "GA-MD1a": {
       "score1": 2,
@@ -458,7 +458,7 @@
     },
     "M103": {
       "score1": 4,
-      "score2": 5,
+      "score2": 6,
       "status": "live",
       "home": "FRA"
     },
