@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-18T23:01:17Z",
+  "lastUpdated": "2026-07-18T23:05:25Z",
   "scorers": [
     {
       "player": "Kylian Mbapp\u00e9",
@@ -32,6 +32,16 @@
       "penalties": 0
     },
     {
+      "player": "Jude Bellingham",
+      "nationality": "England",
+      "team": "England",
+      "teamTla": "ENG",
+      "playedMatches": 8,
+      "goals": 7,
+      "assists": 1,
+      "penalties": 0
+    },
+    {
       "player": "Harry Kane",
       "nationality": "England",
       "team": "England",
@@ -40,16 +50,6 @@
       "goals": 6,
       "assists": 1,
       "penalties": 2
-    },
-    {
-      "player": "Jude Bellingham",
-      "nationality": "England",
-      "team": "England",
-      "teamTla": "ENG",
-      "playedMatches": 8,
-      "goals": 6,
-      "assists": 1,
-      "penalties": 0
     },
     {
       "player": "Ousmane Demb\u00e9l\u00e9",
